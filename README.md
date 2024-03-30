@@ -1,4 +1,4 @@
-Project Overview Client Details 
+TIP Project Project Overview Client Details 
 
 *Instatute*  is  a  private  tutoring  company  operating  across  multiple  locations  in  Australia. Currently, *Instatute* provides one-on-one and group tutoring to prepare students for special entry university exams for both Australian and international institutions. In addition to some administrative support workers and managers, employees of *Instatute* are mostly part-time educators specialising in a broad range of fields.* 
 
