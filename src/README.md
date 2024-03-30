@@ -1,1 +1,1 @@
-*Over here we will keep our projects.
+Over here we will keep our projects.
