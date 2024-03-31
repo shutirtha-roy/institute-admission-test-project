@@ -70,11 +70,12 @@ nav ul li a:hover {
 
 .login-btn {
     background: #000000;
-    height: 2.5rem;
-    width: 5rem;
+    font-size: 1.5rem;
+    padding: 0.6rem;
     color: #fff;
     float: right;
     border-radius: 5px;
+    text-decoration: none;
     cursor: pointer;
     transition-duration: 1s;
 }
@@ -105,11 +106,12 @@ nav ul li a:hover {
 
 .signUp-btn {
     background: #000000;
-    height: 2.5rem;
-    width: 5rem;
+    font-size: 1.5rem;
+    padding: 0.6rem;
     color: #fff;
     float: right;
     border-radius: 5px;
+    text-decoration: none;
     cursor: pointer;
     transition-duration: 1s;
 }
