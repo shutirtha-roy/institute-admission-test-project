@@ -1,0 +1,35 @@
+/*HOME START*/
+body {
+    background-color: #000000;
+    color: #fff;
+}
+
+.home {
+    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.home {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.home h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.home p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.6;
+}
+/*HOME END*/
