@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../style/admin.css">
+</head>
+<body>
+    <h1></h1>
+
+    <div class="button-container">
+        <button onclick="showAddTutorForm()">Add Tutor</button>
+        <button onclick="removeTutor()">Remove Tutor</button>
+        <button onclick="removeStudent()">Remove Student</button>
+    </div>
+
+    <form id="addTutorForm" style="display: none;">
+        <label for="tutorName">Name:</label>
+        <input type="text" id="tutorName" name="tutorName" required><br>
+
+        <label for="tutorPhone">Phone:</label>
+        <input type="text" id="tutorPhone" name="tutorPhone" required><br>
+
+        <label for="tutorEmail">Email:</label>
+        <input type="email" id="tutorEmail" name="tutorEmail" required><br>
+
+        <label for="tutorSubject">Subject:</label>
+        <select id="tutorSubject" name="tutorSubject" required>
+            <option value="">Select Subject</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="History">History</option>
+            <!-- Add more options as needed -->
+        </select><br>
+
+        <button type="submit">Add Tutor</button>
+    </form>
+    <form
+        id="RemoveTutorForm" style="display: none;">
+        <li><a href="home-tutors.html">Delete Tutors</a></li>
+
+    </form>
+    <script>
+        function showAddTutorForm() {
+            var form = document.getElementById("addTutorForm");
+            if (form.style.display === "none") {
+                form.style.display = "block";
+            } else {
+                form.style.display = "none";
+            }
+        }
+
+        function removeTutor() {
+            // Add code to handle removing tutors
+            var form = document.getElementById("RemoveTutorForm");
+            if (form.style.display === "none") {
+                form.style.display = "block";
+            } else {
+                form.style.display = "none";
+            }
+        }
+
+        function removeStudent() {
+            // Add code to handle removing students
+            alert("Remove Student function triggered.");
+        }
+    </script>
+        <!--------------------NAVIGATION BAR (Common Code)-------------->
+        <header>
+            <link rel="stylesheet" href="../style/common-style.css">
+            <nav>
+                <ul>
+                    <li><a href="admin.html">Dashboard</a></li>
+                    <li><a href="admin.html" id="signUp">Admin Panel</a></li>
+                    <li><a href="admin.html" id="signUp">Sign Out</a></li>
+                </ul>
+            </nav>
+         </header>
+         <!--------------------NAVIGATION BAR (Common Code)-------------->
+</body>
+</html>
