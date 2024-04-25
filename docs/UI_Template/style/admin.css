@@ -16,12 +16,12 @@ h1 {
 }
 
 button {
-    padding: 30px 30px;
-    margin: 0 100px;
-    background-color: #0e2a63;
-    color: #fff;
+    padding: 20px 30px;
+    margin: 0 30px;
+    background-color: #e98d92;
+    color: #4b1fb1;
     border:none;
-    border-radius: 50px;
+    border-radius: 100px;
     cursor: pointer;
 }
 
@@ -30,7 +30,7 @@ button:hover {
 }
 
 form {
-    max-width: 400px;
+    max-width: 300px;
     margin: 0 auto;
 }
 
