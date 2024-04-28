@@ -15,19 +15,19 @@ export class HeaderComponent {
   }
 
   isAuthenticated(): boolean {
-    if (this.auth.isLoggedIn()) {
-      this.setName();
-      return true;
-    }
+    // if (this.auth.isLoggedIn()) {
+    //   this.setName();
+    //   return true;
+    // }
 
     return false;
   }
 
   setName() {
-    this.name = this.auth.getName();
+    // this.name = this.auth.getName();
   }
 
   logout(): void {
-    this.auth.signOut();
+    // this.auth.signOut();
   }
 }
