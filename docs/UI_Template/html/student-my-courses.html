@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/common-style.css">
+    <link rel="stylesheet" href="../style/student-my-courses.css">
+    <title>Instatute</title>
+</head>
+<body>
+    <!--------------------NAVIGATION BAR (Common Code)-------------->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="student-sign-in.html">Dashboard</a></li>
+                <li><a href="student-my-courses.html">My Courses</a></li>
+                <li><a href="student-enroll.html">Enroll</a></li>
+                <li><a href="student-online-quiz.html">Online Quiz</a></li>
+                <li><a href="home.html" id="signUp">Sign Out</a></li>
+            </ul>
+        </nav>
+     </header>
+     <!--------------------NAVIGATION BAR (Common Code)-------------->
+
+     <div class="heading">
+        <h1>Hello Student, you are enrolled in this courses!</h1>
+     </div>
+     
+     <div class="course-container">
+        <div class="course">
+            <div class="image-container">
+                <img src="../images/UniversityImage1.jpg" alt="Evergreen University">
+            </div>
+            <h2>Evergreen University</h2>
+            <p>Prepare for admission to Evergreen University with personalized tutoring from industry experts.</p>
+            <h5>Class Schedule: Sunday 5:30PM - 6:30PM, Tuesday 5:30PM - 6:30PM</h5>
+            <div class="btn-container">
+                <button id="" class="btn course-button">Join Class</button>
+                <button class="btn">Mock Exam</button>
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="image-container">
+                <img src="../images/UniversityImage2.jpg" alt="Golden Gate University">
+            </div>
+            <h3>Golden Gate University</h3>
+            <p>Gain the skills and knowledge needed for admission to Golden Gate University through our comprehensive tutoring program.</p>
+            <h5>Class Schedule: Tuesday 5:30PM - 6:30PM, Wednesday 5:30PM - 6:30PM</h5>
+            <div class="btn-container">
+                <button id="" class="btn course-button">Join Class</button>
+                <button class="btn">Mock Exam</button>
+            </div>
+        </div>
+     </div>
+
+    <!--------------------Modal-------------------->
+    <div class="modal-background" id="modal-background">
+        <div class="modal-content">
+            <span class="close-button" id="close-button">&times;</span>
+            <h2>Course Title</h2>
+            <p>This is a modal content for the course. You can add any course details here.</p>
+        </div>
+    </div>
+    <!--------------------Modal-------------------->
+
+     <script src="../js/student-my-courses.js"></script>
+</body>
+</html>

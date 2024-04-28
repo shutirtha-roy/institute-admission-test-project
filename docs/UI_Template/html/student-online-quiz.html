@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/common-style.css">
+    <link rel="stylesheet" href="../style/student-online-quiz.css">
+    <title>Instatute</title>
+</head>
+<body>
+    <!--------------------NAVIGATION BAR (Common Code)-------------->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="student-sign-in.html">Dashboard</a></li>
+                <li><a href="student-my-courses.html">My Courses</a></li>
+                <li><a href="student-enroll.html">Enroll</a></li>
+                <li><a href="student-online-quiz.html">Online Quiz</a></li>
+                <li><a href="home.html" id="signUp">Sign Out</a></li>
+            </ul>
+        </nav>
+     </header>
+     <!--------------------NAVIGATION BAR (Common Code)-------------->
+
+     <div class="quiz-container">
+        <h1>Multiple Choice Quiz</h1>
+        <form id="quiz-form">
+            <ol>
+                <li>
+                    <h3>Question 1: What is the capital of France?</h3>
+                    <input type="radio" name="q1" value="a" id="q1-a">
+                    <label for="q1-a">a) Paris</label><br>
+                    <input type="radio" name="q1" value="b" id="q1-b">
+                    <label for="q1-b">b) Rome</label><br>
+                    <input type="radio" name="q1" value="c" id="q1-c">
+                    <label for="q1-c">c) London</label><br>
+                    <input type="radio" name="q1" value="d" id="q1-d">
+                    <label for="q1-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 2: What is the chemical symbol for water?</h3>
+                    <input type="radio" name="q2" value="a" id="q2-a">
+                    <label for="q2-a">a) H2O</label><br>
+                    <input type="radio" name="q2" value="b" id="q2-b">
+                    <label for="q2-b">b) CO2</label><br>
+                    <input type="radio" name="q2" value="c" id="q2-c">
+                    <label for="q2-c">c) CH4</label><br>
+                    <input type="radio" name="q2" value="d" id="q2-d">
+                    <label for="q2-d">d) NaCl</label>
+                  </li>
+
+                  <li>
+                    <h3>Question 3: Who wrote "To Kill a Mockingbird"?</h3>
+                    <input type="radio" name="q3" value="a" id="q3-a">
+                    <label for="q3-a">a) Harper Lee</label><br>
+                    <input type="radio" name="q3" value="b" id="q3-b">
+                    <label for="q3-b">b) J.K. Rowling</label><br>
+                    <input type="radio" name="q3" value="c" id="q3-c">
+                    <label for="q3-c">c) Mark Twain</label><br>
+                    <input type="radio" name="q3" value="d" id="q3-d">
+                    <label for="q3-d">d) Ernest Hemingway</label>
+                  </li>
+
+                  <li>
+                    <h3>Question 4: What is the largest planet in our solar system?</h3>
+                    <input type="radio" name="q4" value="a" id="q4-a">
+                    <label for="q4-a">a) Jupiter</label><br>
+                    <input type="radio" name="q4" value="b" id="q4-b">
+                    <label for="q4-b">b) Saturn</label><br>
+                    <input type="radio" name="q4" value="c" id="q4-c">
+                    <label for="q4-c">c) Earth</label><br>
+                    <input type="radio" name="q4" value="d" id="q4-d">
+                    <label for="q4-d">d) Neptune</label>
+                  </li>
+
+                <li>
+                    <h3>Question 5: What is the capital of France?</h3>
+                    <input type="radio" name="q5" value="a" id="q5-a">
+                    <label for="q5-a">a) Paris</label><br>
+                    <input type="radio" name="q5" value="b" id="q5-b">
+                    <label for="q5-b">b) Rome</label><br>
+                    <input type="radio" name="q5" value="c" id="q5-c">
+                    <label for="q5-c">c) London</label><br>
+                    <input type="radio" name="q5" value="d" id="q5-d">
+                    <label for="q5-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 6: What is the capital of France?</h3>
+                    <input type="radio" name="q6" value="a" id="q6-a">
+                    <label for="q6-a">a) Paris</label><br>
+                    <input type="radio" name="q6" value="b" id="q6-b">
+                    <label for="q6-b">b) Rome</label><br>
+                    <input type="radio" name="q6" value="c" id="q6-c">
+                    <label for="q6-c">c) London</label><br>
+                    <input type="radio" name="q6" value="d" id="q6-d">
+                    <label for="q6-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 7: What is the capital of France?</h3>
+                    <input type="radio" name="q7" value="a" id="q7-a">
+                    <label for="q7-a">a) Paris</label><br>
+                    <input type="radio" name="q7" value="b" id="q7-b">
+                    <label for="q7-b">b) Rome</label><br>
+                    <input type="radio" name="q7" value="c" id="q7-c">
+                    <label for="q7-c">c) London</label><br>
+                    <input type="radio" name="q7" value="d" id="q7-d">
+                    <label for="q7-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 8: What is the capital of France?</h3>
+                    <input type="radio" name="q8" value="a" id="q8-a">
+                    <label for="q8-a">a) Paris</label><br>
+                    <input type="radio" name="q8" value="b" id="q8-b">
+                    <label for="q8-b">b) Rome</label><br>
+                    <input type="radio" name="q8" value="c" id="q8-c">
+                    <label for="q8-c">c) London</label><br>
+                    <input type="radio" name="q8" value="d" id="q8-d">
+                    <label for="q8-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 9: What is the capital of France?</h3>
+                    <input type="radio" name="q9" value="a" id="q9-a">
+                    <label for="q9-a">a) Paris</label><br>
+                    <input type="radio" name="q9" value="b" id="q9-b">
+                    <label for="q9-b">b) Rome</label><br>
+                    <input type="radio" name="q9" value="c" id="q9-c">
+                    <label for="q9-c">c) London</label><br>
+                    <input type="radio" name="q9" value="d" id="q9-d">
+                    <label for="q9-d">d) Berlin</label>
+                </li>
+
+                <li>
+                    <h3>Question 10: What is the capital of France?</h3>
+                    <input type="radio" name="q10" value="a" id="q10-a">
+                    <label for="q10-a">a) Paris</label><br>
+                    <input type="radio" name="q10" value="b" id="q10-b">
+                    <label for="q10-b">b) Rome</label><br>
+                    <input type="radio" name="q10" value="c" id="q10-c">
+                    <label for="q10-c">c) London</label><br>
+                    <input type="radio" name="q10" value="d" id="q10-d">
+                    <label for="q10-d">d) Berlin</label>
+                </li>
+            </ol>
+            <input type="submit" value="Submit">
+        </form>
+      </div>
+</body>
+</html>
