@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
+import { HomeComponent } from './shared/components/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
     PagesComponent,
     NotfoundComponent
   ],
