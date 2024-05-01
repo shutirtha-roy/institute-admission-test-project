@@ -9,7 +9,7 @@ import pymongo
 
 class UserTypeEnum(str, Enum):
     ADMIN = "admin"
-    FACULTY = "Faculty"
+    FACULTY = "faculty"
     STUDENT = "student"
 
 class User(Document):
@@ -18,10 +18,10 @@ class User(Document):
     name: str
     email: str
 
-    # class Settings:
-    #     indexes = [
-    #         pymongo.IndexModel([
-    #             ("email", pymongo.ASCENDING),
-    #             ("name", pymongo.ASCENDING),
-    #         ], unique=True)
-    #     ]
+    class Settings:
+        indexes = [
+            pymongo.IndexModel([
+                ("email", pymongo.ASCENDING),
+                ("name", pymongo.ASCENDING),
+            ], unique=True)
+        ]

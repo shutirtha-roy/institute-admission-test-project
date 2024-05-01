@@ -24,14 +24,15 @@ async def getonestudent(task_id):
 @user_router.post("/login", status_code=200)
 async def login_user(data: LoginUserDTO):
     try:
+        print(1)
         user = await User.find_one(User.email == data.email)
 
         if user is None:
             raise UnauthorizedError
-
-        if data.email is not None and not bcrypt.checkpw(data.password.encode("utf-8"), user.password.encode("utf-8")):
+        print(2)
+        if data.email is not None and not (user.password == data.password):
             raise UnauthorizedError
-
+        print(3)
         access_token = create_access_token(user.id)
 
         await user.save()
@@ -61,11 +62,7 @@ async def login_user(data: LoginUserDTO):
 
 @user_router.post("/studentcreate", status_code=201)
 async def createstudent(data: CreateUserDTO):
-    print(data.name)
-    print(data.email)
-    print(bcrypt.hashpw(
-            data.password.encode("utf-8"), bcrypt.gensalt()))
-    print(UserTypeEnum.STUDENT)
+
     student = User(
         name= data.name,
         email= data.email,
@@ -73,22 +70,23 @@ async def createstudent(data: CreateUserDTO):
             data.password.encode("utf-8"), bcrypt.gensalt()),
         role= UserTypeEnum.STUDENT
     )
-    print("123")
+
     await student.save()
     
     return {"massege" : "Student Created successfully"}
 
 @user_router.post("/facultycreate", status_code=201)
 async def createstudent(data: CreateUserDTO):
-    student = User(
-        student_name= data.student_name,
-        gender= data.gender,
-        date_created= data.date_created
+    faculty = User(
+        name= data.name,
+        email= data.email,
+        password= data.password,
+        role= UserTypeEnum.FACULTY
     )
 
-    await student.save()
+    await faculty.save()
     
-    return {"massege" : "Student Created successfully"}
+    return {"massege" : "Faculty Created successfully"}
 
 @user_router.patch('/')
 async def changestudentinfo():

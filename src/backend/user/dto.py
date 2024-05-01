@@ -20,7 +20,7 @@ def password_validator(password: str) -> str:
 class CreateUserDTO(BaseModel):
     name: Optional[str] 
     email: EmailStr
-    password: Annotated[str, AfterValidator(password_validator)]
+    password: str
 
     @root_validator(pre=True)
     def check_username(cls, values):

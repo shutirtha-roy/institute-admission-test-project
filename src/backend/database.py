@@ -1,18 +1,29 @@
 import beanie
 import motor 
 import motor.motor_asyncio
-from user.model import User
+from user.model import User, UserTypeEnum
 from faculty.model import Faculty
 
 async def init_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(
-        "mongodb://localhost:27017/TIP"
+        "mongodb://localhost:27017/DB_Base"
     )
 
     await beanie.init_beanie(
         database=client.db_name,
         document_models=[User, Faculty]
     )
+
+    admin = await User.find_one(User.email == "adminTIP@gmail.com")
+    if (admin == None):
+        admin = User(
+        name= "adminTIP",
+        email= "adminTIP@gmail.com",
+        password= "AdminPassword",
+        role= UserTypeEnum.ADMIN
+    )
+
+    await admin.save()
 
 
 # async def app_init():
