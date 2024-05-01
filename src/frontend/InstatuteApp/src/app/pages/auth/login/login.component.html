@@ -2,18 +2,11 @@
 <main>
     <div class='login'>
         Login
-          <form (ngSubmit)="onLogin()">
-              <input type='text' id='email' placeholder='Email'>
-              <input type='password' id='password' placeholder='Password'>
-              <a class='login-btn' href='student-sign-in.html'>LOG IN (Student)</a>
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <input type='text' formControlName="username" id='email' placeholder='Email'>
+              <input [type]="type" formControlName="password"  id='password' placeholder='Password'>
+              <input type="submit" class="login-btn" value="Login" />
           </form>
-
-          <!----------------REMOVE THIS CODE AFTER IMPLEMENTATION--------------->
-          <br>
-          <div class="extra">
-            <a class='login-btn' href='tutor-sign-in.html'>LOG IN (Tutor)</a>
-          </div>
-          <!----------------REMOVE THIS CODE AFTER IMPLEMENTATION--------------->
     </div>
  </main>
  <!--------------------LOGIN--------------------->

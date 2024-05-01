@@ -33,29 +33,23 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  hideShowPass() {
-    this.isText = !this.isText;
-    this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye";
-    this.isText ? this.type = "text" : this.type = "password";
-  }
-
   onLogin() {
     this.submitted = true;
 
     if(this.loginForm.valid) {
       this.submitted = true;
-
-      this.auth.login(this.loginForm.value)
+      let loginDetails = { 'email': this.loginForm.value?.username , 'password': this.loginForm.value?.password };
+      this.auth.login(loginDetails)
       .subscribe({
         next: (res) => {
-          this.auth.storeToken(res.result.token);
+          this.auth.storeToken(res.data.access_token);
           const tokenPayload = this.auth.decodeToken();
           this.userStore.setFullNameForStore(tokenPayload.unique_name);
           this.userStore.setRoleForStore(tokenPayload.role);
-          this.auth.storeName(res.result.user.name);
+          this.auth.storeName(res.data.user.name);
           this.loginForm.reset();
-          console.log(res.result);
-          this.router.navigate(['mansion']);
+          console.log(res.message);
+          this.router.navigate(['/']);
         },
         error: (err) => {
           alert(err?.err.message)

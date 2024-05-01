@@ -1,19 +1,16 @@
 export interface IApiResponse {
-    id: string,
-    statuscode: string,
-    errormessages: string[],
-    result: IResult
+    success: string,
+    message: string,
+    data: IResult
 }
 
 export interface IResult {
-    token: string;
+    access_token: string;
     user: IUser;
 } 
 
 export interface IUser {
-    id: string,
     name: string,
-    password: string,
+    email: string,
     role: string,
-    userName: string
 }

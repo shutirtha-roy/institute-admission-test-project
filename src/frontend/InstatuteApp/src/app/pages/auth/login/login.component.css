@@ -8,7 +8,8 @@
     text-align: center;
 }
 
-.login input{
+.login input[type='text'],
+.login input[type='password'] {
     font-weight: 2rem;
     border: 0;
     border-bottom: 1px solid #000000;
@@ -17,14 +18,12 @@
     font-size: 26px;
 }
 
-.login-btn {
+.login input[type='submit'] {
     background: #000000;
-    font-size: 1.5rem;
-    padding: 0.6rem;
     color: #fff;
     float: right;
     border-radius: 5px;
-    text-decoration: none;
+    font-size: 2rem;
     cursor: pointer;
     transition-duration: 1s;
 }
