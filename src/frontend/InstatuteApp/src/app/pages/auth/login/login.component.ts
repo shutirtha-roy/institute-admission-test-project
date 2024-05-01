@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: (err) => {
-          alert(err?.err.message)
+          //alert(err?.err.message)
+          this.toaster.success("Invalid Email or Password");
         },
         complete: () => {
           this.toaster.success("Login Successful");

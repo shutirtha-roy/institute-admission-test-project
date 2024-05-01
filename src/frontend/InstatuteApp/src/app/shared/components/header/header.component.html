@@ -1,9 +1,16 @@
 <header>
     <nav>
         <ul>
-            <li><a routerLink="home" >Home</a></li>
-            <li><a routerLink="home" >Courses</a></li>
-            <li><a routerLink="home" >Tutors</a></li>
+            <li *ngIf="!isAuthenticated()">
+                <a routerLink="home" >Home</a>
+            </li>
+            <li *ngIf="isAuthenticated()">
+                <a *ngIf="role == 'student'" routerLink="student/dashboard">Dashboard</a>
+                <a *ngIf="role == 'tutor'" routerLink="student/tutor">Dashboard</a>
+                <a *ngIf="role == 'admin'" routerLink="student/admin">Dashboard</a>
+            </li>
+            <li><a routerLink="home">Courses</a></li>
+            <li><a routerLink="home">Tutors</a></li>
             <li *ngIf="!isAuthenticated()">
                 <a routerLink="auth/signup" id="signUp">Sign Up</a>
             </li>
