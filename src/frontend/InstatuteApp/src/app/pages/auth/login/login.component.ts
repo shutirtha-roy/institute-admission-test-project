@@ -49,6 +49,22 @@ export class LoginComponent implements OnInit {
           this.auth.storeName(res.data.user.name);
           this.loginForm.reset();
           console.log(res.message);
+
+          if(tokenPayload.role == 'student') {
+            this.router.navigate(['/student/dashboard']);
+            return;
+          }
+
+          if(tokenPayload.role == 'tutor') {
+            this.router.navigate(['/tutor/dashboard']);
+            return;
+          }
+
+          if(tokenPayload.role == 'admin') {
+            this.router.navigate(['/admin/dashboard']);
+            return;
+          }
+          
           this.router.navigate(['/']);
         },
         error: (err) => {
