@@ -1,0 +1,21 @@
+<header>
+    <nav>
+        <ul>
+            <li><a routerLink="home" >Home</a></li>
+            <li><a routerLink="home" >Courses</a></li>
+            <li><a routerLink="home" >Tutors</a></li>
+            <li *ngIf="!isAuthenticated()">
+                <a routerLink="auth/signup" id="signUp">Sign Up</a>
+            </li>
+            <li *ngIf="!isAuthenticated()">
+                <a routerLink="auth/login" id="login">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="isAuthenticated()">
+                <a routerLink="home" id="logout" (click)="logout()">Logout</a>
+            </li>
+            <li class="nav-item ms-auto" *ngIf="isAuthenticated()">
+                <a routerLink="home" id="welcome-message">Welcome {{ name }}</a>
+            </li>
+        </ul>
+    </nav>
+</header>
