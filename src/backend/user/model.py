@@ -9,7 +9,7 @@ import pymongo
 
 class UserTypeEnum(str, Enum):
     ADMIN = "admin"
-    FACULTY = "faculty"
+    TUTOR = "tutor"
     STUDENT = "student"
 
 class User(Document):
