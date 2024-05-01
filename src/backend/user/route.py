@@ -32,7 +32,7 @@ async def login_user(data: LoginUserDTO):
         if (user.password == data.password):
             raise UnauthorizedError
 
-        access_token = create_access_token(user.name, user.email, user.role)
+        access_token = create_access_token(user.name, user.email, user.role.value)
 
         await user.save()
         return utils.create_response(
