@@ -24,15 +24,14 @@ async def getonestudent(task_id):
 @user_router.post("/login", status_code=200)
 async def login_user(data: LoginUserDTO):
     try:
-        print(1)
         user = await User.find_one(User.email == data.email)
 
         if user is None:
             raise UnauthorizedError
-        print(2)
-        if data.email is not None and not (user.password == data.password):
+
+        if (user.password == data.password):
             raise UnauthorizedError
-        print(3)
+
         access_token = create_access_token(user.id)
 
         await user.save()
@@ -75,18 +74,18 @@ async def createstudent(data: CreateUserDTO):
     
     return {"massege" : "Student Created successfully"}
 
-@user_router.post("/facultycreate", status_code=201)
+@user_router.post("/tutorcreate", status_code=201)
 async def createstudent(data: CreateUserDTO):
-    faculty = User(
+    tutor = User(
         name= data.name,
         email= data.email,
         password= data.password,
-        role= UserTypeEnum.FACULTY
+        role= UserTypeEnum.TUTOR
     )
 
-    await faculty.save()
+    await tutor.save()
     
-    return {"massege" : "Faculty Created successfully"}
+    return {"massege" : "Tutor Created successfully"}
 
 @user_router.patch('/')
 async def changestudentinfo():
