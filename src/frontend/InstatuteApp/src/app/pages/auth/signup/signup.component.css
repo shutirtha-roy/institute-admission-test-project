@@ -9,7 +9,9 @@
     text-align: center;
 }
 
-.signUp input{
+.signUp input[type='text'],
+.signUp input[type='email'],
+.signUp input[type='password'] {
     font-weight: 2rem;
     border: 0;
     border-bottom: 1px solid #000000;
@@ -20,12 +22,10 @@
 
 .signUp-btn {
     background: #000000;
-    font-size: 1.5rem;
-    padding: 0.6rem;
     color: #fff;
     float: right;
     border-radius: 5px;
-    text-decoration: none;
+    font-size: 2rem;
     cursor: pointer;
     transition-duration: 1s;
 }

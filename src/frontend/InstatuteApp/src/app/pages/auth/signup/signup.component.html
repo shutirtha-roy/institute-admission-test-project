@@ -1,12 +1,12 @@
 <main>
     <div class='signUp'>
         Sign Up
-            <form>
-                <input type='text' id='name' placeholder='Name'>
-                <input type='email' id='email' placeholder='Email'>
-                <input type='password' id='password' placeholder='Password'>
+            <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                <input type='text' formControlName="name" id='name' placeholder='Name'>
+                <input type='email' formControlName="username" id='email' placeholder='Email'>
+                <input type='password' formControlName="password" id='password' placeholder='Password'>
                 <input type='password' id='confirm-password' placeholder='Confirm Password'>
-                <a class='signUp-btn' href='student-sign-in.html'>Sign Up</a>
+                <input type="submit" class="signUp-btn" value="Sign Up" />
             </form>
     </div>
 </main>
