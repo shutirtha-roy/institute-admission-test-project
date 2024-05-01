@@ -8,7 +8,7 @@ import { IApiResponse } from 'src/assets/data/IApiResponse';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: string = "/user/";
+  private baseUrl: string = "/api/v1/user/";
   private userPayload: any;
 
   constructor(
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   signUp(userObj: any) {
-    return this.http.post<IApiResponse>(`${this.baseUrl}register`, userObj);
+    return this.http.post<IApiResponse>(`${this.baseUrl}studentcreate`, userObj);
   }
 
   login(loginObj: any) {

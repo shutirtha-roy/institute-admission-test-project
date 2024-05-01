@@ -37,16 +37,16 @@ export class SignupComponent implements OnInit {
     this.submitted = true;
 
     if(this.signUpForm.valid) {
-      //Send the obj to database
       console.log(this.signUpForm.value);
+      let signUpDetails = { 'name': this.signUpForm.value?.name , 'email': this.signUpForm.value?.username,  'password': this.signUpForm.value?.password };
 
-      this.auth.signUp(this.signUpForm.value)
+      this.auth.signUp(signUpDetails)
       .subscribe({
         next: (res) => {
           this.toaster.success("SignUp Successful, please login now");
           console.log(res);
           this.signUpForm.reset();
-          this.router.navigate(['auth/login']);
+          this.router.navigate(['/auth/login']);
         },
         error: (err) => {
           alert(err?.err.message)
