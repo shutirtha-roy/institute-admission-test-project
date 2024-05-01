@@ -29,7 +29,7 @@ async def login_user(data: LoginUserDTO):
         if user is None:
             raise UnauthorizedError
 
-        if data.email is not None and not (user.password == data.password):
+        if (user.password == data.password):
             raise UnauthorizedError
 
         access_token = create_access_token(user.id)
