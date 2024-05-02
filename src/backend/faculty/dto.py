@@ -19,7 +19,6 @@ class UpdateDTO(BaseModel):
 
 
 class ResponseRoleDTO(BaseModel):
-    id: UUID
     faculty_name : str
     university_name: str
     description : str
