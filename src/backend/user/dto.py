@@ -48,9 +48,11 @@ class LoginUserDTO(BaseModel):
 class UpdateDTO(BaseModel):
     name: Optional[str] = None
     permissions: Optional[dict[str, int]] = None
+    approved: bool
 
 
 class ResponseUserDTO(BaseModel):
     name: str
     email: str
     role: UserTypeEnum
+    approved: bool
