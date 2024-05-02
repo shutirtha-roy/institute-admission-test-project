@@ -12,10 +12,10 @@
             <li><a routerLink="home" *ngIf="role != 'admin'">Courses</a></li>
             <li><a routerLink="home" *ngIf="role != 'admin'">Tutors</a></li>
             <li *ngIf="role == 'admin'" >
-                <a routerLink="">Students</a>
+                <a routerLink="admin/students">Students</a>
             </li>
             <li *ngIf="role == 'admin'" >
-                <a routerLink="">Tutors</a>
+                <a routerLink="admin/tutors">Tutors</a>
             </li>
             <li *ngIf="!isAuthenticated()">
                 <a routerLink="auth/signup" id="signUp">Sign Up</a>
