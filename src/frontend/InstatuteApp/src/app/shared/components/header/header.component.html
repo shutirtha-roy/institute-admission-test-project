@@ -6,11 +6,17 @@
             </li>
             <li *ngIf="isAuthenticated()">
                 <a *ngIf="role == 'student'" routerLink="student/dashboard">Dashboard</a>
-                <a *ngIf="role == 'tutor'" routerLink="student/tutor">Dashboard</a>
-                <a *ngIf="role == 'admin'" routerLink="student/admin">Dashboard</a>
+                <a *ngIf="role == 'tutor'" routerLink="tutor/dashboard">Dashboard</a>
+                <a *ngIf="role == 'admin'" routerLink="admin/dashboard">Dashboard</a>
             </li>
-            <li><a routerLink="home">Courses</a></li>
-            <li><a routerLink="home">Tutors</a></li>
+            <li><a routerLink="home" *ngIf="role != 'admin'">Courses</a></li>
+            <li><a routerLink="home" *ngIf="role != 'admin'">Tutors</a></li>
+            <li *ngIf="role == 'admin'" >
+                <a routerLink="">Students</a>
+            </li>
+            <li *ngIf="role == 'admin'" >
+                <a routerLink="">Tutors</a>
+            </li>
             <li *ngIf="!isAuthenticated()">
                 <a routerLink="auth/signup" id="signUp">Sign Up</a>
             </li>
