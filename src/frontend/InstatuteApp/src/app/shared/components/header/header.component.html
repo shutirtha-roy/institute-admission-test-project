@@ -9,12 +9,16 @@
                 <a *ngIf="role == 'tutor'" routerLink="tutor/dashboard">Dashboard</a>
                 <a *ngIf="role == 'admin'" routerLink="admin/dashboard">Dashboard</a>
             </li>
-            <li><a routerLink="home" *ngIf="role != 'admin'">Courses</a></li>
-            <li><a routerLink="home" *ngIf="role != 'admin'">Tutors</a></li>
-            <li *ngIf="role == 'admin'" >
+            <li>
+                <a routerLink="home" *ngIf="!isAuthenticated()">Courses</a>
+            </li>
+            <li>
+                <a routerLink="home" *ngIf="!isAuthenticated()">Tutors</a>
+            </li>
+            <li *ngIf="isAuthenticated() && role == 'admin'" >
                 <a routerLink="admin/students">Students</a>
             </li>
-            <li *ngIf="role == 'admin'" >
+            <li *ngIf="isAuthenticated() && role == 'admin'" >
                 <a routerLink="admin/tutors">Tutors</a>
             </li>
             <li *ngIf="!isAuthenticated()">
