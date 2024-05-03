@@ -29,7 +29,7 @@ async def login_user(data: LoginUserDTO):
         if user is None:
             raise UnauthorizedError
 
-        if user.password is data.password:
+        if not bcrypt.checkpw(data.password.encode("utf-8"), user.password.encode("utf-8")):
             raise UnauthorizedError
 
         access_token = create_access_token(user.name, user.email, user.role.value)

@@ -21,7 +21,6 @@ class User(Document):
     class Settings:
         indexes = [
             pymongo.IndexModel([
-                ("email", pymongo.ASCENDING),
-                ("name", pymongo.ASCENDING),
+                ("email", pymongo.ASCENDING)
             ], unique=True)
         ]
