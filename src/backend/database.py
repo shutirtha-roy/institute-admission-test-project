@@ -1,3 +1,4 @@
+import bcrypt
 import beanie
 import motor 
 import motor.motor_asyncio
@@ -15,13 +16,18 @@ async def init_db():
     )
 
     admin = await User.find_one(User.email == "adminTIP@gmail.com")
+
     if (admin == None):
         admin = User(
         name= "adminTIP",
         email= "adminTIP@gmail.com",
         password= "AdminPassword",
-        role= UserTypeEnum.ADMIN
+        role= UserTypeEnum.ADMIN,
+        approved= True
     )
+        
+    admin.password = bcrypt.hashpw(
+                admin.password.encode("utf-8"), bcrypt.gensalt())
 
     await admin.save()
 

@@ -12,10 +12,19 @@ from utils import utils
 user_router = APIRouter()
 
 @user_router.get('/', status_code=200)
+async def getallusers():
+    users = await User.find_all().to_list() 
+    return users
+
+@user_router.get('/students', status_code=200)
 async def getallstudents():
-    # User.role == UserTypeEnum.STUDENT
-    students = await User.find_all().to_list() 
+    students = await User.find(User.role == UserTypeEnum.STUDENT).to_list() 
     return students
+
+@user_router.get('/tutors', status_code=200)
+async def getalltutors():
+    tutors = await User.find(User.role == UserTypeEnum.TUTOR).to_list() 
+    return tutors
 
 @user_router.get('/{task_id}')
 async def getonestudent(task_id):
@@ -24,18 +33,18 @@ async def getonestudent(task_id):
 @user_router.post("/login", status_code=200)
 async def login_user(data: LoginUserDTO):
     try:
-        print(1)
         user = await User.find_one(User.email == data.email)
 
-        if user is None:
+        if user is None or user.password is data.password:
             raise UnauthorizedError
-        print(2)
-        if data.email is not None and not (user.password == data.password):
-            raise UnauthorizedError
-        print(3)
-        access_token = create_access_token(user.id)
+
+        if user.approved is False:
+            raise Exception("Account has not been approved.")
+
+        access_token = create_access_token(user.name, user.email, user.role.value)
 
         await user.save()
+        
         return utils.create_response(
             status_code=200,
             success=True,
@@ -68,40 +77,68 @@ async def createstudent(data: CreateUserDTO):
         email= data.email,
         password= bcrypt.hashpw(
             data.password.encode("utf-8"), bcrypt.gensalt()),
-        role= UserTypeEnum.STUDENT
+        role= UserTypeEnum.STUDENT,
+        approved = False
     )
 
     await student.save()
     
-    return {"massege" : "Student Created successfully"}
+    return {"massege" : "Resquest for account created successfully."}
 
-@user_router.post("/facultycreate", status_code=201)
+@user_router.post("/tutorcreate", status_code=201)
 async def createstudent(data: CreateUserDTO):
-    faculty = User(
+    tutor = User(
         name= data.name,
         email= data.email,
         password= data.password,
-        role= UserTypeEnum.FACULTY
+        role= UserTypeEnum.TUTOR,
+        approved= True
     )
 
-    await faculty.save()
+    await tutor.save()
     
-    return {"massege" : "Faculty Created successfully"}
+    return {"massege" : "Tutor Created successfully"}
+
 
 @user_router.patch('/')
 async def changestudentinfo():
     pass
 
-@user_router.delete('deletestudent/{user_role_id}')
-async def deletestudent():
-    pass
 
-@user_router.delete("/{userName}", status_code = 200)
-async def delete(userName:str):
+@user_router.patch("/approveStudent/{studentEmail}")
+async def approveStudent(studentEmail:str):
+    try:
+        student = await User.find_one(
+                User.email == studentEmail,
+                User.role == UserTypeEnum.STUDENT,
+            )
+
+        if student is None:
+            raise EntityNotFoundError
+        
+        student.approved = True
+
+        await student.save()
+
+        return utils.create_response(
+                status_code=200,
+                success=True,
+                message="Student account approved successfully.",
+            )
+    
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
+@user_router.delete("/{userEmail}", status_code = 200)
+async def delete(userEmail:str):
     try: 
-        print(userName)
         user = await User.find_one(
-            User.name == userName
+            User.email == userEmail
         )
         
         await user.delete()

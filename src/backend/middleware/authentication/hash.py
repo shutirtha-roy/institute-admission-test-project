@@ -7,7 +7,7 @@ ALGORITHM = os.environ.get('ALGORITHM', "HS256")
 SECRET_KEY = os.environ.get('SECRET_KEY', "secret_key")
 
 
-def create_access_token(id, expires_time: int = None) -> str: #ABCDEF this function's return type is str
+def create_access_token(name, email, role, expires_time: int = None) -> str: #ABCDEF this function's return type is str
   """
   Used to create access token.
   """  
@@ -16,7 +16,7 @@ def create_access_token(id, expires_time: int = None) -> str: #ABCDEF this funct
   else:
     expires_time = datetime.now() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES) #ABCDEF expires time will be the summation of the current date-time and access time (30 mins)
   
-  to_encode = {"exp": expires_time, "id": str(id)}
+  to_encode = {"exp": expires_time, "name": str(name), "email": str(email), "role": str(role) }
   encoded_jwt = jwt.encode(to_encode, SECRET_KEY, ALGORITHM) #ABCDEF encode with expires time, id, secret key and algorithm 
   return encoded_jwt
 
