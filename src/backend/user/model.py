@@ -17,6 +17,7 @@ class User(Document):
     role: UserTypeEnum
     name: str
     email: str
+    approved: bool
 
     class Settings:
         indexes = [
