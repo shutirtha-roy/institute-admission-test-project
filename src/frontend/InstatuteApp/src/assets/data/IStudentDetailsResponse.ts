@@ -6,7 +6,7 @@ export interface IStudentDetailsResponse {
 
 export interface IStudentResult {
     total_students: number,
-    studentt_list: IStudent[]
+    student_list: IStudent[]
 }
 
 export interface IStudent {

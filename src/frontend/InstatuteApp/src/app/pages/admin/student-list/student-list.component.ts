@@ -18,7 +18,7 @@ export class StudentListComponent implements OnInit{
     this.authService.getAllStudents()
     .subscribe({
       next: (students) => {
-        this.studentList = students.result.studentt_list;
+        this.studentList = students.result.student_list;
       },
       error: (response) => {
         console.log(response)
