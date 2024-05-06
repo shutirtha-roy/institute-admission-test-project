@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IApiResponse } from 'src/assets/data/IApiResponse';
+import { IStudentDetailsResponse } from 'src/assets/data/IStudentDetailsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,6 @@ export class AuthService {
   }
 
   getAllStudents() {
-    return this.http.get<IApiResponse>(`${this.baseUrl}students`);
+    return this.http.get<IStudentDetailsResponse>(`${this.baseUrl}students`);
   }
 }

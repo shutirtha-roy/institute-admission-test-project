@@ -7,25 +7,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit{
-  
-  studentList: any[] = [
-    {
-      _id: '1',
-      password: "",
-      role: "student",
-      name: "Fahim Shahrear",
-      email: "fahim@gmail.com",
-      approved: false
-    }
-  ];
+  studentList!: any[];
 
   constructor(
-    private auth: AuthService) { 
+    private authService: AuthService) { 
 
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.authService.getAllStudents()
+    .subscribe({
+      next: (students) => {
+        this.studentList = students.result.studentt_list;
+      },
+      error: (response) => {
+        console.log(response)
+      }
+    })
   }
   
 }

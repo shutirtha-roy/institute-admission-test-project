@@ -1,1 +1,0 @@
-import { IUserDetailsResponse } from "./IUserDetailsResponse";
