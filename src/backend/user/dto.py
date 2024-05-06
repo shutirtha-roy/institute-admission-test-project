@@ -59,4 +59,4 @@ class ResponseUserDTO(BaseModel):
 
 class StudentListResponseDTO(BaseModel):
     total_students: int
-    studentt_list: list[User]
+    student_list: list[User]

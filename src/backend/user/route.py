@@ -28,7 +28,7 @@ async def getallstudents():
             message="Student List has been retrieved successfully",
             result=StudentListResponseDTO(
                     total_students=student_number,
-                    studentt_list=students
+                    student_list=students
                     ),
         )
 
