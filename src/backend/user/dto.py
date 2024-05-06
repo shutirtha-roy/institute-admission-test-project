@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from pydantic import AfterValidator, BaseModel, EmailStr, root_validator
 import re
 
-from user.model import UserTypeEnum
+from user.model import User, UserTypeEnum
 
 
 def password_validator(password: str) -> str:
@@ -56,3 +56,7 @@ class ResponseUserDTO(BaseModel):
     email: str
     role: UserTypeEnum
     approved: bool
+
+class StudentListResponseDTO(BaseModel):
+    total_students: int
+    studentt_list: list[User]

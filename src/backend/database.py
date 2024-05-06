@@ -7,11 +7,11 @@ from faculty.model import Faculty
 
 async def init_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(
-        "mongodb://localhost:27017/DB_Base"
+        "mongodb://localhost:27017"
     )
 
     await beanie.init_beanie(
-        database=client.db_name,
+        database=client.my_db,
         document_models=[User, Faculty]
     )
 
