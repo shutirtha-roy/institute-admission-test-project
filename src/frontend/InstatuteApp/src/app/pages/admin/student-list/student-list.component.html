@@ -1,7 +1,7 @@
 <div class="container">
     <h1 style="text-align: center;">Students List</h1>
     <div  style="text-align: right;">
-        <a routerLink="home" class="btn btn-primary">Add New Student</a>
+        <a routerLink="home" class="primary-button">Add New Student</a>
     </div>
     
     <table>
@@ -21,14 +21,16 @@
                 <td style="text-align: center;">John Doe</td>
                 <td style="text-align: center;">john@example.com</td>
                 <td style="text-align: center;">3</td>
-                <th style="text-align: center; background-color: rgb(35, 187, 83); color: white;">Approved</th>
+                <td style="text-align: center;">
+                    <p class="badge-approved">Approved</p>
+                </td>                
                 <td class="actions">
                     <div class="actions-dropdown">
                         <a href="#">Unapprove</a>
                         <a href="#">Edit</a>
                         <a href="#">Delete</a>
                     </div>
-                    <button>Show Actions</button>
+                    <button class="badge-action">Show Actions</button>
                 </td>
             </tr>
             <tr>
@@ -36,7 +38,9 @@
                 <td style="text-align: center;">Jane Smith</td>
                 <td style="text-align: center;">jane@example.com</td>
                 <td style="text-align: center;">0</td>
-                <th style="text-align: center; background-color: rgb(191, 32, 32); color: white;">UnApproved</th>
+                <td style="text-align: center;">
+                    <p class="badge-unapproved">UnApproved</p>
+                </td>
                 <td class="actions">
                     <div class="actions-dropdown">
                         <a href="#">Approve</a>
@@ -44,7 +48,7 @@
                         <a href="#">Delete</a>
                         
                     </div>
-                    <button>Show Actions</button>
+                    <button class="badge-action">Show Actions</button>
                 </td>
             </tr>
             <!-- Add more rows as needed -->
