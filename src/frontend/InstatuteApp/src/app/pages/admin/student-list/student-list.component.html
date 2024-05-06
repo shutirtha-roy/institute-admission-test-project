@@ -27,7 +27,7 @@
                 </td>
                 <td class="actions">
                     <div class="actions-dropdown">
-                        <a href="#">Approve</a>
+                        <a *ngIf="!student.approved" style="cursor: pointer;" (click)="approveStudent(student.email)">Approve</a>
                         <a href="#">Edit</a>
                         <a href="#">Delete</a>
                         

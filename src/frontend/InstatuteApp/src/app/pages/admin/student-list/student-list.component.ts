@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +10,8 @@ export class StudentListComponent implements OnInit{
   studentList!: any[];
 
   constructor(
-    private authService: AuthService) { 
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef) { 
 
   }
 
@@ -24,6 +25,19 @@ export class StudentListComponent implements OnInit{
         console.log(response)
       }
     })
+  }
+
+  approveStudent(email: string) {
+    this.authService.approveStudent(email)
+    .subscribe({
+      next: (response) => {
+        this.ngOnInit();
+        console.log(response)
+      },
+      error: (response) => {
+        console.log(response)
+      }
+    });
   }
   
 }

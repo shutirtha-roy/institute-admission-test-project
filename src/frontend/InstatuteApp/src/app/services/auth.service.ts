@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IApiResponse } from 'src/assets/data/IApiResponse';
 import { IStudentDetailsResponse } from 'src/assets/data/IStudentDetailsResponse';
+import { ISuccessResponse } from 'src/assets/data/ISuccessResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,9 @@ export class AuthService {
 
   getAllStudents() {
     return this.http.get<IStudentDetailsResponse>(`${this.baseUrl}students`);
+  }
+
+  approveStudent(email: string) {
+    return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
   }
 }
