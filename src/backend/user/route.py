@@ -26,12 +26,10 @@ async def getallstudents():
             status_code=200,
             success=True,
             message="Student List has been retrieved successfully",
-            data={
-                "user": StudentListResponseDTO(
+            result=StudentListResponseDTO(
                     total_students=student_number,
                     studentt_list=students
                     ),
-            }
         )
 
     except UnauthorizedError as ue:
