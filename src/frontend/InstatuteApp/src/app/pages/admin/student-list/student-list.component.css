@@ -82,7 +82,7 @@ a {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25rem;
-    background-color: #007bff;
+    background-color: rgb(26, 185, 26);
     color: #fff;
     margin-bottom: 0px;
 }

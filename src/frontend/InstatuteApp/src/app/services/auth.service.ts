@@ -69,4 +69,8 @@ export class AuthService {
   getName() {
     return localStorage.getItem('name');
   }
+
+  getAllStudents() {
+    return this.http.get<IApiResponse>(`${this.baseUrl}students`);
+  }
 }

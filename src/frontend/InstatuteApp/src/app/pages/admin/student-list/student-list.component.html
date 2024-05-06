@@ -15,8 +15,8 @@
                 <th style="text-align: center;">Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
+        <tbody *ngFor="let student of studentList; let index = index">
+            <!-- <tr>
                 <td style="text-align: center;">1</td>
                 <td style="text-align: center;">John Doe</td>
                 <td style="text-align: center;">john@example.com</td>
@@ -50,8 +50,26 @@
                     </div>
                     <button class="badge-action">Show Actions</button>
                 </td>
+            </tr> -->
+
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ student.name }}</td>
+                <td style="text-align: center;">{{ student.email }}</td>
+                <td style="text-align: center;">0</td>
+                <td style="text-align: center;">
+                    <p class="badge-unapproved">UnApproved</p>
+                </td>
+                <td class="actions">
+                    <div class="actions-dropdown">
+                        <a href="#">Approve</a>
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                        
+                    </div>
+                    <button class="badge-action">Show Actions</button>
+                </td>
             </tr>
-            <!-- Add more rows as needed -->
         </tbody>
     </table>
 </div>
