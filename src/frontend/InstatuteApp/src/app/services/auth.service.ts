@@ -79,4 +79,8 @@ export class AuthService {
   approveStudent(email: string) {
     return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
   }
+
+  deleteStudent(email: string) {
+    return this.http.delete<ISuccessResponse>(`${this.baseUrl}${email}`);
+  }
 }

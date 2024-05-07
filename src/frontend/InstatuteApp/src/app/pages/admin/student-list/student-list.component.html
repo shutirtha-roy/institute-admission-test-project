@@ -28,8 +28,8 @@
                 <td class="actions">
                     <div class="actions-dropdown">
                         <a *ngIf="!student.approved" style="cursor: pointer;" (click)="approveStudent(student.email)">Approve</a>
-                        <a href="#">Edit</a>
-                        <a href="#">Delete</a>
+                        <a style="cursor: pointer;" (click)="editStudent(student.email)">Edit</a>
+                        <a style="cursor: pointer;" (click)="deleteStudent(student.email)">Delete</a>
                         
                     </div>
                     <button class="badge-action">Show Actions</button>

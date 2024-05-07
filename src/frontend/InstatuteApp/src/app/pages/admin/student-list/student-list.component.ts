@@ -39,5 +39,22 @@ export class StudentListComponent implements OnInit{
       }
     });
   }
+
+  editStudent(email: string) {
+    
+  }
+
+  deleteStudent(email: string) {
+    this.authService.deleteStudent(email)
+    .subscribe({
+      next: (response) => {
+        this.ngOnInit();
+        console.log(response)
+      },
+      error: (response) => {
+        console.log(response)
+      }
+    });
+  }
   
 }
