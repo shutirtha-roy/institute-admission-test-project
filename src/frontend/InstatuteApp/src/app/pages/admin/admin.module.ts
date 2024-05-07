@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { AddStudentComponent } from './student-list/add-student/add-student.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AddStudentComponent } from './student-list/add-student/add-student.comp
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AdminRoutingModule
   ]
 })
