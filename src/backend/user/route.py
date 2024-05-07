@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from middleware.authentication.hash import create_access_token
-from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO
+from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO
 from user.model import User, UserTypeEnum
 from utils import utils
 
@@ -157,6 +157,33 @@ async def approveStudent(studentEmail:str):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
+@user_router.get('/students/info', status_code=200)
+async def getStudent(studentEmail:str):
+    try:
+        student = await User.find_one(
+                User.email == studentEmail,
+                User.role == UserTypeEnum.STUDENT,
+            )
+
+        if student is None:
+            raise EntityNotFoundError
+        
+        return utils.create_response(
+                status_code=200,
+                success=True,
+                message="Student has been retrieved successfully",
+                result=StudentAccountDTO(
+                        name=student.name,
+                        email=student.email
+                ),
+            )
+    
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e))
 
 @user_router.delete("/{userEmail}", status_code = 200)
 async def delete(userEmail:str):
