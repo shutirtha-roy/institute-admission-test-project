@@ -11,17 +11,17 @@ async def init_db():
     )
 
     await beanie.init_beanie(
-        database=client.my_db,
+        database=client.instatuteDB,
         document_models=[User, Faculty]
     )
 
-    admin = await User.find_one(User.email == "adminTIP@gmail.com")
+    admin = await User.find_one(User.email == "admin@gmail.com")
 
     if (admin == None):
         admin = User(
-        name= "adminTIP",
-        email= "adminTIP@gmail.com",
-        password= "AdminPassword",
+        name= "admin",
+        email= "admin@gmail.com",
+        password= "admin@gmail.com",
         role= UserTypeEnum.ADMIN,
         approved= True
     )
