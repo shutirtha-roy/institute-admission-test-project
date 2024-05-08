@@ -60,7 +60,13 @@ export class EditStudentComponent implements OnInit {
 
     if(this.studentForm.valid)
     {
-      
+      this.authService.updateStudent(this.studentForm.value)
+      .subscribe({
+        next: (response) => {
+          this.toastr.success("Student updated successfully");
+          this.router.navigate(['/admin/students']);
+        }
+      }); 
     }
   }
 }

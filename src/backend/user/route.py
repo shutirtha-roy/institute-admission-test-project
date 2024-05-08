@@ -178,7 +178,7 @@ async def approveStudent(studentEmail:str):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
-@user_router.patch("/updateStudent/{email}")
+@user_router.patch("/updateStudent")
 async def updateStudent(data: UpdateUserDTO):
     try:
         student = await User.find_one(
@@ -206,7 +206,7 @@ async def updateStudent(data: UpdateUserDTO):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
-@user_router.patch("/updateTutor/{email}")
+@user_router.patch("/updateTutor")
 async def updateStudent(data: UpdateUserDTO):
     try:
         tutor = await User.find_one(

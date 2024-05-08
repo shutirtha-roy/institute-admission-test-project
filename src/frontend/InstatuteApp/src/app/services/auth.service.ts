@@ -93,6 +93,14 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}tutors/info?email=${email}`);
   }
 
+  updateStudent(studentObj: any) {
+    return this.http.patch(`${this.baseUrl}updateStudent`, studentObj);
+  }
+
+  updateTutor(tutorObj: any) {
+    return this.http.patch(`${this.baseUrl}updateTutor`, tutorObj);
+  }
+
   approveStudent(email: string) {
     return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
   }

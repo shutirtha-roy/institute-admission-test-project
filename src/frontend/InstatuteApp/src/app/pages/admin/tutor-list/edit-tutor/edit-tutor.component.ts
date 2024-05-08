@@ -59,8 +59,14 @@ export class EditTutorComponent implements OnInit  {
     this.submitted = true;
 
     if(this.tutorForm.valid)
-    {
-      
-    }
+      {
+        this.authService.updateTutor(this.tutorForm.value)
+        .subscribe({
+          next: (response) => {
+            this.toastr.success("Tutor updated successfully");
+            this.router.navigate(['/admin/tutors']);
+          }
+        }); 
+      }
   }
 }
