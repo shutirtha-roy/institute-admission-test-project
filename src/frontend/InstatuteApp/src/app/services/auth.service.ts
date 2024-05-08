@@ -93,7 +93,7 @@ export class AuthService {
     return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
   }
 
-  deleteStudent(email: string) {
+  deleteUser(email: string) {
     return this.http.delete<ISuccessResponse>(`${this.baseUrl}${email}`);
   }
 }

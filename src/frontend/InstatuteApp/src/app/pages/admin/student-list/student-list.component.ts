@@ -41,7 +41,7 @@ export class StudentListComponent implements OnInit{
   }
 
   deleteStudent(email: string) {
-    this.authService.deleteStudent(email)
+    this.authService.deleteUser(email)
     .subscribe({
       next: (response) => {
         this.ngOnInit();

@@ -28,7 +28,7 @@ export class TutorListComponent {
   }
 
   deleteTutors(email: string) {
-    this.authService.deleteStudent(email)
+    this.authService.deleteUser(email)
     .subscribe({
       next: (response) => {
         this.ngOnInit();
