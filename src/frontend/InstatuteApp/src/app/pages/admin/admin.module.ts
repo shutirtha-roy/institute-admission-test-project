@@ -9,6 +9,8 @@ import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { AddStudentComponent } from './student-list/add-student/add-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditStudentComponent } from './student-list/edit-student/edit-student.component';
+import { AddTutorComponent } from './tutor-list/add-tutor/add-tutor.component';
+import { EditTutorComponent } from './tutor-list/edit-tutor/edit-tutor.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { EditStudentComponent } from './student-list/edit-student/edit-student.c
     StudentListComponent,
     TutorListComponent,
     AddStudentComponent,
-    EditStudentComponent
+    EditStudentComponent,
+    AddTutorComponent,
+    EditTutorComponent
   ],
   imports: [
     CommonModule,

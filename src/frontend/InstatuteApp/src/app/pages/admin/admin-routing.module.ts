@@ -5,6 +5,8 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { AddStudentComponent } from './student-list/add-student/add-student.component';
 import { EditStudentComponent } from './student-list/edit-student/edit-student.component';
+import { AddTutorComponent } from './tutor-list/add-tutor/add-tutor.component';
+import { EditTutorComponent } from './tutor-list/edit-tutor/edit-tutor.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'students/edit/:email',
     component: EditStudentComponent
+  },
+  {
+    path: 'tutors/add-tutor',
+    component: AddTutorComponent
+  },
+  {
+    path: 'tutors/edit-tutor/:email',
+    component: EditTutorComponent
   }
 ];
 

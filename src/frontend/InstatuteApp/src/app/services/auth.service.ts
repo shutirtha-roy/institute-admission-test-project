@@ -68,12 +68,20 @@ export class AuthService {
     localStorage.setItem('name', name);
   }
 
+  createTutor(userObj: any) {
+    return this.http.post<IApiResponse>(`${this.baseUrl}tutorcreate`, userObj);
+  }
+
   getName() {
     return localStorage.getItem('name');
   }
 
   getAllStudents() {
     return this.http.get<IStudentDetailsResponse>(`${this.baseUrl}students`);
+  }
+
+  getAllTutors() {
+    
   }
 
   getStudent(email: string) {
