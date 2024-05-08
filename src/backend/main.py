@@ -15,4 +15,4 @@ async def connect():
     await init_db()
 
 app.include_router(user_router, prefix="/api/v1/user")
-app.include_router(faculty_router, prefix="/api/v1/faculty")
+#app.include_router(faculty_router, prefix="/api/v1/faculty")
