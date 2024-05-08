@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { AddStudentComponent } from './student-list/add-student/add-student.component';
+import { EditStudentComponent } from './student-list/edit-student/edit-student.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'students/add-student',
     component: AddStudentComponent
+  },
+  {
+    path: 'students/edit/:email',
+    component: EditStudentComponent
   }
 ];
 

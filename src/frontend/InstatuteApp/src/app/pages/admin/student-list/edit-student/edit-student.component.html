@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Add New Student</h2>
+    <form [formGroup]="studentForm" (ngSubmit)="onStudentUpdate()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <input type="submit" value="Update Student">
+    </form>
+</div>

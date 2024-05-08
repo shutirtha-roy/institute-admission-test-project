@@ -40,10 +40,6 @@ export class StudentListComponent implements OnInit{
     });
   }
 
-  editStudent(email: string) {
-    
-  }
-
   deleteStudent(email: string) {
     this.authService.deleteStudent(email)
     .subscribe({
