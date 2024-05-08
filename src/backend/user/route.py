@@ -207,7 +207,7 @@ async def getStudent(studentEmail:str):
         return utils.create_response(status_code=500, success=False, message=str(e))
 
 @user_router.get('/tutors/info', status_code=200)
-async def getTutor(tutorEmail:str):
+async def getTutor(email:str):
     try:
         tutor = await User.find_one(
                 User.email == tutorEmail,
