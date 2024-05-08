@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from pydantic import AfterValidator, BaseModel, EmailStr, root_validator
 import re
 
-from user.model import UserTypeEnum
+from user.model import User, UserTypeEnum
 
 
 def password_validator(password: str) -> str:
@@ -20,7 +20,7 @@ def password_validator(password: str) -> str:
 class CreateUserDTO(BaseModel):
     name: Optional[str] 
     email: EmailStr
-    password: Annotated[str, AfterValidator(password_validator)]
+    password: str
 
     @root_validator(pre=True)
     def check_username(cls, values):
@@ -28,6 +28,10 @@ class CreateUserDTO(BaseModel):
             raise HTTPException(
                 status_code=422, detail="Please provide email or phone number")
         return values
+
+class UpdateUserDTO(BaseModel):
+    name: str
+    email: str
 
 class LoginUserDTO(BaseModel):
     email: EmailStr
@@ -48,9 +52,27 @@ class LoginUserDTO(BaseModel):
 class UpdateDTO(BaseModel):
     name: Optional[str] = None
     permissions: Optional[dict[str, int]] = None
+    approved: bool
 
 
 class ResponseUserDTO(BaseModel):
     name: str
     email: str
     role: UserTypeEnum
+    approved: bool
+
+class StudentListResponseDTO(BaseModel):
+    total_students: int
+    student_list: list[User]
+
+class TutorListResponseDTO(BaseModel):
+    total_tutors: int
+    tutor_list: list[User]
+
+class StudentAccountDTO(BaseModel):
+    name: str
+    email: str
+
+class TutorAccountDTO(BaseModel):
+    name: str
+    email: str

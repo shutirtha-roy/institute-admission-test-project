@@ -1,18 +1,35 @@
+import bcrypt
 import beanie
 import motor 
 import motor.motor_asyncio
-from user.model import User
+from user.model import User, UserTypeEnum
 from faculty.model import Faculty
 
 async def init_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(
-        "mongodb://localhost:27017/TIP"
+        "mongodb://localhost:27017"
     )
 
     await beanie.init_beanie(
-        database=client.db_name,
+        database=client.instatuteDB,
         document_models=[User, Faculty]
     )
+
+    admin = await User.find_one(User.email == "admin@gmail.com")
+
+    if (admin == None):
+        admin = User(
+        name= "admin",
+        email= "admin@gmail.com",
+        password= "admin@gmail.com",
+        role= UserTypeEnum.ADMIN,
+        approved= True
+    )
+        
+    admin.password = bcrypt.hashpw(
+                admin.password.encode("utf-8"), bcrypt.gensalt())
+
+    await admin.save()
 
 
 # async def app_init():

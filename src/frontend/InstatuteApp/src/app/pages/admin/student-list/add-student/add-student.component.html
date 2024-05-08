@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Add New Student</h2>
+    <form [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" formControlName="password">
+        </div>
+        <div class="form-group">
+            <label for="password">Confirm Password:</label>
+            <input type="password">
+        </div>
+        <input type="submit" value="Add Student">
+    </form>
+</div>

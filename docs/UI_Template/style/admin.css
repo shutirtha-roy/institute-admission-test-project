@@ -29,23 +29,7 @@ button:hover {
     background-color: #e00f2b;
 }
 
-form {
-    max-width: 300px;
-    margin: 0 auto;
-}
-
 label {
     display: block;
     margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }

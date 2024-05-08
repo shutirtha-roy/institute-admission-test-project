@@ -1,0 +1,34 @@
+<div class="container">
+    <h1 style="text-align: center;">Tutors List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-tutor" class="primary-button">Add New Tutor</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Name</th>
+                <th style="text-align: center;">Email</th>
+                <th style="text-align: center;">Enrolled Courses</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let tutor of tutorList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ tutor.name }}</td>
+                <td style="text-align: center;">{{ tutor.email }}</td>
+                <td style="text-align: center;">0</td>
+                <td class="actions">
+                    <div class="actions-dropdown">
+                        <a style="cursor: pointer;" [routerLink]="['/admin/tutors','edit', tutor.email]">Edit</a>
+                        <a style="cursor: pointer;" (click)="deleteTutors(tutor.email)">Delete</a>
+                        
+                    </div>
+                    <button class="badge-action">Show Actions</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   name: any;
+  role: any;
 
   constructor(private auth: AuthService, private router: Router) {
 
@@ -17,6 +18,7 @@ export class HeaderComponent {
   isAuthenticated(): boolean {
     if (this.auth.isLoggedIn()) {
       this.setName();
+      this.setRole();
       return true;
     }
 
@@ -25,6 +27,10 @@ export class HeaderComponent {
 
   setName() {
     this.name = this.auth.getName();
+  }
+
+  setRole() {
+    this.role = this.auth.getRoleFromToken();
   }
 
   logout(): void {

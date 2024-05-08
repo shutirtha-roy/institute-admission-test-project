@@ -1,0 +1,34 @@
+/*LOGIN START*/
+.login{
+    padding: 5rem;
+    font-size: 4rem;
+    color:#d33939;
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.login input{
+    font-weight: 2rem;
+    border: 2;
+    border-bottom: 1px solid #252424;
+    width: 50%;
+    height: 36px;
+    font-size: 26px;
+}
+
+.login-btn {
+    background: #963e3e;
+    font-size: 1.5rem;
+    padding: 0.6rem;
+    color: #fff;
+    float: center;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 1s;
+}
+
+.login-btn:hover {
+    background: #da3b3b;
+}
+/*LOGIN END*/

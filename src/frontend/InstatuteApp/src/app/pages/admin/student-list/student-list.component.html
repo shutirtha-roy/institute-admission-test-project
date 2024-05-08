@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 style="text-align: center;">Students List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-student" class="primary-button">Add New Student</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Name</th>
+                <th style="text-align: center;">Email</th>
+                <th style="text-align: center;">Enrolled Courses</th>
+                <th style="text-align: center;">Status</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let student of studentList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ student.name }}</td>
+                <td style="text-align: center;">{{ student.email }}</td>
+                <td style="text-align: center;">0</td>
+                <td style="text-align: center;">
+                    <p *ngIf="!student.approved" class="badge-unapproved">UnApproved</p>
+                    <p *ngIf="student.approved" class="badge-approved">Approved</p>
+                </td>
+                <td class="actions">
+                    <div class="actions-dropdown">
+                        <a *ngIf="!student.approved" style="cursor: pointer;" (click)="approveStudent(student.email)">Approve</a>
+                        <a style="cursor: pointer;" [routerLink]="['/admin/students','edit', student.email]">Edit</a>
+                        <a style="cursor: pointer;" (click)="deleteStudent(student.email)">Delete</a>
+                        
+                    </div>
+                    <button class="badge-action">Show Actions</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

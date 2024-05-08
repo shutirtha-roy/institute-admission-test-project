@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IApiResponse } from 'src/assets/data/IApiResponse';
+import { IStudentDetailsResponse } from 'src/assets/data/IStudentDetailsResponse';
+import { ISuccessResponse } from 'src/assets/data/ISuccessResponse';
+import { ITutorDetailsResponse } from 'src/assets/data/ITutorDetailsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +49,7 @@ export class AuthService {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
     console.log(jwtHelper.decodeToken(token));
+    this.userPayload = jwtHelper.decodeToken(token);
     return jwtHelper.decodeToken(token);
   }
 
@@ -65,7 +69,43 @@ export class AuthService {
     localStorage.setItem('name', name);
   }
 
+  createTutor(userObj: any) {
+    return this.http.post<IApiResponse>(`${this.baseUrl}tutorcreate`, userObj);
+  }
+
   getName() {
     return localStorage.getItem('name');
+  }
+
+  getAllStudents() {
+    return this.http.get<IStudentDetailsResponse>(`${this.baseUrl}students`);
+  }
+
+  getAllTutors() {
+    return this.http.get<ITutorDetailsResponse>(`${this.baseUrl}tutors`);
+  }
+
+  getStudent(email: string) {
+    return this.http.get(`${this.baseUrl}students/info?studentEmail=${email}`);
+  }
+
+  getTutor(email: string) {
+    return this.http.get(`${this.baseUrl}tutors/info?email=${email}`);
+  }
+
+  updateStudent(studentObj: any) {
+    return this.http.patch(`${this.baseUrl}updateStudent`, studentObj);
+  }
+
+  updateTutor(tutorObj: any) {
+    return this.http.patch(`${this.baseUrl}updateTutor`, tutorObj);
+  }
+
+  approveStudent(email: string) {
+    return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
+  }
+
+  deleteUser(email: string) {
+    return this.http.delete<ISuccessResponse>(`${this.baseUrl}${email}`);
   }
 }
