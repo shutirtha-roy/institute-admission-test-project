@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from middleware.authentication.hash import create_access_token
-from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO, TutorAccountDTO
+from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO, TutorAccountDTO, UpdateUserDTO
 from user.model import User, UserTypeEnum
 from utils import utils
 
@@ -178,6 +178,62 @@ async def approveStudent(studentEmail:str):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
+@user_router.patch("/updateStudent/{email}")
+async def updateStudent(data: UpdateUserDTO):
+    try:
+        student = await User.find_one(
+                User.email == data.email,
+                User.role == UserTypeEnum.STUDENT,
+        )
+
+        if student is None:
+            raise EntityNotFoundError
+        
+        student.name = data.name
+
+        await student.save()
+
+        return utils.create_response(
+                status_code=200,
+                success=True,
+                message="Student account updated successfully.",
+            )
+    
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+@user_router.patch("/updateTutor/{email}")
+async def updateStudent(data: UpdateUserDTO):
+    try:
+        tutor = await User.find_one(
+            User.email == data.email,
+            User.role == UserTypeEnum.TUTOR,
+        )
+
+        if tutor is None:
+            raise EntityNotFoundError
+        
+        tutor.name = data.name
+
+        await tutor.save()
+
+        return utils.create_response(
+                status_code=200,
+                success=True,
+                message="Tutor account updated successfully.",
+            )
+    
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
 @user_router.get('/students/info', status_code=200)
 async def getStudent(studentEmail:str):
     try:
@@ -210,7 +266,7 @@ async def getStudent(studentEmail:str):
 async def getTutor(email:str):
     try:
         tutor = await User.find_one(
-                User.email == tutorEmail,
+                User.email == email,
                 User.role == UserTypeEnum.TUTOR,
             )
 

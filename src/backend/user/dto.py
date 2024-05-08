@@ -29,6 +29,10 @@ class CreateUserDTO(BaseModel):
                 status_code=422, detail="Please provide email or phone number")
         return values
 
+class UpdateUserDTO(BaseModel):
+    name: str
+    email: str
+
 class LoginUserDTO(BaseModel):
     email: EmailStr
     password: str
