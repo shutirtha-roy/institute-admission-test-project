@@ -3,7 +3,9 @@ import beanie
 import motor 
 import motor.motor_asyncio
 from user.model import User, UserTypeEnum
-from faculty.model import Faculty
+from tutor.model import Tutor
+from university.model import University
+from course.model import Course
 
 async def init_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(
@@ -12,7 +14,7 @@ async def init_db():
 
     await beanie.init_beanie(
         database=client.instatuteDB,
-        document_models=[User, Faculty]
+        document_models=[User, Tutor, University, Course]
     )
 
     admin = await User.find_one(User.email == "admin@gmail.com")

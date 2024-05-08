@@ -9,7 +9,7 @@ from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO
 from user.model import User, UserTypeEnum
 from utils import utils
 
-user_router = APIRouter()
+user_router = APIRouter(tags=["User"])
 
 @user_router.get('/', status_code=200)
 async def getallusers():
