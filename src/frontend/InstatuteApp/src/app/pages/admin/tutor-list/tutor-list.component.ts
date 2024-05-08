@@ -16,10 +16,10 @@ export class TutorListComponent {
   }
 
   ngOnInit(): void {
-    this.authService.getAllStudents()
+    this.authService.getAllTutors()
     .subscribe({
       next: (students) => {
-        this.tutorList = students.result.student_list;
+        this.tutorList = students.result.tutor_list;
       },
       error: (response) => {
         console.log(response)

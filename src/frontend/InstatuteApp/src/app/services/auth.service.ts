@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { IApiResponse } from 'src/assets/data/IApiResponse';
 import { IStudentDetailsResponse } from 'src/assets/data/IStudentDetailsResponse';
 import { ISuccessResponse } from 'src/assets/data/ISuccessResponse';
+import { ITutorDetailsResponse } from 'src/assets/data/ITutorDetailsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +82,7 @@ export class AuthService {
   }
 
   getAllTutors() {
-    
+    return this.http.get<ITutorDetailsResponse>(`${this.baseUrl}tutors`);
   }
 
   getStudent(email: string) {
