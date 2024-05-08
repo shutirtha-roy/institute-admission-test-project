@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from middleware.authentication.hash import create_access_token
-from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO
+from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO
 from user.model import User, UserTypeEnum
 from utils import utils
 
@@ -47,8 +47,32 @@ async def getallstudents():
 
 @user_router.get('/tutors', status_code=200)
 async def getalltutors():
-    tutors = await User.find(User.role == UserTypeEnum.TUTOR).to_list() 
-    return tutors
+    try:
+        tutors = await User.find(User.role == UserTypeEnum.TUTOR).to_list()
+        tutor_number = len(tutors)
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Tutor List has been retrieved successfully",
+            result=TutorListResponseDTO(
+                    total_tutors=tutor_number,
+                    tutor_list=tutors
+                    ),
+        ) 
+
+    except UnauthorizedError as ue:
+        return utils.create_response(
+            status_code=ue.status_code,
+            success=False,
+            message=ue.message
+        )
+    except Exception as e:
+        return utils.create_response(
+            status_code=500,
+            success=False,
+            message=str(e)
+        )
 
 @user_router.get('/{task_id}')
 async def getonestudent(task_id):

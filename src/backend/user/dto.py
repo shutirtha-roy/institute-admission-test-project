@@ -61,6 +61,10 @@ class StudentListResponseDTO(BaseModel):
     total_students: int
     student_list: list[User]
 
+class TutorListResponseDTO(BaseModel):
+    total_tutors: int
+    tutor_list: list[User]
+
 class StudentAccountDTO(BaseModel):
     name: str
     email: str
