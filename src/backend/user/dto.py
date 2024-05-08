@@ -68,3 +68,7 @@ class TutorListResponseDTO(BaseModel):
 class StudentAccountDTO(BaseModel):
     name: str
     email: str
+
+class TutorAccountDTO(BaseModel):
+    name: str
+    email: str

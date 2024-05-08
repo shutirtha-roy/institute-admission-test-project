@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from middleware.authentication.hash import create_access_token
-from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO
+from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO, TutorAccountDTO
 from user.model import User, UserTypeEnum
 from utils import utils
 
@@ -116,7 +116,6 @@ async def login_user(data: LoginUserDTO):
             message=str(e)
         )
     
-
 @user_router.post("/studentcreate", status_code=201)
 async def createstudent(data: CreateUserDTO):
 
@@ -147,11 +146,9 @@ async def createstudent(data: CreateUserDTO):
     
     return {"massege" : "Tutor Created successfully"}
 
-
 @user_router.patch('/')
 async def changestudentinfo():
     pass
-
 
 @user_router.patch("/approveStudent/{studentEmail}")
 async def approveStudent(studentEmail:str):
@@ -208,6 +205,34 @@ async def getStudent(studentEmail:str):
         return utils.create_response(status_code=us.status_code, success=False, message=us.message)
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e))
+
+@user_router.get('/tutors/info', status_code=200)
+async def getTutor(tutorEmail:str):
+    try:
+        tutor = await User.find_one(
+                User.email == tutorEmail,
+                User.role == UserTypeEnum.TUTOR,
+            )
+
+        if tutor is None:
+            raise EntityNotFoundError
+        
+        return utils.create_response(
+                status_code=200,
+                success=True,
+                message="Tutor has been retrieved successfully",
+                result=TutorAccountDTO(
+                    name=tutor.name,
+                    email=tutor.email
+                ),
+        )
+    
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e))    
 
 @user_router.delete("/{userEmail}", status_code = 200)
 async def delete(userEmail:str):
