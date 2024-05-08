@@ -89,6 +89,10 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}students/info?studentEmail=${email}`);
   }
 
+  getTutor(email: string) {
+    return this.http.get(`${this.baseUrl}tutors/info?email=${email}`);
+  }
+
   approveStudent(email: string) {
     return this.http.patch<ISuccessResponse>(`${this.baseUrl}approveStudent/${email}`, "");
   }

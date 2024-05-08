@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './edit-student.component.html',
   styleUrls: ['./edit-student.component.css']
 })
-export class EditStudentComponent implements OnInit  {
+export class EditStudentComponent implements OnInit {
   student!: any;
   studentForm!: FormGroup;
   submitted: boolean = false;

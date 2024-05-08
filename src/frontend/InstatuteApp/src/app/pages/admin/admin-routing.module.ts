@@ -34,7 +34,7 @@ const routes: Routes = [
     component: AddTutorComponent
   },
   {
-    path: 'tutors/edit-tutor/:email',
+    path: 'tutors/edit/:email',
     component: EditTutorComponent
   }
 ];
