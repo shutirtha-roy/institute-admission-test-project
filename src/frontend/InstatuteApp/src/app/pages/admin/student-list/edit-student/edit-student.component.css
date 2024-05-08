@@ -43,3 +43,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+input[type="email"] {
+    background-color: rgb(245, 245, 245);
+}
