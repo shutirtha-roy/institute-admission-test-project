@@ -25,7 +25,7 @@
                 <td class="actions">
                     <div class="actions-dropdown">
                         <a style="cursor: pointer;" [routerLink]="['/admin/tutors','edit', tutor.tutor_email]">Edit</a>
-                        <a style="cursor: pointer;" (click)="deleteTutors(tutor.email)">Delete</a>
+                        <a style="cursor: pointer;" (click)="deleteTutors(tutor.tutor_email)">Delete</a>
                         
                     </div>
                     <button class="badge-action">Show Actions</button>

@@ -109,4 +109,8 @@ export class AuthService {
   deleteUser(email: string) {
     return this.http.delete<ISuccessResponse>(`${this.baseUrl}${email}`);
   }
+
+  deleteTutor(email: string) {
+    return this.http.delete<ISuccessResponse>(`${this.tutorBaseUrl}deletetutor/${email}`);
+  }
 }
