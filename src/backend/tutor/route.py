@@ -27,7 +27,7 @@ async def createtutor(data: CreateTutorDTO):
         tutor_info = Tutor(
             tutor_email = data.email,
             tutor_name = data.name,
-            qualification_list= data.qualification_list,
+            qualifications= data.qualifications,
             course_list=[]
         )
         print(3)
@@ -98,8 +98,8 @@ async def changetutorinfo(tutorEmail:str, data: UpdateDTO):
             tutor.name = data.tutor_name
             tutor_info.tutor_name = data.tutor_name 
 
-        if data.qualification_list:
-            tutor_info.qualification_list = data.qualification_list
+        if data.qualifications:
+            tutor_info.qualifications = data.qualifications
 
         await tutor.save()
         await tutor_info.save()

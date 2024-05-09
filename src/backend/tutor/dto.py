@@ -7,8 +7,8 @@ class CreateTutorDTO(BaseModel):
     name: Optional[str] = ""
     email: EmailStr
     password: str
-    qualification_list: Optional[list[str]] = []
-    course_list: Optional[list[str]] = []
+    qualifications: Optional[list[str]] = []
+    course_list: Optional[str] = ''
 
     @root_validator(pre=True)
     def check_username(cls, values):
@@ -20,7 +20,7 @@ class CreateTutorDTO(BaseModel):
 
 class UpdateDTO(BaseModel):
     tutor_name : Optional[str] = None
-    qualification_list: Optional[list[str]] = None
+    qualifications: Optional[str] = None
 
 
 class addCourseDTO(BaseModel):
@@ -29,5 +29,5 @@ class addCourseDTO(BaseModel):
 class ResponseRoleDTO(BaseModel):
     tutor_name : str
     tutor_email: EmailStr
-    qualification_list: Optional[list[str]]
+    qualifications: Optional[str]
     course_list: Optional[list[str]]
