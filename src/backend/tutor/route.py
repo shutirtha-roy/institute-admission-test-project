@@ -106,18 +106,18 @@ async def getOneTutor(email: str):
         )
     
 
-@tutor_router.patch("/changetutorinfo/{tutorEmail}")
-async def changetutorinfo(tutorEmail:str, data: UpdateDTO):
+@tutor_router.patch("/changetutorinfo")
+async def changetutorinfo(data: UpdateDTO):
     try:
         tutor = await User.find_one(
-                User.email == tutorEmail,
+                User.email == data.email,
                 User.role == UserTypeEnum.TUTOR,
             )
         if tutor is None:
             raise EntityNotFoundError
         
         tutor_info = await Tutor.find_one(
-            Tutor.tutor_email == tutorEmail,
+            Tutor.tutor_email == data.email,
         )
 
         if tutor_info is None:

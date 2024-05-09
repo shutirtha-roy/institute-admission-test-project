@@ -21,6 +21,7 @@ class getTutorDTO(BaseModel):
     email: str
 
 class UpdateDTO(BaseModel):
+    email: str
     tutor_name : Optional[str] = None
     qualifications: Optional[str] = None
 
