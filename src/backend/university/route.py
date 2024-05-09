@@ -1,15 +1,18 @@
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter
+from beanie.operators import In
 
+from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
+from tutor.model import Tutor
 from university.dto import CreateDTO, UpdateDTO, ResponseDTO
 from university.model import University
 from utils import utils
 
 university_router = APIRouter(tags=["University"])
 
-@university_router.post("", status_code = 201)  
+@university_router.post("/", status_code = 201)  
 async def createuniversity(data: CreateDTO):
     try:
         university = University(**data.model_dump())
@@ -136,10 +139,29 @@ async def delete(university_title:str):
         university = await University.find_one(
             University.title == university_title
         )
-
+        
         if university is None:
             raise EntityNotFoundError
+
+        courses = await Course.find(
+            Course.university_title == university_title
+        ).to_list()
+
+        if courses is None:
+            raise EntityNotFoundError
         
+        tutors = []
+        for course in courses:
+            tutor_names = course.tutor_list
+            for x in tutor_names:
+                tutor = await Tutor.find_one(Tutor.tutor_name == x)
+                
+                tutor.course_list.remove(course.course_code)
+
+                await tutor.save()
+
+            await course.delete()
+
         await university.delete()
 
         return utils.create_response(
