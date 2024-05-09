@@ -5,7 +5,7 @@ import pymongo
 class Course(Document):
     title: str
     course_code: str
-    university: str
+    university_title: str
     description : Optional[str]
     tutor_list: Optional[list[str]]
 

@@ -14,7 +14,7 @@ course_router = APIRouter(tags=["Course"])
 @course_router.post("", status_code = 201)  
 async def createcourse(data: CreateDTO):
     try:
-        university = await University.find_one(University.title == data.university)
+        university = await University.find_one(University.title == data.university_title)
 
         if university is None:
             raise EntityNotFoundError("University Not Found")
@@ -104,7 +104,7 @@ async def getcoursebycode(course_code:str):
 async def getcoursebyuniversity(university_title:str):
     try:
         courses = await Course.find(
-            Course.university == university_title
+            Course.university_title == university_title
         ).to_list()
 
         if courses is None:
@@ -147,8 +147,8 @@ async def updatecourse(course_code:str, data: UpdateDTO):
         if(data.course_code):
             course.course_code = data.course_code
 
-        if(data.university):
-            course.university = data.university
+        if(data.university_title):
+            course.university_title = data.university_title
 
         if(data.description):
             course.description = data.description
@@ -189,7 +189,7 @@ async def delete(course_code:str):
         if course is None:
             raise EntityNotFoundError
         
-        university = await University.find_one(University.title == course.university)
+        university = await University.find_one(University.title == course.university_title)
 
         if university is None:
             raise EntityNotFoundError

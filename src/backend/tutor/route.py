@@ -6,6 +6,7 @@ from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
 from tutor.dto import CreateTutorDTO, ResponseRoleDTO, UpdateDTO, addCourseDTO
 from tutor.model import Tutor
+from university.model import University
 from user.model import User, UserTypeEnum
 from utils import utils
 
@@ -135,11 +136,20 @@ async def addtutorcourse(tutorEmail:str, data: addCourseDTO):
         if course is None:
             raise EntityNotFoundError
         
+        university = await University.find_one(University.title == course.university_title)
+
+        if university is None:
+            raise EntityNotFoundError
+        
         tutor_info.course_list.append(course.course_code)
         course.tutor_list.append(tutor_info.tutor_name)
 
+        if (tutor_info.tutor_name not in university.tutor_list):
+            university.tutor_list.append(tutor_info.tutor_name)
+
         await tutor_info.save()
         await course.save()
+        await university.save()
 
         return utils.create_response(
                 status_code=200,
@@ -173,11 +183,23 @@ async def addtutorcourse(tutorEmail:str, data: addCourseDTO):
         if course is None:
             raise EntityNotFoundError
         
-        tutor_info.course_list.remove(course.course_code)
-        course.tutor_list.remove(tutor_info.tutor_name)
+        university = await University.find_one(University.title == course.university_title)
+
+        if university is None:
+            raise EntityNotFoundError
+        
+        if (tutor_info.tutor_name in tutor_info.course_list):
+            tutor_info.course_list.remove(course.course_code)
+
+        if (tutor_info.tutor_name in course.tutor_list):
+            course.tutor_list.remove(tutor_info.tutor_name)
+
+        if (tutor_info.tutor_name in university.tutor_list):
+            university.tutor_list.remove(tutor_info.tutor_name)
 
         await tutor_info.save()
         await course.save()
+        await university.save()
 
         return utils.create_response(
                 status_code=200,

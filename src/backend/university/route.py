@@ -38,7 +38,7 @@ async def getalluniversity():
             status_code=200,
             success=True,
             message="University List has been retrieved successfully",
-            result=[ResponseDTO(**r.dict()) for r in universities],
+            result=[ResponseDTO(**r.model_dump()) for r in universities],
         )
 
     except UnauthorizedError as ue:
