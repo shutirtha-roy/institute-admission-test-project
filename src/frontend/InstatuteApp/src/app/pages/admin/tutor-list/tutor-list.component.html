@@ -10,7 +10,7 @@
                 <th style="text-align: center;">No.</th>
                 <th style="text-align: center;">Name</th>
                 <th style="text-align: center;">Email</th>
-                <th style="text-align: center;">Qualification</th>
+                <th style="text-align: center;">Qualifications</th>
                 <th style="text-align: center;">Enrolled Courses</th>
                 <th style="text-align: center;">Actions</th>
             </tr>
@@ -24,7 +24,7 @@
                 <td style="text-align: center;">0</td>
                 <td class="actions">
                     <div class="actions-dropdown">
-                        <a style="cursor: pointer;" [routerLink]="['/admin/tutors','edit', tutor.email]">Edit</a>
+                        <a style="cursor: pointer;" [routerLink]="['/admin/tutors','edit', tutor.tutor_email]">Edit</a>
                         <a style="cursor: pointer;" (click)="deleteTutors(tutor.email)">Delete</a>
                         
                     </div>

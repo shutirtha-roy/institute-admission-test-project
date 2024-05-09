@@ -25,8 +25,9 @@ export class EditTutorComponent implements OnInit  {
 
   ngOnInit(): void {
     this.tutorForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      tutor_name: ['', Validators.required],
       email: ['', Validators.required],
+      qualifications: ['', Validators.required]
     });
 
     this.getTutorDetails();
@@ -41,12 +42,13 @@ export class EditTutorComponent implements OnInit  {
           this.authService.getTutor(email)
           .subscribe({
             next: (response: any) => {
-              console.log(response);
+              //console.log(response);
               this.tutor = response.result;
             
               this.tutorForm.setValue({
-                name: this.tutor.name,
-                email: this.tutor.email,
+                tutor_name: this.tutor.tutor_name,
+                email: this.tutor.tutor_email,
+                qualifications: this.tutor.qualifications
               });
             }
           });

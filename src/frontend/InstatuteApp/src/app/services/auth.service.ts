@@ -91,7 +91,7 @@ export class AuthService {
   }
 
   getTutor(email: string) {
-    return this.http.get(`${this.baseUrl}tutors/info?email=${email}`);
+    return this.http.get(`${this.tutorBaseUrl}/getonetutor?email=${email}`);
   }
 
   updateStudent(studentObj: any) {
@@ -99,7 +99,7 @@ export class AuthService {
   }
 
   updateTutor(tutorObj: any) {
-    return this.http.patch(`${this.baseUrl}updateTutor`, tutorObj);
+    return this.http.patch(`${this.tutorBaseUrl}changetutorinfo`, tutorObj);
   }
 
   approveStudent(email: string) {
