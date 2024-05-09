@@ -1,1 +1,40 @@
-<p>university works!</p>
+<div class="container">
+    <h1 style="text-align: center;">University List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-tutor" class="primary-button">Add New University</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Title</th>
+                <th style="text-align: center;">Description</th>
+                <th style="text-align: center;">Tutor List</th>
+                <th style="text-align: center;">Course List</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let university of universityList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ university.title }}</td>
+                <td style="text-align: center;">{{ university.description }}</td>
+                <td style="text-align: center;">
+                    {{ university.tutor_list }}
+                </td>
+                <td style="text-align: center;">
+                    {{ university.course_list }}
+                </td>
+                <td class="actions">
+                    <div class="actions-dropdown">
+                        <a style="cursor: pointer;" [routerLink]="['/admin/universities','edit', university.title]">Edit</a>
+                        <a style="cursor: pointer;" (click)="deleteUniversities(university.title)">Delete</a>
+                        
+                    </div>
+                    <button class="badge-action">Show Actions</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
