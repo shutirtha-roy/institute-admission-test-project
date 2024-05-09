@@ -17,6 +17,9 @@ class CreateTutorDTO(BaseModel):
                 status_code=422, detail="Please provide email")
         return values
 
+class getTutorDTO(BaseModel):
+    email: str
+
 class UpdateDTO(BaseModel):
     tutor_name : Optional[str] = None
     qualifications: Optional[str] = None
