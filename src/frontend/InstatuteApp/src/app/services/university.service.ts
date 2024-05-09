@@ -17,6 +17,10 @@ export class UniversityService {
     return this.http.get(`${this.baseUrl}getalluniversity`);
   }
 
+  createUniversity(universityObj: any) {
+    return this.http.post(`${this.baseUrl}/universityCreate`, universityObj);
+  }
+
   deleteUniversity(title: string) {
     return this.http.delete(`${this.baseUrl}${title}`);
   }

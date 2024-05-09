@@ -1,1 +1,14 @@
-<p>add-university works!</p>
+<div class="container">
+    <h2>Add New University</h2>
+    <form [formGroup]="universityForm" (ngSubmit)="onUniversitySubmit()">
+        <div class="form-group">
+            <label for="name">Title:</label>
+            <input type="text" id="name" formControlName="title">
+        </div>
+        <div class="form-group">
+            <label for="email">Description:</label>
+            <input type="email" id="email" formControlName="description">
+        </div>
+        <input type="submit" value="Add University">
+    </form>
+</div>
