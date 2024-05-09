@@ -18,7 +18,7 @@ class CreateTutorDTO(BaseModel):
         return values
 
 class getTutorDTO(BaseModel):
-    email: EmailStr
+    email: str
 
 class UpdateDTO(BaseModel):
     tutor_name : Optional[str] = None

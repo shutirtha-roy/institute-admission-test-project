@@ -78,10 +78,8 @@ async def getalltutors():
 
 
 @tutor_router.get('/getonetutor', status_code=200)
-async def getalltutors(data: getTutorDTO):
+async def getOneTutor(email: str):
     try:
-        email = data.email
-        print(email)
         tutor_info = await Tutor.find_one(
             Tutor.tutor_email == email
         )
