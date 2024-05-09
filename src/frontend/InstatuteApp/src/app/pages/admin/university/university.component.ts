@@ -7,18 +7,7 @@ import { UniversityService } from 'src/app/services/university.service';
   styleUrls: ['./university.component.css']
 })
 export class UniversityComponent  implements OnInit{
-  universityList: any[] = [
-    {
-      "title": "Swinburne University of Technology",
-      "description": "Best for IT related courses with high QS ranking.",
-      "tutor_list": [
-        "Samin", "Kabir"
-      ],
-      "course_list": [
-        "Physics", "Maths"
-      ]
-    }
-  ];
+  universityList: any[] = [];
 
   constructor(
     private universityService: UniversityService) { 

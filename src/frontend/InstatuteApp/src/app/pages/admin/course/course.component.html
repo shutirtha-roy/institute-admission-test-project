@@ -1,1 +1,38 @@
-<p>course works!</p>
+<div class="container">
+    <h1 style="text-align: center;">Course List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-course" class="primary-button">Add New Course</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Title</th>
+                <th style="text-align: center;">Course Code</th>
+                <th style="text-align: center;">University Title</th>
+                <th style="text-align: center;">Description</th>
+                <th style="text-align: center;">Tutor List</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let course of courseList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ course.title }}</td>
+                <td style="text-align: center;">{{ course.course_code }}</td>
+                <td style="text-align: center;">{{ course.university_title }}</td>
+                <td style="text-align: center;">{{ course.description }}</td>
+                <td style="text-align: center;">{{ course.tutor_list }}</td>
+                <td class="actions">
+                    <div class="actions-dropdown">
+                        <a style="cursor: pointer;" [routerLink]="['/admin/courses','edit', course.course_code]">Edit</a>
+                        <a style="cursor: pointer;" (click)="deleteCourses(course.course_code)">Delete</a>
+                        
+                    </div>
+                    <button class="badge-action">Show Actions</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
