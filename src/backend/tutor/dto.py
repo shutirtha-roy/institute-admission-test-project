@@ -7,7 +7,7 @@ class CreateTutorDTO(BaseModel):
     name: Optional[str] = ""
     email: EmailStr
     password: str
-    quialifications: Optional[list[str]] = []
+    qualification_list: Optional[list[str]] = []
     course_list: Optional[list[str]] = []
 
     @root_validator(pre=True)
@@ -20,7 +20,7 @@ class CreateTutorDTO(BaseModel):
 
 class UpdateDTO(BaseModel):
     tutor_name : Optional[str] = None
-    quialifications: Optional[list[str]] = None
+    qualification_list: Optional[list[str]] = None
 
 
 class addCourseDTO(BaseModel):
@@ -29,5 +29,5 @@ class addCourseDTO(BaseModel):
 class ResponseRoleDTO(BaseModel):
     tutor_name : str
     tutor_email: EmailStr
-    quialifications: Optional[list[str]]
+    qualification_list: Optional[list[str]]
     course_list: Optional[list[str]]
