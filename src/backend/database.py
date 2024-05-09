@@ -13,7 +13,7 @@ async def init_db():
     )
 
     await beanie.init_beanie(
-        database=client.instatuteDB,
+        database=client.instatuteDB2,
         document_models=[User, Tutor, University, Course]
     )
 

@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
-from tutor.dto import CreateTutorDTO, ResponseRoleDTO, UpdateDTO, addCourseDTO
+from tutor.dto import CreateTutorDTO, ResponseRoleDTO, UpdateDTO, addCourseDTO, getTutorDTO
 from tutor.model import Tutor
 from university.model import University
 from user.model import User, UserTypeEnum
@@ -76,6 +76,36 @@ async def getalltutors():
             message=str(e)
         )
 
+
+@tutor_router.get('/getonetutor', status_code=200)
+async def getalltutors(data: getTutorDTO):
+    try:
+        email = data.email
+        print(email)
+        tutor_info = await Tutor.find_one(
+            Tutor.tutor_email == email
+        )
+        print(1)
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Tutor List has been retrieved successfully",
+            result= ResponseRoleDTO(**tutor_info.model_dump()),
+        ) 
+
+    except UnauthorizedError as ue:
+        return utils.create_response(
+            status_code=ue.status_code,
+            success=False,
+            message=ue.message
+        )
+    except Exception as e:
+        return utils.create_response(
+            status_code=500,
+            success=False,
+            message=str(e)
+        )
+    
 
 @tutor_router.patch("/changetutorinfo/{tutorEmail}")
 async def changetutorinfo(tutorEmail:str, data: UpdateDTO):
