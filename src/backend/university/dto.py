@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 class CreateDTO(BaseModel):
     title: str
-    description : Optional[str] = []
+    description : Optional[str] = ""
     tutor_list: Optional[list[str]] = []
     course_list: Optional[list[str]] = []
 
@@ -18,6 +18,6 @@ class UpdateDTO(BaseModel):
 
 class ResponseDTO(BaseModel):
     title: str
-    description : Optional[str] = []
+    description : Optional[str] = ""
     tutor_list: Optional[list[str]] = []
     course_list: Optional[list[str]] = []
