@@ -12,6 +12,7 @@ import { ITutorDetailsResponse } from 'src/assets/data/ITutorDetailsResponse';
 })
 export class AuthService {
   private baseUrl: string = "/api/v1/user/";
+  private tutorBaseUrl: string = "/api/v1/tutor/";
   private userPayload: any;
 
   constructor(
@@ -70,7 +71,7 @@ export class AuthService {
   }
 
   createTutor(userObj: any) {
-    return this.http.post<IApiResponse>(`${this.baseUrl}tutorcreate`, userObj);
+    return this.http.post<IApiResponse>(`${this.tutorBaseUrl}tutorcreate`, userObj);
   }
 
   getName() {
@@ -82,7 +83,7 @@ export class AuthService {
   }
 
   getAllTutors() {
-    return this.http.get<ITutorDetailsResponse>(`${this.baseUrl}tutors`);
+    return this.http.get<ITutorDetailsResponse>(`${this.tutorBaseUrl}alltutor`);
   }
 
   getStudent(email: string) {
