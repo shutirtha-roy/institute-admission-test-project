@@ -2,7 +2,7 @@ from typing import Optional
 from beanie import Document
 from datetime import date, time
 
-class Tutor(Document):
+class Session(Document):
     session_id: str
     host_name: str
     date: date

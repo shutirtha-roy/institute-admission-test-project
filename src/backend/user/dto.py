@@ -26,7 +26,7 @@ class CreateUserDTO(BaseModel):
     def check_username(cls, values):
         if "email" not in values:
             raise HTTPException(
-                status_code=422, detail="Please provide email or phone number")
+                status_code=422, detail="Please provide email")
         return values
 
 class UpdateUserDTO(BaseModel):

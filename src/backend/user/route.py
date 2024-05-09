@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime
 from uuid import UUID
 import bcrypt
@@ -5,6 +6,7 @@ from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from middleware.authentication.hash import create_access_token
+from tutor.model import Tutor
 from user.dto import CreateUserDTO, CreateUserDTO, LoginUserDTO, ResponseUserDTO, StudentListResponseDTO, StudentAccountDTO, TutorListResponseDTO, TutorAccountDTO, UpdateUserDTO
 from user.model import User, UserTypeEnum
 from utils import utils
@@ -45,34 +47,34 @@ async def getallstudents():
             message=str(e)
         )
 
-@user_router.get('/tutors', status_code=200)
-async def getalltutors():
-    try:
-        tutors = await User.find(User.role == UserTypeEnum.TUTOR).to_list()
-        tutor_number = len(tutors)
+# @user_router.get('/tutors', status_code=200)
+# async def getalltutors():
+#     try:
+#         tutors = await User.find(User.role == UserTypeEnum.TUTOR).to_list()
+#         tutor_number = len(tutors)
 
-        return utils.create_response(
-            status_code=200,
-            success=True,
-            message="Tutor List has been retrieved successfully",
-            result=TutorListResponseDTO(
-                    total_tutors=tutor_number,
-                    tutor_list=tutors
-                    ),
-        ) 
+#         return utils.create_response(
+#             status_code=200,
+#             success=True,
+#             message="Tutor List has been retrieved successfully",
+#             result=TutorListResponseDTO(
+#                     total_tutors=tutor_number,
+#                     tutor_list=tutors
+#                     ),
+#         ) 
 
-    except UnauthorizedError as ue:
-        return utils.create_response(
-            status_code=ue.status_code,
-            success=False,
-            message=ue.message
-        )
-    except Exception as e:
-        return utils.create_response(
-            status_code=500,
-            success=False,
-            message=str(e)
-        )
+#     except UnauthorizedError as ue:
+#         return utils.create_response(
+#             status_code=ue.status_code,
+#             success=False,
+#             message=ue.message
+#         )
+#     except Exception as e:
+#         return utils.create_response(
+#             status_code=500,
+#             success=False,
+#             message=str(e)
+#         )
 
 @user_router.get('/{task_id}')
 async def getonestudent(task_id):
@@ -132,23 +134,28 @@ async def createstudent(data: CreateUserDTO):
     
     return {"massege" : "Resquest for account created successfully."}
 
-@user_router.post("/tutorcreate", status_code=201)
-async def createstudent(data: CreateUserDTO):
-    tutor = User(
-        name= data.name,
-        email= data.email,
-        password= data.password,
-        role= UserTypeEnum.TUTOR,
-        approved= True
-    )
+# @user_router.post("/tutorcreate", status_code=201)
+# async def createstudent(data: CreateUserDTO):
+#     tutor = User(
+#         name= data.name,
+#         email= data.email,
+#         password= data.password,
+#         role= UserTypeEnum.TUTOR,
+#         approved= True
+#     )
 
-    await tutor.save()
+#     tutor_info = Tutor(
+#         tutor_email = data.email,
+#         tutor_name = data.name
+#     )
+
+#     await asyncio (tutor.save(), tutor_info.save())
     
-    return {"massege" : "Tutor Created successfully"}
+#     return {"massege" : "Tutor Created successfully"}
 
-@user_router.patch('/')
-async def changestudentinfo():
-    pass
+# @user_router.patch('/')
+# async def changestudentinfo():
+#     pass
 
 @user_router.patch("/approveStudent/{studentEmail}")
 async def approveStudent(studentEmail:str):
