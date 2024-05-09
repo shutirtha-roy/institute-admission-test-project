@@ -7,6 +7,12 @@ import { AddStudentComponent } from './student-list/add-student/add-student.comp
 import { EditStudentComponent } from './student-list/edit-student/edit-student.component';
 import { AddTutorComponent } from './tutor-list/add-tutor/add-tutor.component';
 import { EditTutorComponent } from './tutor-list/edit-tutor/edit-tutor.component';
+import { UniversityComponent } from './university/university.component';
+import { AddUniversityComponent } from './university/add-university/add-university.component';
+import { EditUniversityComponent } from './university/edit-university/edit-university.component';
+import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './course/add-course/add-course.component';
+import { EditCourseComponent } from './course/edit-course/edit-course.component';
 
 const routes: Routes = [
   {
@@ -20,6 +26,14 @@ const routes: Routes = [
   {
     path: 'tutors',
     component: TutorListComponent
+  },
+  {
+    path: 'universities',
+    component: UniversityComponent
+  },
+  {
+    path: 'courses',
+    component: CourseComponent
   },
   {
     path: 'students/add-student',
@@ -36,7 +50,23 @@ const routes: Routes = [
   {
     path: 'tutors/edit/:email',
     component: EditTutorComponent
-  }
+  },
+  {
+    path: 'universities/add-university',
+    component: AddUniversityComponent
+  },
+  {
+    path: 'universities/edit/:email',
+    component: EditUniversityComponent
+  },
+  {
+    path: 'courses/add-course',
+    component: AddCourseComponent
+  },
+  {
+    path: 'courses/edit/:email',
+    component: EditCourseComponent
+  },
 ];
 
 @NgModule({
