@@ -56,7 +56,7 @@ const routes: Routes = [
     component: AddUniversityComponent
   },
   {
-    path: 'universities/edit/:email',
+    path: 'universities/edit/:title',
     component: EditUniversityComponent
   },
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     component: AddCourseComponent
   },
   {
-    path: 'courses/edit/:email',
+    path: 'courses/edit/:course-code',
     component: EditCourseComponent
   },
 ];

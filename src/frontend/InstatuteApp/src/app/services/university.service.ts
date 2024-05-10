@@ -13,12 +13,20 @@ export class UniversityService {
     private router: Router) { 
   }
 
+  getUniversity(title: string) {
+    return this.http.get(`${this.baseUrl}/getuniversity/${title}`);
+  }
+
   getAllUniversities() {
     return this.http.get(`${this.baseUrl}getalluniversity`);
   }
 
   createUniversity(universityObj: any) {
-    return this.http.post(`${this.baseUrl}/universityCreate`, universityObj);
+    return this.http.post(`${this.baseUrl}universityCreate`, universityObj);
+  }
+
+  updateUniversity(universityObj: any) {
+    return this.http.patch(`${this.baseUrl}updateuniversity/${universityObj.title}`, universityObj);
   }
 
   deleteUniversity(title: string) {
