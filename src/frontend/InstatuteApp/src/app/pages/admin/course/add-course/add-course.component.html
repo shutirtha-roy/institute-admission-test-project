@@ -1,1 +1,24 @@
-<p>add-course works!</p>
+<div class="container">
+    <h2>Add New Course</h2>
+    <form [formGroup]="courseForm" (ngSubmit)="onCourseSubmit()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" formControlName="title">
+        </div>
+        <div class="form-group">
+            <label for="course_code">Course Code:</label>
+            <input type="text" id="course_code" formControlName="course_code">
+        </div>
+        <div class="form-group">
+            <select formControlName="university_title" class="custom-dropdown">
+                <option value="default" selected="default" disabled>Please select a company</option> 
+                <option *ngFor="let university of universityList" [selected]="university.title" [value]="university.title">{{ university.title }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">Description:</label>
+            <input type="email" id="email" formControlName="description">
+        </div>
+        <input type="submit" value="Add University">
+    </form>
+</div>

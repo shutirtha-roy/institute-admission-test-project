@@ -17,6 +17,10 @@ export class CourseService {
     return this.http.get(`${this.baseUrl}getallcourses`);
   }
 
+  createCourse(courseObj: any) {
+    return this.http.post(`${this.baseUrl}`, courseObj);
+  }
+
   deleteCourse(course_code: string) {
     return this.http.delete(`${this.baseUrl}${course_code}`);
   }
