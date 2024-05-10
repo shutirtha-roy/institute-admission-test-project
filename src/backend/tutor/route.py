@@ -30,7 +30,7 @@ async def createtutor(data: CreateTutorDTO):
             qualifications= data.qualifications,
             course_list=[]
         )
-        print(3)
+
         await tutor.save() 
         await tutor_info.save()
         

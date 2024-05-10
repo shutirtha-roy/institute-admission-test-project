@@ -2,11 +2,27 @@ from typing import Optional
 from beanie import Document
 from datetime import date, time
 
+import pymongo
+
+from course.model import Course
+from student.model import StudentInfo
+from tutor.model import Tutor
+from university.model import University
+
 class Session(Document):
     session_id: str
-    host_name: str
-    date: date
-    start_time: time
-    end_time: time
+    tutor: Tutor
+    course: Course
+    university: University
+    schedule: str
+    description: str
     student_number: int
-    student_list: Optional[list[str]]
+    unapproved_student_list: Optional[list[StudentInfo]] = []
+    approved_student_list: Optional[list[StudentInfo]] = []
+
+    class Settings:
+        indexes = [
+            pymongo.IndexModel([
+                ("session_id", pymongo.ASCENDING)
+            ], unique=True)
+        ]

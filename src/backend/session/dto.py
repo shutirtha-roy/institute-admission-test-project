@@ -2,28 +2,35 @@ from typing import Optional
 from pydantic import BaseModel
 from datetime import date, time
 
+from course.model import Course
+from student.model import StudentInfo
+from tutor.model import Tutor
+from university.model import University
+
 
 class CreateDTO(BaseModel):
     session_id: str
-    host_name: str
-    date: date
-    start_time: time
-    end_time: time
+    host_email: str
+    course_code: str
+    schedule: str
+    description: str
     student_number: int
-    student_list: Optional[list[str]]
 
 class UpdateDTO(BaseModel):
-    session_id: Optional[str]
-    host_name: Optional[str]
-    date: Optional[date]
-    start_time: Optional[time]
-    end_time: Optional[time]
-    student_number: Optional[int]
-    student_list: Optional[list[str]]
+    session_id: Optional[str] = None
+    description: Optional[str] = None
+    student_number: Optional[int] = None
 
 
-class ResponseRoleDTO(BaseModel):
-    tutor_email: str
-    tutor_name : str
-    quialifications: Optional[list[str]]
-    course_list: Optional[list[str]]
+class UpdateStudentListDTO(BaseModel):
+    student_email: str
+
+class ResponseDTO(BaseModel):
+    session_id: str
+    tutor: Tutor
+    course: Course
+    university: University
+    description: str
+    student_number: int
+    unapproved_student_list: Optional[list[StudentInfo]]
+    approved_student_list: Optional[list[StudentInfo]]
