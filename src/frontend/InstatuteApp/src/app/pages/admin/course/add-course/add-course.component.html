@@ -10,8 +10,9 @@
             <input type="text" id="course_code" formControlName="course_code">
         </div>
         <div class="form-group">
+            <label for="course_code">University:</label>
             <select formControlName="university_title" class="custom-dropdown">
-                <option value="default" selected="default" disabled>Please select a company</option> 
+                <option value="default" selected="default" disabled>Please select a university</option> 
                 <option *ngFor="let university of universityList" [selected]="university.title" [value]="university.title">{{ university.title }}</option>
             </select>
         </div>

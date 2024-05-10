@@ -52,7 +52,7 @@ export class AddCourseComponent implements OnInit  {
     if(this.courseForm.valid) {
       let courseDetails = { 'title': this.courseForm.value?.title , 
         'course_code': this.courseForm.value?.course_code,
-        'university_title': 'Harvard University',
+        'university_title': this.courseForm.value?.university_title,
         'description': this.courseForm.value?.description,
       };
       
