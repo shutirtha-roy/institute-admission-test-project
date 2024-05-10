@@ -170,8 +170,11 @@ async def addtutorcourse(tutorEmail:str, data: addCourseDTO):
         if university is None:
             raise EntityNotFoundError
         
-        tutor_info.course_list.append(course.course_code)
-        course.tutor_list.append(tutor_info.tutor_name)
+        if (course.course_code not in tutor_info.course_list):
+            tutor_info.course_list.append(course.course_code)
+
+        if (tutor_info.tutor_name not in course.tutor_list):
+            course.tutor_list.append(tutor_info.tutor_name)
 
         if (tutor_info.tutor_name not in university.tutor_list):
             university.tutor_list.append(tutor_info.tutor_name)
