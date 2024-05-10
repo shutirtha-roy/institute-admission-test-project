@@ -12,7 +12,7 @@ from utils import utils
 
 university_router = APIRouter(tags=["University"])
 
-@university_router.post("/", status_code = 201)  
+@university_router.post("/universityCreate", status_code = 201)  
 async def createuniversity(data: CreateDTO):
     try:
         university = University(**data.model_dump())

@@ -11,7 +11,7 @@ from utils import utils
 
 course_router = APIRouter(tags=["Course"])
 
-@course_router.post("", status_code = 201)  
+@course_router.post("/coursecreate", status_code = 201)  
 async def createcourse(data: CreateDTO):
     try:
         university = await University.find_one(University.title == data.university_title)
