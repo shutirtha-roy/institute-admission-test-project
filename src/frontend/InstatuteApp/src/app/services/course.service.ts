@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class CourseService {
   private baseUrl: string = "/api/v1/course/";
+  private tutorUrl: string = "/api/v1/tutor/";
 
   constructor(
     private http: HttpClient, 
@@ -19,6 +20,10 @@ export class CourseService {
 
   createCourse(courseObj: any) {
     return this.http.post(`${this.baseUrl}courseCreate`, courseObj);
+  }
+
+  assignTutorToCourse(email: string, courseCodeObj: any) {
+    return this.http.patch(`${this.tutorUrl}addtutorcourse/${email}`, courseCodeObj);
   }
 
   deleteCourse(course_code: string) {

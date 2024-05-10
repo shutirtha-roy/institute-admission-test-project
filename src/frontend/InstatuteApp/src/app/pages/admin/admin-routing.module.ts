@@ -13,6 +13,7 @@ import { EditUniversityComponent } from './university/edit-university/edit-unive
 import { CourseComponent } from './course/course.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
+import { AssignTutorComponent } from './course/assign-tutor/assign-tutor.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'courses/edit/:course-code',
     component: EditCourseComponent
+  },
+  {
+    path: 'courses/assign-tutor',
+    component: AssignTutorComponent
   },
 ];
 

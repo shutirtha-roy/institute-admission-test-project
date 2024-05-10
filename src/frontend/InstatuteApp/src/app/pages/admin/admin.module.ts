@@ -17,6 +17,7 @@ import { AddUniversityComponent } from './university/add-university/add-universi
 import { EditUniversityComponent } from './university/edit-university/edit-university.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
+import { AssignTutorComponent } from './course/assign-tutor/assign-tutor.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditCourseComponent } from './course/edit-course/edit-course.component'
     AddUniversityComponent,
     EditUniversityComponent,
     AddCourseComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    AssignTutorComponent
   ],
   imports: [
     CommonModule,
