@@ -2,6 +2,7 @@ import bcrypt
 import beanie
 import motor 
 import motor.motor_asyncio
+from quiz.model import Quiz
 from user.model import User, UserTypeEnum
 from tutor.model import Tutor
 from university.model import University
@@ -16,7 +17,7 @@ async def init_db():
 
     await beanie.init_beanie(
         database=client.instatuteDB2,
-        document_models=[User, Tutor, University, Course, StudentInfo, Session]
+        document_models=[User, Tutor, University, Course, StudentInfo, Session, Quiz]
     )
 
     admin = await User.find_one(User.email == "admin@gmail.com")
