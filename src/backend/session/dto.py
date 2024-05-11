@@ -27,6 +27,7 @@ class UpdateStudentListDTO(BaseModel):
 
 class ResponseDTO(BaseModel):
     session_id: str
+    schedule: str
     tutor: Tutor
     course: Course
     university: University
