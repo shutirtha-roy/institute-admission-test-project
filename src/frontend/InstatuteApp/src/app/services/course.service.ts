@@ -18,6 +18,10 @@ export class CourseService {
     return this.http.get(`${this.baseUrl}getallcourses`);
   }
 
+  getCourseByCode(course_code: string) {
+    return this.http.get(`${this.baseUrl}/getcoursebycode/${course_code}`);
+  }
+
   createCourse(courseObj: any) {
     return this.http.post(`${this.baseUrl}courseCreate`, courseObj);
   }

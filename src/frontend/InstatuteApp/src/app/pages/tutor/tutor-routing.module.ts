@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SessionComponent } from './session/session.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AddSessionComponent } from './session/add-session/add-session.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'online-quiz',
     component: QuizComponent
+  },
+  {
+    path: 'sessions/add-session',
+    component: AddSessionComponent
   }
 ];
 

@@ -13,6 +13,10 @@ export class SessionService {
     private router: Router) { 
   }
 
+  createUniversity(sessionObj: any) {
+    return this.http.post(`${this.baseUrl}sessionCreate`, sessionObj);
+  }
+
   getAllSessions(email: string) {
     return this.http.get(`${this.baseUrl}getallsessionbytutor/${email}`);
   }
@@ -25,9 +29,7 @@ export class SessionService {
   //   return this.http.get(`${this.baseUrl}getalluniversity`);
   // }
 
-  // createUniversity(universityObj: any) {
-  //   return this.http.post(`${this.baseUrl}universityCreate`, universityObj);
-  // }
+  
 
   // updateUniversity(universityObj: any) {
   //   return this.http.patch(`${this.baseUrl}updateuniversity/${universityObj.title}`, universityObj);

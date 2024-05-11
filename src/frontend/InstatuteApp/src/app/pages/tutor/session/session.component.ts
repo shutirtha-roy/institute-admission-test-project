@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { SessionService } from 'src/app/services/session';
+import { SessionService } from 'src/app/services/session.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
