@@ -36,7 +36,12 @@
             <li *ngIf="isAuthenticated() && role == 'student'" >
                 <a routerLink="student/sessions">Sessions</a>
             </li>
-
+            <li *ngIf="isAuthenticated() && role == 'tutor'" >
+                <a routerLink="tutor/online-quiz">Online Quiz</a>
+            </li>
+            <li *ngIf="isAuthenticated() && role == 'student'" >
+                <a routerLink="student/online-quiz">Online Quiz</a>
+            </li>
 
             <li *ngIf="!isAuthenticated()">
                 <a routerLink="auth/signup" id="signUp">Sign Up</a>
