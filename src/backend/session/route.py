@@ -106,6 +106,29 @@ async def getallsession():
         )
 
 
+@session_router.get('/getallsessionbytutor/{tutor_email}', status_code=200)
+async def getallsessionbytutor(tutor_email: str):
+    try:
+        sessions = await Session.find(Session.tutor.tutor_email == tutor_email).to_list()
+
+        if sessions is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Session List has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in sessions],
+        )
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
 @session_router.patch('/updatesession/{session_id}', status_code=200)
 async def updatesession(session_id:str, data: UpdateDTO):
     try:
@@ -134,18 +157,12 @@ async def updatesession(session_id:str, data: UpdateDTO):
             result= ResponseDTO(**session.model_dump()),
         )
 
-    except UnauthorizedError as ue:
-        return utils.create_response(
-            status_code=ue.status_code,
-            success=False,
-            message=ue.message
-        )
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
     except Exception as e:
-        return utils.create_response(
-            status_code=500,
-            success=False,
-            message=str(e)
-        )
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
 
 
 @session_router.patch('/addstudent/{session_id}', status_code=200)
