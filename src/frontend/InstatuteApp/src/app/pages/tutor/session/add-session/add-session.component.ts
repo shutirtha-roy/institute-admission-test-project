@@ -30,8 +30,7 @@ export class AddSessionComponent implements OnInit  {
 
   ngOnInit(): void {
     this.sessionForm = this.formBuilder.group({
-      host_email: ['', Validators.required],
-      course_code: ['', Validators.required],
+      course_code: ['default', Validators.required],
       schedule: ['', Validators.required],
       description: ['', Validators.required],
       student_number: [0, Validators.required]
@@ -71,12 +70,13 @@ export class AddSessionComponent implements OnInit  {
 
   onSessionSubmit() {
     this.submitted = true;
+    const email: string = this.authService.getEmail() ?? "";
 
     if(this.sessionForm.valid) {
       const guidId: string = uuidv4();
 
       let sessionDetails = { 'session_id': guidId, 
-        'host_email': this.sessionForm.value?.host_email,
+        'host_email': email,
         'course_code': this.sessionForm.value?.course_code,
         'schedule': this.sessionForm.value?.schedule,
         'description': this.sessionForm.value?.description,

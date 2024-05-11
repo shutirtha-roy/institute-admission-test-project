@@ -34,7 +34,7 @@ export class SessionComponent implements OnInit {
         error: (response) => {
           console.log(response)
         }
-      })
+    });
   }
 }
 

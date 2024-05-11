@@ -1,1 +1,25 @@
-<p>add-session works!</p>
+<div class="container">
+    <h2>Add New Session</h2>
+    <form [formGroup]="sessionForm" (ngSubmit)="onSessionSubmit()">
+        <div class="form-group">
+            <label for="">Course:</label>
+            <select formControlName="course_code" class="custom-dropdown">
+                <option value="default" selected="default" disabled>Please select a course</option> 
+                <option *ngFor="let course of courseList" [selected]="course.course_code" [value]="course.course_code">{{  course.course_code }} - {{ course.title }} - {{ course.university_title }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="schedule">Schedule:</label>
+            <input type="text" id="schedule" formControlName="schedule">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" formControlName="description">
+        </div>
+        <div class="form-group">
+            <label for="student_number">Student Number:</label>
+            <input type="number" id="student_number" formControlName="student_number">
+        </div>
+        <input type="submit" value="Add Session">
+    </form>
+</div>

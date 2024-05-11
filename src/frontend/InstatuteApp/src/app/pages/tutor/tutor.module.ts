@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SessionComponent } from './session/session.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { AddSessionComponent } from './session/add-session/add-session.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AddSessionComponent } from './session/add-session/add-session.component
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     TutorRoutingModule
   ]
 })

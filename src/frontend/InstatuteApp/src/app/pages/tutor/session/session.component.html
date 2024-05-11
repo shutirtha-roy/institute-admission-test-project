@@ -28,8 +28,8 @@
                 <td style="text-align: center;">{{ session.course.course_code }}</td>
                 <td style="text-align: center;">{{ session.course.university_title }}</td>
                 
-                <td style="text-align: center;">TEST ES</td>
-                <td style="text-align: center;">TEST RS</td>
+                <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
                 <td style="text-align: center;">GROUP</td>
                 <td style="text-align: center;">
                     <a routerLink="add-student" class="success-button">Details</a>
