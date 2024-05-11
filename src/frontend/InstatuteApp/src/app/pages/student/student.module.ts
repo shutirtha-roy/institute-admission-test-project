@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SessionComponent } from './session/session.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    SessionComponent
   ],
   imports: [
     CommonModule,

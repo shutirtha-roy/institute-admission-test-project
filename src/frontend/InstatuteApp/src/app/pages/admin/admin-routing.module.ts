@@ -14,6 +14,7 @@ import { CourseComponent } from './course/course.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
 import { AssignTutorComponent } from './course/assign-tutor/assign-tutor.component';
+import { SessionComponent } from './session/session.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
     path: 'courses/assign-tutor',
     component: AssignTutorComponent
   },
+  {
+    path: 'sessions',
+    component: SessionComponent
+  }
 ];
 
 @NgModule({

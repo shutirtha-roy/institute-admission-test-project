@@ -2,7 +2,34 @@
     padding: 1.5em 0;
     font-size: 4rem;
     color:#888;
-    width: 400px;
+    width: 1200px;
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+.course {
+    margin-bottom: 10px;
+}
+
+.course h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.enrollment {
+    font-size: 14px;
+    color: #666;
 }
