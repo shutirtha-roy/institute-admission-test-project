@@ -20,8 +20,5 @@ export class DashboardComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.userStore.getEmailForStore().subscribe(email => {
-      console.log("TUTOR EMAIL", email);
-    });
   }
 }

@@ -1,1 +1,43 @@
-<p>session works!</p>
+<div class="container">
+    <h1 style="text-align: center;">Sessions List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-student" class="primary-button">Add New Session</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Course</th>
+                <th style="text-align: center;">Class Timing</th>
+                <th style="text-align: center;">Course Code</th>
+                <th style="text-align: center;">University</th>
+                
+                <th style="text-align: center;">Enrolled Students</th>
+                <th style="text-align: center;">Remaining Seats</th>
+                <th style="text-align: center;">Session Type</th>
+                <th style="text-align: center;">Actions</th>
+                <th style="text-align: center;">Class Link</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let session of sessionList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ session.course.title }}</td>
+                <td style="text-align: center;">TEST CT</td>
+                <td style="text-align: center;">{{ session.course.course_code }}</td>
+                <td style="text-align: center;">{{ session.course.university_title }}</td>
+                
+                <td style="text-align: center;">TEST ES</td>
+                <td style="text-align: center;">TEST RS</td>
+                <td style="text-align: center;">GROUP</td>
+                <td style="text-align: center;">
+                    <a routerLink="add-student" class="success-button">Details</a>
+                </td>
+                <td style="text-align: center;">
+                    <a routerLink="add-student" class="success-button">Join Class</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

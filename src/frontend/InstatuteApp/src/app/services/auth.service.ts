@@ -70,12 +70,20 @@ export class AuthService {
     localStorage.setItem('name', name);
   }
 
+  storeEmail(email: string) {
+    localStorage.setItem('email', email);
+  }
+
   createTutor(userObj: any) {
     return this.http.post<IApiResponse>(`${this.tutorBaseUrl}tutorcreate`, userObj);
   }
 
   getName() {
     return localStorage.getItem('name');
+  }
+
+  getEmail() {
+    return localStorage.getItem('email');
   }
 
   getAllStudents() {

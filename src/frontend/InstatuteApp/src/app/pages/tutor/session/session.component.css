@@ -1,0 +1,129 @@
+.container {
+    max-width: 1200px;
+    margin-top: 20vh;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+table {
+    margin: 10vh;
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.actions {
+    position: relative;
+    width: 8%;
+}
+
+.actions-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    z-index: 1;
+}
+
+.actions:hover .actions-dropdown {
+    display: block;
+}
+
+.actions-dropdown a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+.actions-dropdown a:hover {
+    background-color: #f2f2f2;
+}
+
+/**************BUTTON************/
+a {
+    text-decoration: none;
+}
+
+.primary-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+.primary-button:hover {
+    background-color: #0056b3;
+}
+
+.success-button{
+    background-color: #00823a;
+    color: white;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.badge-action {
+    display: inline-block;
+    padding: 0.8em 0.8em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-color: rgb(26, 185, 26);
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+.badge-approved {
+    display: inline-block;
+    padding: 0.8em 0.8em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-color: rgb(26, 185, 26);
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+.badge-unapproved {
+    display: inline-block;
+    padding: 0.8em 0.8em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-color: red;
+    color: #fff;
+    margin-bottom: 0px;
+}
+/**************BUTTON************/

@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           this.userStore.setRoleForStore(tokenPayload.role);
           this.userStore.setEmailForStore(this.loginForm.value?.username);
           this.auth.storeName(res.data.user.name);
+          this.auth.storeEmail(this.loginForm.value?.username);
           this.loginForm.reset();
           console.log(res.message);
 
