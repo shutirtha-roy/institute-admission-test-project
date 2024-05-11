@@ -18,17 +18,37 @@ async def getallstudent():
         if students is None:
             raise EntityNotFoundError
 
-        # response = []
+        responses = []
 
-        # for student in students:
-        #     for session in student.sessions:
-        #         session 
+        for student in students:
+            sessions = []
+            courses = []
+            universities = []
+            
+            for session_id in student.sessions:
+                session = await Session.find_one(Session.session_id == session_id)
+                sessions.append(session)
+                
+                if session.course not in courses:
+                    courses.append(session.course)
+
+                if session.university not in universities:
+                    universities.append(session.university)
+
+            response = ResponseDTO(
+                email= student.email, 
+                name= student.name,
+                sessions= sessions,
+                university= universities,
+                courses=courses)
+            
+            responses.append(response)
 
         return utils.create_response(
             status_code=200,
             success=True,
             message="Tutor List has been retrieved successfully",
-            result=[ResponseDTO(**r.model_dump()) for r in students],
+            result=responses,
         ) 
 
     except EntityNotFoundError as enfe:
@@ -47,7 +67,6 @@ async def getallstudent(stident_email:str):
         if student is None:
             raise EntityNotFoundError
 
-        print(student)
         sessions = []
         universities = []
         courses = []
@@ -60,7 +79,6 @@ async def getallstudent(stident_email:str):
 
             if session.university not in universities:
                 universities.append(session.university)
-
 
         return utils.create_response(
             status_code=200,
