@@ -6,13 +6,15 @@ import { TutorComponent } from './tutor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SessionComponent } from './session/session.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { AddSessionComponent } from './session/add-session/add-session.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     SessionComponent,
-    QuizComponent
+    QuizComponent,
+    AddSessionComponent
   ],
   imports: [
     CommonModule,
