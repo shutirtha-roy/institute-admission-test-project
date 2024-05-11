@@ -3,6 +3,8 @@ from fastapi import HTTPException
 from pydantic import BaseModel, EmailStr, root_validator
 
 from course.model import Course
+from session.model import Session
+from university.model import University
 
 
 
@@ -13,5 +15,6 @@ class UpdateDTO(BaseModel):
 class ResponseDTO(BaseModel):
     email: str
     name : str
-    courses: Optional[list[Course]] = []
-    sessions : Optional[list[str]] = []
+    sessions : Optional[list[Session]] = []
+    courses : Optional[list[Course]] = []
+    university : Optional[list[University]] = []

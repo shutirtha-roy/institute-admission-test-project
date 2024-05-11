@@ -199,8 +199,10 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
         if(student in session.unapproved_student_list):
             session.unapproved_student_list.remove(student)
             session.approved_student_list.append(student)
+            student.sessions.append(session.session_id)
 
         await session.save()
+        await student.save()
 
         return utils.create_response(
             status_code=200,
@@ -231,8 +233,10 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
         if(student in session.approved_student_list):
             session.unapproved_student_list.append(student)
             session.approved_student_list.remove(student)
+            student.sessions.remove(session.session_id)
             
-        session.save()
+        await session.save()
+        await student.save()
 
         return utils.create_response(
             status_code=200,
@@ -248,6 +252,39 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
+
+@session_router.patch('/deletestudent/{session_id}', status_code=200)
+async def deletestudenttosession(session_id:str, data: UpdateStudentListDTO):
+    try:
+        session = await Session.find_one(Session.session_id == session_id)
+        if session is None:
+            raise EntityNotFoundError
+        
+        student = await StudentInfo.find_one(StudentInfo.email == data.student_email)
+        if student is None:
+            raise EntityNotFoundError
+        
+        if(student in session.approved_student_list):
+            session.approved_student_list.remove(student)
+            student.sessions.remove(session.session_id)
+            
+        await session.save()
+        await student.save()
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Session Updated successfully",
+            result= ResponseDTO(**session.model_dump()),
+        )
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+    
 
 @session_router.delete("/{session_id}", status_code = 200)
 async def delete(session_id:str):
