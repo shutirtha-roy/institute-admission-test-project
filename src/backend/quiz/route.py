@@ -1,8 +1,10 @@
 from fastapi import APIRouter
 
+from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
 from quiz.model import Quiz, QuizQuesion
 from quiz.dto import CreateDTO, AddQuestionDto, DeleteQuestionDto, ResponseDTO
+from tutor.model import Tutor
 from utils import utils
 
 quiz_router = APIRouter(tags=["Quiz"])
@@ -10,7 +12,15 @@ quiz_router = APIRouter(tags=["Quiz"])
 @quiz_router.post("/quizCreate", status_code = 201)  
 async def createuquiz(data: CreateDTO):
     try:
-        quiz = Quiz(**data.model_dump())
+        tutor = await Tutor.find_one(Tutor.tutor_email == data.tutor_email)
+        if tutor is None:
+            raise EntityNotFoundError
+        
+        course = await Course.find_one(Course.course_code == data.course_code)
+        if course is None:
+            raise EntityNotFoundError
+        
+        quiz = Quiz(**data.model_dump(), tutor= tutor, course= course)
 
         await quiz.save()
 
@@ -34,6 +44,7 @@ async def getallQuiz():
     try:
         quizes = await Quiz.find_all().to_list()
 
+        print(quizes)
         if quizes is None:
             raise EntityNotFoundError
 
@@ -52,10 +63,56 @@ async def getallQuiz():
         return utils.create_response(status_code=500, success=False, message=str(e)) 
     
 
+@quiz_router.get('/allQuizbyCourse/{course_code}', status_code=200)
+async def getallQuizbyCourse(course_code:str):
+    try:
+        quizes = await Quiz.find(Quiz.course.course_code == course_code).to_list()
+
+        if quizes is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in quizes],
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
+@quiz_router.get('/allQuizbyTutor/{tutor_email}', status_code=200)
+async def getallQuizbyTutor(tutor_email:str):
+    try:
+        quizes = await Quiz.find(Quiz.tutor.tutor_email == tutor_email).to_list()
+
+        if quizes is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in quizes],
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
 @quiz_router.patch('/addQuestion/{quiz_id}', status_code=200)
 async def addQuestion(quiz_id:str, data: AddQuestionDto):
     try:
-        quiz = await Quiz.find_one()
+        quiz = await Quiz.find_one(Quiz.quiz_id == quiz_id)
 
         if quiz is None:
             raise EntityNotFoundError
@@ -69,6 +126,33 @@ async def addQuestion(quiz_id:str, data: AddQuestionDto):
         )
 
         quiz.quiz_questions.update({data.question_number : quiz_value})
+        
+        await quiz.save()
+        
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result= ResponseDTO(**quiz.model_dump()),
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
+@quiz_router.patch('/removeQuestion/{quiz_id}', status_code=200)
+async def addQuestion(quiz_id:str, data: DeleteQuestionDto):
+    try:
+        quiz = await Quiz.find_one(Quiz.quiz_id == quiz_id)
+
+        if quiz is None:
+            raise EntityNotFoundError
+
+        quiz.quiz_questions.pop(data.question_number)
         
         await quiz.save()
         

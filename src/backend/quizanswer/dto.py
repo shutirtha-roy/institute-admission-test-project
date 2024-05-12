@@ -11,23 +11,10 @@ from university.model import University
 
 class CreateDTO(BaseModel):
     quiz_id: str
-    tutor_email: str
-    course_code: str
-    description: str
-
-
-class AddQuestionDto(BaseModel):
-    question_number: str
-    quiz_question: str
-    options: str
-    correct_answer: str
-
-class DeleteQuestionDto(BaseModel):
-    question_number: str
+    student_email: str
+    quiz_answers: Optional[dict[str, str]] 
 
 class ResponseDTO(BaseModel):
     quiz_id: str
-    tutor: Tutor
-    course: Course
-    description: str
-    quiz_questions: Optional[dict[str, QuizQuesion]]
+    student_email: str
+    quiz_answers: Optional[dict[str, str]] 
