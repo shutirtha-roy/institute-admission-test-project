@@ -21,8 +21,6 @@ export class CourseComponent implements OnInit {
   }
 
   getAllSessions() {
-    const email: string = this.authService.getEmail() ?? "";
-
     this.sessionService.getAllSessionsForAllStudents()
       .subscribe({
         next: (response: any) => {
@@ -37,7 +35,16 @@ export class CourseComponent implements OnInit {
 
   requestToEnroll(session_id: string) {
     const email: string = this.authService.getEmail() ?? "";
+    const studentEmailObject = { "student_email": email };
 
-    
+    this.sessionService.requestToEnrollStudent(session_id, studentEmailObject)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response.result);
+        },
+        error: (response) => {
+          console.log(response)
+        }
+    });
   }
 }

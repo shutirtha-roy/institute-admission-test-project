@@ -25,21 +25,7 @@ export class SessionService {
      return this.http.get(`${this.baseUrl}getallsession`);
   }
 
-  // getUniversity(title: string) {
-  //   return this.http.get(`${this.baseUrl}/getuniversity/${title}`);
-  // }
-
-  // getAllUniversities() {
-  //   return this.http.get(`${this.baseUrl}getalluniversity`);
-  // }
-
-  
-
-  // updateUniversity(universityObj: any) {
-  //   return this.http.patch(`${this.baseUrl}updateuniversity/${universityObj.title}`, universityObj);
-  // }
-
-  // deleteUniversity(title: string) {
-  //   return this.http.delete(`${this.baseUrl}${title}`);
-  // }
+  requestToEnrollStudent(session_id: string, studentEmailObject: any) {
+    return this.http.patch(`${this.baseUrl}addstudent/${session_id}`, studentEmailObject)
+  }
 }
