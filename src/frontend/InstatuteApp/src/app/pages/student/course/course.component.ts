@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { SessionService } from 'src/app/services/session.service';
-import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-session',
@@ -13,7 +12,6 @@ export class CourseComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userStoreService: UserStoreService,
     private sessionService: SessionService) { 
 
   }
@@ -23,17 +21,23 @@ export class CourseComponent implements OnInit {
   }
 
   getAllSessions() {
-    this.userStoreService.getEmailForStore()
-    .subscribe(email => {
-      this.sessionService.getAllSessions(email)
-        .subscribe({
-          next: (response: any) => {
-            this.sessionList = response.result;
-          },
-          error: (response) => {
-            console.log(response)
-          }
-        })
-    })
+    const email: string = this.authService.getEmail() ?? "";
+
+    this.sessionService.getAllSessionsForAllStudents()
+      .subscribe({
+        next: (response: any) => {
+          this.sessionList = response.result;
+          console.log(response.result);
+        },
+        error: (response) => {
+          console.log(response)
+        }
+    });
+  }
+
+  requestToEnroll(session_id: string) {
+    const email: string = this.authService.getEmail() ?? "";
+
+    
   }
 }

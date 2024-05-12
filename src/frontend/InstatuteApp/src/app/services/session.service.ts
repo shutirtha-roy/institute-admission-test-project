@@ -21,6 +21,10 @@ export class SessionService {
     return this.http.get(`${this.baseUrl}getallsessionbytutor/${email}`);
   }
 
+  getAllSessionsForAllStudents() {
+     return this.http.get(`${this.baseUrl}getallsession`);
+  }
+
   // getUniversity(title: string) {
   //   return this.http.get(`${this.baseUrl}/getuniversity/${title}`);
   // }
