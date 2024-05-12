@@ -34,7 +34,7 @@
                 <a routerLink="tutor/sessions">Sessions</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/sessions">Sessions</a>
+                <a routerLink="student/courses">Courses</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'tutor'" >
                 <a routerLink="tutor/online-quiz">Online Quiz</a>

@@ -5,10 +5,10 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-session',
-  templateUrl: './session.component.html',
-  styleUrls: ['./session.component.css']
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css']
 })
-export class SessionComponent implements OnInit {
+export class CourseComponent implements OnInit {
   sessionList!: any[];
 
   constructor(
