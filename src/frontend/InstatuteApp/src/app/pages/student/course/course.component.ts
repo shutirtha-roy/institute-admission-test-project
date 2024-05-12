@@ -41,6 +41,7 @@ export class CourseComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           console.log(response.result);
+          this.ngOnInit();
         },
         error: (response) => {
           console.log(response)
@@ -59,8 +60,14 @@ export class CourseComponent implements OnInit {
       if (emailExists) {
         return "unapproved"
       }
+    }
 
-      return "approved";
+    if (session.approved_student_list.length != 0) {
+      const emailExists = unapproved_students.some(student => student.email == email);
+
+      if (emailExists) {
+        return "approved"
+      }
     }
     
     return "unenrolled";
