@@ -32,4 +32,8 @@ export class SessionService {
   requestToEnrollStudent(session_id: string, studentEmailObject: any) {
     return this.http.patch(`${this.baseUrl}addstudent/${session_id}`, studentEmailObject)
   }
+
+  approveStudent(session_id: string, studentEmailObject: any) {
+    return this.http.patch(`${this.baseUrl}approvestudent/${session_id}`, studentEmailObject)
+  }
 }

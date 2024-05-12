@@ -4,7 +4,6 @@
     <table>
         <thead>
             <tr>
-                <th style="text-align: center;">No.</th>
                 <th style="text-align: center;">Name</th>
                 <th style="text-align: center;">Email</th>
                 <th style="text-align: center;">Status</th>
@@ -13,7 +12,6 @@
         </thead>
         <tbody *ngFor="let student of approved_student_list; let index = index">
             <tr>
-                <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ student.name }}</td>
                 <td style="text-align: center;">{{ student.email }}</td>
                 <td style="text-align: center;"><p class="badge-approved">Approved</p></td>
@@ -22,7 +20,6 @@
         </tbody>
         <tbody *ngFor="let student of unapproved_student_list; let index = index">
             <tr>
-                <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ student.name }}</td>
                 <td style="text-align: center;">{{ student.email }}</td>
                 <td style="text-align: center;"><p class="badge-unapproved">UnApproved</p></td>

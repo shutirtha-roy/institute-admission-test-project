@@ -53,6 +53,15 @@ export class SessionDetailsComponent implements OnInit  {
 
   approveStudent(student_email: string) {
     const session_id = this.session.session_id;
+    const studentEmailObj = { "student_email": student_email };
+
+    this.sessionService.approveStudent(session_id, studentEmailObj)
+    .subscribe({
+      next: (response: any) => {
+        this.ngOnInit();
+      }
+    });
+
     console.log(session_id, student_email);
   }
 }
