@@ -14,9 +14,10 @@
                 <th style="text-align: center;">University</th>
                 
                 <th style="text-align: center;">Enrolled Students</th>
+                <th style="text-align: center;">UpApproved Students</th>
                 <th style="text-align: center;">Remaining Seats</th>
                 <th style="text-align: center;">Session Type</th>
-                <th style="text-align: center;">Actions</th>
+                <th style="text-align: center;">Student Details</th>
                 <th style="text-align: center;">Class Link</th>
             </tr>
         </thead>
@@ -27,15 +28,15 @@
                 <td style="text-align: center;">{{ session.schedule }}</td>
                 <td style="text-align: center;">{{ session.course.course_code }}</td>
                 <td style="text-align: center;">{{ session.course.university_title }}</td>
-                
                 <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.unapproved_student_list.length }}</td>
                 <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
                 <td style="text-align: center;">GROUP</td>
                 <td style="text-align: center;">
                     <a routerLink="add-student" class="success-button">Details</a>
                 </td>
                 <td style="text-align: center;">
-                    <a routerLink="add-student" class="success-button">Join Class</a>
+                    <a routerLink="add-student" class="success-button">Join</a>
                 </td>
             </tr>
         </tbody>
