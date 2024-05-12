@@ -33,7 +33,7 @@
                 <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
                 <td style="text-align: center;">GROUP</td>
                 <td style="text-align: center;">
-                    <a routerLink="add-student" class="success-button">Details</a>
+                    <a class="success-button" [routerLink]="['/tutor/sessions','details', session.session_id]">Details</a>
                 </td>
                 <td style="text-align: center;">
                     <a routerLink="add-student" class="success-button">Join</a>

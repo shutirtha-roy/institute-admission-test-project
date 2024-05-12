@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SessionComponent } from './session/session.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { AddSessionComponent } from './session/add-session/add-session.component';
+import { SessionDetailsComponent } from './session/session-details/session-details.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'sessions/add-session',
     component: AddSessionComponent
+  },
+  {
+    path: 'sessions/details/:session_id',
+    component: SessionDetailsComponent
   }
 ];
 
