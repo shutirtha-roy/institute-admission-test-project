@@ -54,6 +54,14 @@ export class CourseComponent implements OnInit {
     const email: string = this.authService.getEmail() ?? "";
     const unapproved_students: any[] = session.unapproved_student_list;
 
+    if (session.approved_student_list.length != 0) {
+      const emailExists = unapproved_students.some(student => student.email == email);
+
+      if (emailExists) {
+        return "approved"
+      }
+    }
+
     if (session.unapproved_student_list.length != 0) {
       const emailExists = unapproved_students.some(student => student.email == email);
 
@@ -62,14 +70,6 @@ export class CourseComponent implements OnInit {
       }
     }
 
-    if (session.approved_student_list.length != 0) {
-      const emailExists = unapproved_students.some(student => student.email == email);
-
-      if (emailExists) {
-        return "approved"
-      }
-    }
-    
     return "unenrolled";
   }
 }
