@@ -53,9 +53,10 @@ export class CourseComponent implements OnInit {
   getStudentStatus(session: any) {
     const email: string = this.authService.getEmail() ?? "";
     const unapproved_students: any[] = session.unapproved_student_list;
+    const approved_students: any[] = session.approved_student_list;
 
-    if (session.approved_student_list.length != 0) {
-      const emailExists = unapproved_students.some(student => student.email == email);
+    if (approved_students.length != 0) {
+      const emailExists = approved_students.some(student => student.email == email);
 
       if (emailExists) {
         return "approved"
