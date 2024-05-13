@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class QuizService {
   private baseUrl: string = "/api/v1/quiz/";
 
   constructor(
