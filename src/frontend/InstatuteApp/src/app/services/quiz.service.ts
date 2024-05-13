@@ -29,6 +29,10 @@ export class QuizService {
     return this.http.get(`${this.baseUrl}allQuizbyTutor/${email}`);
   }
 
+  getAllQuizByID(quiz_id: string) {
+    return this.http.get(`${this.baseUrl}/QuizbyId/${quiz_id}`);
+  }
+
   addQuestionToQuiz(quiz_id: string, question_Obj: any) {
     return this.http.patch(`${this.baseUrl}addQuestion/${quiz_id}`, question_Obj);
   }
