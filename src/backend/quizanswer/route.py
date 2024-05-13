@@ -7,7 +7,7 @@ from student.model import StudentInfo
 from utils import utils
 
 from quizanswer.model import QuizAnswer
-from quizanswer.dto import ResponseDTO, CreateDTO
+from quizanswer.dto import ResponseDTO, CreateDTO, DeleteDTO
 
 quiz_answer_router = APIRouter(tags=["QuizAnswer"])
 
@@ -16,11 +16,10 @@ quiz_answer_router = APIRouter(tags=["QuizAnswer"])
 async def createuquiz(data: CreateDTO):
     try:
         quiz_data = await QuizAnswer.find_one(QuizAnswer.student==data.student_email, QuizAnswer.quiz_id == data.quiz_id)
-
         if quiz_data is not None:
             raise Exception("This Student has already given quiz.")
-        
-        student = await StudentInfo(StudentInfo.find_one())
+
+        student = await StudentInfo.find_one(StudentInfo.email == data.student_email)
         if student is None:
             EntityNotFoundError
 
@@ -28,19 +27,32 @@ async def createuquiz(data: CreateDTO):
         if quiz is None:
             EntityNotFoundError
         
-        for qa in data.quiz_answers.keys():
-            quiz_answers = quiz.quiz_questions
-            print(qa)
-            print(quiz_answers[qa])
+        quiz_score = 0
+        quiz_question_count = len(quiz.quiz_questions.keys())
+        all_quiz_answers = data.quiz_answers.split("/")
+ 
+        for quiz_answer in all_quiz_answers:
+            qa = quiz_answer.split(",")
+            if(quiz.quiz_questions[qa[0]].correct_answer == qa[1]):
+                quiz_score += 1
         
+        quiz_score_percent = quiz_score/quiz_question_count*100
+
+        quiz_answer_final = QuizAnswer(
+            quiz_id = data.quiz_id,
+            student = student,
+            quiz_answers = data.quiz_answers,
+            quiz_score = "{quiz_score}/{quiz_question_count}",
+            quiz_score_percent = quiz_score_percent
+        )
         
-        # await quiz.save()
+        await quiz_answer_final.save()
 
         return utils.create_response(
             status_code=201,
             success=True,
             message="University has been created successfully",
-            data=ResponseDTO(**quiz.model_dump())
+            data=ResponseDTO(**quiz_answer_final.model_dump())
         )
     
     except EntityNotFoundError as enfe:
@@ -49,3 +61,94 @@ async def createuquiz(data: CreateDTO):
         return utils.create_response(status_code=us.status_code, success=False, message=us.message)
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e))
+    
+
+@quiz_answer_router.get('/allQuizAnswer', status_code=200)
+async def getallQuizAnswer():
+    try:
+        quizAnswers = await QuizAnswer.find_all().to_list()
+
+        if quizAnswers is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in quizAnswers],
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+    
+
+@quiz_answer_router.get('/quizAnswerById/{quiz_id}', status_code=200)
+async def getQuizAnswerById(quiz_id:str):
+    try:
+        quizAnswers = await QuizAnswer.find(QuizAnswer.quiz_id == quiz_id).to_list()
+
+        if quizAnswers is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in quizAnswers] ,
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+    
+
+@quiz_answer_router.get('/quizAnswerByStudentEmail/{studentEmail}', status_code=200)
+async def getQuizAnswerByStudent(studentEmail:str):
+    try:
+        quizAnswers = await QuizAnswer.find(QuizAnswer.student.email == studentEmail).to_list()
+
+        if quizAnswers is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=[ResponseDTO(**r.model_dump()) for r in quizAnswers] 
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+    
+
+@quiz_answer_router.delete('/deletequizAnswer}', status_code=200)
+async def deleteQuizAnswer(data:DeleteDTO):
+    try:
+        quiz_data = await QuizAnswer.find_one(QuizAnswer.student==data.student_email, QuizAnswer.quiz_id == data.quiz_id)
+
+        if quiz_data is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been deleted successfully"
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 

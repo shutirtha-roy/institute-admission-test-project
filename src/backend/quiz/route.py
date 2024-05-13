@@ -44,7 +44,6 @@ async def getallQuiz():
     try:
         quizes = await Quiz.find_all().to_list()
 
-        print(quizes)
         if quizes is None:
             raise EntityNotFoundError
 
@@ -147,6 +146,11 @@ async def addQuestion(quiz_id:str, data: AddQuestionDto):
             options= quiz_options,
             correct_answer = data.correct_answer
         )
+
+        quiz_question_numbers = quiz.quiz_questions.keys()
+
+        if data.question_number in quiz_question_numbers:
+            raise Exception("Question number already in quiz.")
 
         quiz.quiz_questions.update({data.question_number : quiz_value})
         

@@ -18,7 +18,7 @@ async def init_db():
 
     await beanie.init_beanie(
         database=client.instatuteDB2,
-        document_models=[User, Tutor, University, Course, StudentInfo, Session, Quiz]
+        document_models=[User, Tutor, University, Course, StudentInfo, Session, Quiz, QuizAnswer]
     )
 
     admin = await User.find_one(User.email == "admin@gmail.com")
