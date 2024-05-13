@@ -100,6 +100,37 @@ async def getcoursebycode(course_code:str):
         )
     
 
+@course_router.get('/getcoursebycode/{course_code}', status_code=200)
+async def getcoursebycode(course_code:str):
+    try:
+        course = await Course.find_one(
+            Course.course_code == course_code
+        )
+
+        if course is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Course has been retrieved successfully",
+            result= ResponseDTO(**course.model_dump()),
+        )
+
+    except UnauthorizedError as ue:
+        return utils.create_response(
+            status_code=ue.status_code,
+            success=False,
+            message=ue.message
+        )
+    except Exception as e:
+        return utils.create_response(
+            status_code=500,
+            success=False,
+            message=str(e)
+        )
+    
+    
 @course_router.get('/getcoursebyuniversity/{university_title}', status_code=200)
 async def getcoursebyuniversity(university_title:str):
     try:

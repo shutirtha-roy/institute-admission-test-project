@@ -63,6 +63,29 @@ async def getallQuiz():
         return utils.create_response(status_code=500, success=False, message=str(e)) 
     
 
+@quiz_router.get('/QuizbyId/{quiz_id}', status_code=200)
+async def getaQuizbyId(quiz_id:str):
+    try:
+        quiz = await Quiz.find_one(Quiz.quiz_id == quiz_id)
+
+        if quiz is None:
+            raise EntityNotFoundError
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=ResponseDTO(**quiz.model_dump()),
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
 @quiz_router.get('/allQuizbyCourse/{course_code}', status_code=200)
 async def getallQuizbyCourse(course_code:str):
     try:

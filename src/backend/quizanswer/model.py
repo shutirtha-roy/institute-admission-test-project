@@ -9,3 +9,5 @@ class QuizAnswer(Document):
     quiz_id: str
     student: StudentInfo
     quiz_answers: Optional[dict[str, str]] = {}
+    quiz_score: str
+    quiz_score_percent: float

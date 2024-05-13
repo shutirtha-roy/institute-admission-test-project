@@ -17,4 +17,5 @@ class CreateDTO(BaseModel):
 class ResponseDTO(BaseModel):
     quiz_id: str
     student_email: str
-    quiz_answers: Optional[dict[str, str]] 
+    quiz_score: str
+    quiz_score_percent: float

@@ -9,6 +9,7 @@ from university.model import University
 from course.model import Course
 from student.model import StudentInfo
 from session.model import Session
+from quizanswer.model import QuizAnswer
 
 async def init_db():
     client = motor.motor_asyncio.AsyncIOMotorClient(
