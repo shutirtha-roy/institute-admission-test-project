@@ -8,6 +8,7 @@ import { SessionDetailsComponent } from './session/session-details/session-detai
 import { AddQuestionsComponent } from './quiz/add-questions/add-questions.component';
 import { RemoveQuestionsComponent } from './quiz/remove-questions/remove-questions.component';
 import { RemoveQuizComponent } from './quiz/remove-quiz/remove-quiz.component';
+import { AddQuizComponent } from './quiz/add-quiz/add-quiz.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'online-quiz',
     component: QuizComponent
+  },
+  {
+    path: 'online-quiz/add-quiz',
+    component: AddQuizComponent
   },
   {
     path: 'online-quiz/add-questions/:quiz_id',
