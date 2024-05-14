@@ -13,6 +13,7 @@ import { AddQuestionsComponent } from './quiz/add-questions/add-questions.compon
 import { AddQuizComponent } from './quiz/add-quiz/add-quiz.component';
 import { RemoveQuestionsComponent } from './quiz/remove-questions/remove-questions.component';
 import { RemoveQuizComponent } from './quiz/remove-quiz/remove-quiz.component';
+import { StudentProgressComponent } from './student-progress/student-progress.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RemoveQuizComponent } from './quiz/remove-quiz/remove-quiz.component';
     RemoveQuestionsComponent,
     RemoveQuizComponent,
     AddSessionComponent,
-    SessionDetailsComponent
+    SessionDetailsComponent,
+    StudentProgressComponent
   ],
   imports: [
     CommonModule,

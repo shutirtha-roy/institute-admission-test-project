@@ -9,6 +9,7 @@ import { AddQuestionsComponent } from './quiz/add-questions/add-questions.compon
 import { RemoveQuestionsComponent } from './quiz/remove-questions/remove-questions.component';
 import { RemoveQuizComponent } from './quiz/remove-quiz/remove-quiz.component';
 import { AddQuizComponent } from './quiz/add-quiz/add-quiz.component';
+import { StudentProgressComponent } from './student-progress/student-progress.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'online-quiz/remove-quiz/:quiz_id',
     component: RemoveQuizComponent
+  },
+  {
+    path: 'performance',
+    component: StudentProgressComponent
   }
 ];
 
