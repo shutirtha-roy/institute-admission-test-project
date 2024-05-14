@@ -34,16 +34,13 @@
                 <a routerLink="tutor/sessions">Sessions</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/courses">Courses</a>
+                <a routerLink="student/courses">Enroll</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
                 <a routerLink="student/my-courses">My Courses</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'tutor'" >
                 <a routerLink="tutor/online-quiz">Online Quiz</a>
-            </li>
-            <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/online-quiz">Online Quiz</a>
             </li>
             
 

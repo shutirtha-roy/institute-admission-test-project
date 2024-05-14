@@ -84,6 +84,7 @@ export class AddQuestionsComponent implements OnInit  {
           this.toastr.success("Question Added Successfully");
           console.log(res);
           this.questionForm.reset();
+          this.ngOnInit();
         },
         error: (err) => {
           alert(err?.err.message)
