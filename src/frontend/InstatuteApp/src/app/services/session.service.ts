@@ -21,6 +21,10 @@ export class SessionService {
     return this.http.get(`${this.baseUrl}getsession/${sessionId}`);
   }
 
+  getAllSessionForAdmin() {
+    return this.http.get(`${this.baseUrl}getallsession`);
+  }
+
   getAllSessions(email: string) {
     return this.http.get(`${this.baseUrl}getallsessionbytutor/${email}`);
   }

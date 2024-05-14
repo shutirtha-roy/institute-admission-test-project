@@ -1,1 +1,33 @@
-<p>session works!</p>
+<div class="container">
+    <h1 style="text-align: center;">Sessions List</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Course</th>
+                <th style="text-align: center;">Class Timing</th>
+                <th style="text-align: center;">Course Code</th>
+                <th style="text-align: center;">University</th>
+                
+                <th style="text-align: center;">Enrolled Students</th>
+                <th style="text-align: center;">UpApproved Students</th>
+                <th style="text-align: center;">Remaining Seats</th>
+                <th style="text-align: center;">Session Type</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let session of sessionList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ session.course.title }}</td>
+                <td style="text-align: center;">{{ session.schedule }}</td>
+                <td style="text-align: center;">{{ session.course.course_code }}</td>
+                <td style="text-align: center;">{{ session.course.university_title }}</td>
+                <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.unapproved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
+                <td style="text-align: center;">GROUP</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
