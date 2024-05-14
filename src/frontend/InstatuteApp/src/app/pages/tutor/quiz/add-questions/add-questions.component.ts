@@ -15,7 +15,7 @@ export class AddQuestionsComponent implements OnInit  {
   session!: any;
   question_list: any[] = [];
   questionForm!: FormGroup;
-  questionId: string | null = "";
+  quizId: string | null = "";
   submitted: boolean = false;
 
   constructor(
@@ -31,6 +31,7 @@ export class AddQuestionsComponent implements OnInit  {
 
   ngOnInit(): void {
     this.questionForm = this.formBuilder.group({
+      question_number: ['', Validators.required],
       quiz_question: ['', Validators.required],
       optionOne: ['', Validators.required],
       optionTwo: ['', Validators.required],
@@ -45,15 +46,15 @@ export class AddQuestionsComponent implements OnInit  {
   getQuestionDetails() {
     this.route.paramMap.subscribe({
       next: (params) => {
-        this.questionId = params.get('quiz_id');
+        this.quizId = params.get('quiz_id');
 
-        if (this.questionId) {
-          this.quizService.getAllQuizByID(this.questionId)
+        if (this.quizId) {
+          this.quizService.getAllQuizByID(this.quizId)
           .subscribe({
             next: (response: any) => {
               console.log(response);
               this.question_list = response.result;
-              console.log(this.session);
+              console.log(this.question_list);
             }
           });
         }
@@ -65,7 +66,29 @@ export class AddQuestionsComponent implements OnInit  {
     this.submitted = true;
 
     if(this.questionForm.valid) {
-      console.log("QUESTION IS HERE", this.questionId);
+      let optionOne = this.questionForm.value?.optionOne.trim();
+      let optionTwo = this.questionForm.value?.optionTwo.trim();
+      let optionThree = this.questionForm.value?.optionThree.trim();
+      let optionFour = this.questionForm.value?.optionFour.trim();
+      let options = `${optionOne},${optionTwo},${optionThree},${optionFour}`;
+
+      let quizDetails = { 'question_number': this.questionForm.value?.question_number, 
+        'quiz_question': this.questionForm.value?.quiz_question.trim(),
+        'options': options,
+        'correct_answer': this.questionForm.value?.correct_answer
+      };
+
+      this.quizService.addQuestionToQuiz(this.quizId ?? "", quizDetails)
+      .subscribe({
+        next: (res) => {
+          this.toastr.success("Question Added Successfully");
+          console.log(res);
+          this.questionForm.reset();
+        },
+        error: (err) => {
+          alert(err?.err.message)
+        }
+      });
     }
   }
 }
