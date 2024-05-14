@@ -10,6 +10,7 @@ import { MyCoursesComponent } from './course/my-courses/my-courses.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 import { QuizAnswerComponent } from './quiz/quiz-answer/quiz-answer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PerformanceComponent } from './performance/performance.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     QuizComponent,
     MyCoursesComponent,
     QuizListComponent,
-    QuizAnswerComponent
+    QuizAnswerComponent,
+    PerformanceComponent
   ],
   imports: [
     CommonModule,
