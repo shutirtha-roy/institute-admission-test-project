@@ -31,3 +31,9 @@ class ResponseDTO(BaseModel):
     course: Course
     description: str
     quiz_questions: Optional[dict[str, QuizQuesion]]
+
+class QuizQuestionResponseDTO(BaseModel):
+    question_number: str
+    quiz_question: str
+    options: list[str]
+    correct_answer: str

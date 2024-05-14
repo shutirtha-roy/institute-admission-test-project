@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
 from quiz.model import Quiz, QuizQuesion
-from quiz.dto import CreateDTO, AddQuestionDto, DeleteQuestionDto, ResponseDTO
+from quiz.dto import CreateDTO, AddQuestionDto, DeleteQuestionDto, ResponseDTO, QuizQuestionResponseDTO
 from tutor.model import Tutor
 from utils import utils
 
@@ -70,11 +70,23 @@ async def getaQuizbyId(quiz_id:str):
         if quiz is None:
             raise EntityNotFoundError
 
+        question_list = []
+        question_numbers = quiz.quiz_questions.keys()
+
+        for question_number in question_numbers:
+            quiz_question = quiz.quiz_questions[question_number]
+
+            show_ques = QuizQuestionResponseDTO(
+                **quiz_question.model_dump(),
+                question_number=question_number
+            )
+            question_list.append(show_ques)
+
         return utils.create_response(
             status_code=200,
             success=True,
             message="Quiz Data has been retrieved successfully",
-            result=ResponseDTO(**quiz.model_dump()),
+            result=question_list,
         ) 
 
     except EntityNotFoundError as enfe:
