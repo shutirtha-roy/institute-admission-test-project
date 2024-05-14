@@ -16,10 +16,10 @@
                 <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ quiz.description }}</td>
                 <td style="text-align: center;">
-                    <a class="success-button" [routerLink]="['/tutor/online-quiz','add-questions', quiz.quiz_id]">Pending</a>
+                    <a class="success-button">Pending</a>
                 </td>
                 <td style="text-align: center;">
-                    <a class="success-button" [routerLink]="['/tutor/online-quiz','add-questions', quiz.quiz_id]">Attend</a>
+                    <a class="success-button" [routerLink]="['/student/online-quiz','mock', quiz.quiz_id]">Attend</a>
                 </td>
             </tr>
         </tbody>

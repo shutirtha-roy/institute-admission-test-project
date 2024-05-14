@@ -4,10 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseComponent } from './course/course.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { MyCoursesComponent } from './course/my-courses/my-courses.component';
-import { AddQuestionsComponent } from '../tutor/quiz/add-questions/add-questions.component';
-import { RemoveQuestionsComponent } from '../tutor/quiz/remove-questions/remove-questions.component';
-import { RemoveQuizComponent } from '../tutor/quiz/remove-quiz/remove-quiz.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
+import { QuizAnswerComponent } from './quiz/quiz-answer/quiz-answer.component';
 
 const routes: Routes = [
   {
@@ -30,7 +28,10 @@ const routes: Routes = [
     path: 'online-quiz/quizes/:course_code',
     component: QuizListComponent
   },
-  
+  {
+    path: 'online-quiz/mock/:quiz_id',
+    component: QuizAnswerComponent
+  },
 ];
 
 @NgModule({
