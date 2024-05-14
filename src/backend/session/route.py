@@ -174,7 +174,7 @@ async def addstudenttosession(session_id:str, data: UpdateStudentListDTO):
 
         if session is None:
             raise EntityNotFoundError
-        
+
         student = await StudentInfo.find_one(StudentInfo.email == data.student_email)
 
         if student is None:

@@ -1,3 +1,4 @@
+import base64
 from fastapi import APIRouter
 
 from course.model import Course
@@ -6,28 +7,31 @@ from quiz.model import Quiz, QuizQuesion
 from quiz.dto import CreateDTO, AddQuestionDto, DeleteQuestionDto, ResponseDTO, QuizQuestionResponseDTO
 from tutor.model import Tutor
 from utils import utils
+import matplotlib.pyplot as plt
+import io
 
 quiz_router = APIRouter(tags=["Quiz"])
 
 @quiz_router.post("/quizCreate", status_code = 201)  
 async def createuquiz(data: CreateDTO):
     try:
+        print(1)
         tutor = await Tutor.find_one(Tutor.tutor_email == data.tutor_email)
         if tutor is None:
             raise EntityNotFoundError
-        
+        print(2)
         course = await Course.find_one(Course.course_code == data.course_code)
         if course is None:
             raise EntityNotFoundError
-        
+        print(3)
         quiz = Quiz(**data.model_dump(), tutor= tutor, course= course)
-
+        print(4)
         await quiz.save()
 
         return utils.create_response(
             status_code=201,
             success=True,
-            message="University has been created successfully",
+            message="Course has been created successfully",
             data=ResponseDTO(**quiz.model_dump())
         )
     
@@ -47,6 +51,18 @@ async def getallQuiz():
         if quizes is None:
             raise EntityNotFoundError
 
+        # x = [1,2,3]
+        # y = [2,4,1]
+        # plt.plot(x, y)
+        # plt.xlabel('x - axis')
+        # plt.ylabel('y - axis')
+        # plt.title('My first graph!')
+        # my_stringIObytes = io.BytesIO()
+        # plt.savefig(my_stringIObytes, format='jpg')
+        # my_stringIObytes.seek(0)
+        # my_base64_jpgData = base64.b64encode(my_stringIObytes.read()).decode()
+        # print(my_base64_jpgData)
+
         return utils.create_response(
             status_code=200,
             success=True,
@@ -60,7 +76,7 @@ async def getallQuiz():
         return utils.create_response(status_code=us.status_code, success=False, message=us.message)
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
-    
+
 
 @quiz_router.get('/QuizbyId/{quiz_id}', status_code=200)
 async def getaQuizbyId(quiz_id:str):
