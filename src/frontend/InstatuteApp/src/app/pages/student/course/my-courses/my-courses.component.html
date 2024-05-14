@@ -6,7 +6,7 @@
         <p><strong>Class Schedule:</strong> {{ session.schedule }}</p>
         <div class="btn-container">
             <button class="btn" style="margin-right: 15px">Join Class</button>
-            <button class="btn">Attend Mock Quiz</button>
+            <a class="btn" [routerLink]="['/student/online-quiz','quizes', session.course.course_code]">Attend Mock Quiz</a>
         </div>
     </div>
 </div>

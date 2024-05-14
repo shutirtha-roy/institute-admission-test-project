@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 style="text-align: center;">Mock Quizes for {{ quizList[0].course.title  }}</h1>
+    <h1 style="text-align: center;">{{ quizList[0].course.university_title  }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Quiz Description</th>
+                <th style="text-align: center;">Status</th>
+                <th style="text-align: center;">Give Mock Exam</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let quiz of quizList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ quiz.description }}</td>
+                <td style="text-align: center;">
+                    <a class="success-button" [routerLink]="['/tutor/online-quiz','add-questions', quiz.quiz_id]">Pending</a>
+                </td>
+                <td style="text-align: center;">
+                    <a class="success-button" [routerLink]="['/tutor/online-quiz','add-questions', quiz.quiz_id]">Attend</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

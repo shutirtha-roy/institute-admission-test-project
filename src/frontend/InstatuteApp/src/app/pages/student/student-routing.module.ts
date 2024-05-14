@@ -7,6 +7,7 @@ import { MyCoursesComponent } from './course/my-courses/my-courses.component';
 import { AddQuestionsComponent } from '../tutor/quiz/add-questions/add-questions.component';
 import { RemoveQuestionsComponent } from '../tutor/quiz/remove-questions/remove-questions.component';
 import { RemoveQuizComponent } from '../tutor/quiz/remove-quiz/remove-quiz.component';
+import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'my-courses',
     component: MyCoursesComponent
+  },
+  {
+    path: 'online-quiz/quizes/:course_code',
+    component: QuizListComponent
   },
   
 ];

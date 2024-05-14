@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseComponent } from './course/course.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { MyCoursesComponent } from './course/my-courses/my-courses.component';
+import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MyCoursesComponent } from './course/my-courses/my-courses.component';
     DashboardComponent,
     CourseComponent,
     QuizComponent,
-    MyCoursesComponent
+    MyCoursesComponent,
+    QuizListComponent
   ],
   imports: [
     CommonModule,
