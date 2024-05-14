@@ -1,11 +1,13 @@
 .container {
-    max-width: 500px;
+    max-width: 1000px;
     margin-top: 20vh !important;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
 }
 
 h2 {
@@ -62,3 +64,22 @@ input[type="submit"]:hover {
     color: #495057;
 }
 /*DROPDOWN*/
+
+/*TABLE*/
+table {
+    margin: 10vh;
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+/*TABLE*/

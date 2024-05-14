@@ -1,34 +1,49 @@
-<div class="container">
-    <h2>Add New Question</h2>
-    <form [formGroup]="questionForm" (ngSubmit)="onQuestionSubmit()">
-        <div class="form-group">
-            <label for="question_number">Question Number:</label>
-            <input type="text" id="question_number" formControlName="question_number">
-        </div>
-        <div class="form-group">
-            <label for="quiz_question">Quiz Question:</label>
-            <input type="text" id="quiz_question" formControlName="quiz_question">
-        </div>
-        <div class="form-group">
-            <label for="optionOne">Option One:</label>
-            <input type="text" id="optionOne" formControlName="optionOne">
-        </div>
-        <div class="form-group">
-            <label for="optionTwo">Option Two:</label>
-            <input type="text" id="optionTwo" formControlName="optionTwo">
-        </div>
-        <div class="form-group">
-            <label for="optionThree">Option Three:</label>
-            <input type="text" id="optionThree" formControlName="optionThree">
-        </div>
-        <div class="form-group">
-            <label for="optionFour">Option Four:</label>
-            <input type="text" id="optionFour" formControlName="optionFour">
-        </div>
-        <div class="form-group">
-            <label for="correct_answer">Set Correct Answer:</label>
-            <input type="text" id="correct_answer" formControlName="correct_answer">
-        </div>
-        <input type="submit" value="Add Question">
-    </form>
+<div class="container" >
+    <div class="add-question">
+        <h2>Add New Question</h2>
+        <form [formGroup]="questionForm" (ngSubmit)="onQuestionSubmit()">
+            <div class="form-group">
+                <label for="question_number">Question Number:</label>
+                <input type="text" id="question_number" formControlName="question_number">
+            </div>
+            <div class="form-group">
+                <label for="quiz_question">Quiz Question:</label>
+                <input type="text" id="quiz_question" formControlName="quiz_question">
+            </div>
+            <div class="form-group">
+                <label for="optionOne">Option One:</label>
+                <input type="text" id="optionOne" formControlName="optionOne">
+            </div>
+            <div class="form-group">
+                <label for="optionTwo">Option Two:</label>
+                <input type="text" id="optionTwo" formControlName="optionTwo">
+            </div>
+            <div class="form-group">
+                <label for="optionThree">Option Three:</label>
+                <input type="text" id="optionThree" formControlName="optionThree">
+            </div>
+            <div class="form-group">
+                <label for="optionFour">Option Four:</label>
+                <input type="text" id="optionFour" formControlName="optionFour">
+            </div>
+            <div class="form-group">
+                <label for="correct_answer">Set Correct Answer:</label>
+                <input type="text" id="correct_answer" formControlName="correct_answer">
+            </div>
+            <input type="submit" value="Add Question">
+        </form>
+    </div>
+    <div class="question-list" >
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">No.</th>
+                    <th style="text-align: center;">Question</th>
+                    <th style="text-align: center;">Options</th>
+                    <th style="text-align: center;">Correct Answer</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
 </div>
