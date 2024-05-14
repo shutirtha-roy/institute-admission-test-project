@@ -7,7 +7,7 @@
                     Question {{ questionList[count].question_number }}: {{ questionList[count].quiz_question }}
                 </h3>
                 <div class="options" *ngFor="let option of questionList[count].options; let index = index" style="padding-left: 20px;">
-                    <input type="radio" formControlName="answer" value="{{ questionList[count].question_number }}/{{ option }}`" id="q1-a">
+                    <input type="radio" formControlName="answer" value="{{ questionList[count].question_number }},{{ option }}" id="q1-a">
                     <label for="q1-a">{{ index + 1 }}) {{ option }}</label><br>
                 </div>
             </li>

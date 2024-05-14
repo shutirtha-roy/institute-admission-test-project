@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { QuizAnswerService } from 'src/app/services/quizAnswer.service';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class QuizAnswerComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService) { 
+    private toastr: ToastrService,
+    private questionAnswerService: QuizAnswerService) { 
 
   }
 
@@ -58,15 +60,33 @@ export class QuizAnswerComponent implements OnInit {
   }
 
   onQuestionSubmit() {
-    if(this.questionForm.valid && this.isNext()) {
+    if(this.questionForm.valid) {
       this.next();
       let answer = this.questionForm.value?.answer;
-      this.answers += answer + ",";
-    }
-    
-    if(this.questionForm.valid && !this.isNext()) {
-      this.answers = this.answers.slice(0, -1);
-      console.log("The overall answer is", this.answers, this.quiz_id);
+      this.answers += answer + "/";
+
+      if(this.count == this.questionList.length) {
+        let studentAnswer = this.answers.slice(0, -1);
+
+        const quizAnswerCreateObj = {
+          "quiz_id": this.quiz_id,
+          "student_email": this.authService.getEmail(),
+          "quiz_answers": studentAnswer
+        };
+
+        this.questionAnswerService.createQuizAnswer(quizAnswerCreateObj)
+        .subscribe({
+          next: (res) => {
+            this.toastr.success("Quiz has been submitted successfully");
+            console.log(res);
+            this.questionForm.reset();
+            this.router.navigate(['/student/my-courses']);
+          },
+          error: (err) => {
+            alert(err?.err.message)
+          }
+        });
+      }
     }
   }
 
