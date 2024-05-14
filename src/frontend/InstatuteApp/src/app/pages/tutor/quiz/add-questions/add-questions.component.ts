@@ -14,6 +14,8 @@ import { SessionService } from 'src/app/services/session.service';
 export class AddQuestionsComponent implements OnInit  {
   session!: any;
   question_list: any[] = [];
+  questionForm!: FormGroup;
+  questionId: string | null = "";
   submitted: boolean = false;
 
   constructor(
@@ -28,16 +30,25 @@ export class AddQuestionsComponent implements OnInit  {
   }
 
   ngOnInit(): void {
+    this.questionForm = this.formBuilder.group({
+      quiz_question: ['', Validators.required],
+      optionOne: ['', Validators.required],
+      optionTwo: ['', Validators.required],
+      optionThree: ['', Validators.required],
+      optionFour: ['', Validators.required],
+      correct_answer: ['', Validators.required]
+    });
+
     this.getQuestionDetails();
   }
 
   getQuestionDetails() {
     this.route.paramMap.subscribe({
       next: (params) => {
-        const questionId = params.get('quiz_id');
+        this.questionId = params.get('quiz_id');
 
-        if (questionId) {
-          this.quizService.getAllQuizByID(questionId)
+        if (this.questionId) {
+          this.quizService.getAllQuizByID(this.questionId)
           .subscribe({
             next: (response: any) => {
               console.log(response);
@@ -48,5 +59,13 @@ export class AddQuestionsComponent implements OnInit  {
         }
       }
     })
+  }
+
+  onQuestionSubmit() {
+    this.submitted = true;
+
+    if(this.questionForm.valid) {
+      console.log("QUESTION IS HERE", this.questionId);
+    }
   }
 }
