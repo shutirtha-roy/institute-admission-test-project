@@ -9,6 +9,7 @@
             <tr>
                 <th style="text-align: center;">No.</th>
                 <th style="text-align: center;">Course</th>
+                <th style="text-align: center;">Course Description</th>
                 <th style="text-align: center;">Class Timing</th>
                 <th style="text-align: center;">Course Code</th>
                 <th style="text-align: center;">University</th>
@@ -25,6 +26,7 @@
             <tr>
                 <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ session.course.title }}</td>
+                <td style="text-align: center;">{{ session.description }}</td>
                 <td style="text-align: center;">{{ session.schedule }}</td>
                 <td style="text-align: center;">{{ session.course.course_code }}</td>
                 <td style="text-align: center;">{{ session.course.university_title }}</td>
