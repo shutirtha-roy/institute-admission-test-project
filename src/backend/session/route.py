@@ -213,8 +213,15 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
         if student is None:
             raise EntityNotFoundError
         
-        if(student in session.unapproved_student_list):
-            session.unapproved_student_list.remove(student)
+        unapproved_student_emails = [] 
+        
+        for unapproved_student in session.unapproved_student_list:
+            unapproved_student_emails = unapproved_student.email
+        
+        if(student.email in unapproved_student_emails):
+            for unapproved_student_info in session.unapproved_student_list:
+                if (unapproved_student_info.email == data.student_email):
+                    session.unapproved_student_list.remove(student)
             session.approved_student_list.append(student)
             student.sessions.append(session.session_id)
 
