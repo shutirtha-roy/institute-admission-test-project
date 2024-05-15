@@ -17,6 +17,8 @@ export class AddSessionComponent implements OnInit  {
   submitted: boolean = false;
   courseList: any[] = [];
   sessionList: any[] = [];
+  buttonTrigerred: boolean = false;
+  singleSessionTrigerred: boolean = false;
 
   constructor(
     private sessionService: SessionService,
@@ -96,5 +98,17 @@ export class AddSessionComponent implements OnInit  {
             }
           });
     }
+  }
+
+  singleSessionTrigger() {
+    this.buttonTrigerred = true;
+    this.singleSessionTrigerred = true;
+    this.sessionForm.patchValue({
+      student_number: 1
+    });
+  }
+
+  groupSessionTrigger() {
+    this.buttonTrigerred = true;
   }
 }
