@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from datetime import date, time
 
 from course.model import Course
+from session.model import SessionTypeEnum
 from student.model import StudentInfo
 from tutor.model import Tutor
 from university.model import University
@@ -33,5 +34,6 @@ class ResponseDTO(BaseModel):
     university: University
     description: str
     student_number: int
+    session_type: SessionTypeEnum
     unapproved_student_list: Optional[list[StudentInfo]]
     approved_student_list: Optional[list[StudentInfo]]

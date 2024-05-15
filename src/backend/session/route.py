@@ -5,7 +5,7 @@ from fastapi import APIRouter
 from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
 from session.dto import CreateDTO, ResponseDTO, UpdateDTO, UpdateStudentListDTO
-from session.model import Session
+from session.model import Session, SessionTypeEnum
 from student.model import StudentInfo
 from tutor.model import Tutor
 from university.model import University
@@ -28,7 +28,11 @@ async def createsession(data: CreateDTO):
         if university is None:
             raise EntityNotFoundError()
         
-        session = Session(**data.model_dump(), tutor=tutor, course=course, university=university)
+        session_type = SessionTypeEnum.GROUP
+        if data.student_number == 1:
+            session_type = SessionTypeEnum.PRIVATE
+
+        session = Session(**data.model_dump(), tutor=tutor, session_type= session_type, course=course, university=university)
 
         await session.save()
 
@@ -290,8 +294,10 @@ async def deletestudenttosession(session_id:str, data: UpdateStudentListDTO):
         
         if(student in session.approved_student_list):
             session.approved_student_list.remove(student)
-            student.sessions.remove(session.session_id)
-            
+  
+        if (session_id in student.sessions):
+            student.sessions.remove(session_id)  
+        
         await session.save()
         await student.save()
 
@@ -319,6 +325,10 @@ async def delete(session_id:str):
 
         if session is None:
             raise EntityNotFoundError
+        
+        for student in session.approved_student_list:
+            if(session_id in student.sessions):
+                student.sessions.remove(session_id)  
         
         await session.delete()
 

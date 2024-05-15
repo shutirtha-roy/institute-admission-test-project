@@ -21,6 +21,7 @@ async def getallstudent():
         responses = []
 
         for student in students:
+            print(student)
             sessions = []
             courses = []
             universities = []
@@ -70,6 +71,7 @@ async def getallstudent(stident_email:str):
         sessions = []
         universities = []
         courses = []
+
         for session_id in student.sessions:
             session = await Session.find_one(Session.session_id == session_id)
             sessions.append(session)

@@ -15,17 +15,13 @@ quiz_router = APIRouter(tags=["Quiz"])
 @quiz_router.post("/quizCreate", status_code = 201)  
 async def createuquiz(data: CreateDTO):
     try:
-        print(1)
         tutor = await Tutor.find_one(Tutor.tutor_email == data.tutor_email)
         if tutor is None:
             raise EntityNotFoundError
-        print(2)
         course = await Course.find_one(Course.course_code == data.course_code)
         if course is None:
             raise EntityNotFoundError
-        print(3)
         quiz = Quiz(**data.model_dump(), tutor= tutor, course= course)
-        print(4)
         await quiz.save()
 
         return utils.create_response(

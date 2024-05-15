@@ -1,13 +1,8 @@
-from typing import Optional
-from fastapi import HTTPException
-from pydantic import BaseModel, EmailStr, root_validator
+from pydantic import BaseModel
 
 from course.model import Course
-from quiz.model import QuizQuesion
-from session.model import Session
+from quiz.model import Quiz
 from student.model import StudentInfo
-from tutor.model import Tutor
-from university.model import University
 
 
 class CreateDTO(BaseModel):
@@ -30,3 +25,10 @@ class DeleteDTO(BaseModel):
 class CourseResponseDTO(BaseModel):
     course: Course
     quizes: list[ResponseDTO]
+
+class StudentEmailDto(BaseModel):
+    student_email: str
+
+class StudentGivenQuizDto(BaseModel):
+    course_quizes: list[Quiz]
+    given_quizes: list[Quiz]

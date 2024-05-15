@@ -1,6 +1,7 @@
 from ast import Not
 from fastapi import APIRouter
 
+from course.model import Course
 from error.exception import EntityNotFoundError, UnauthorizedError
 from quiz.model import Quiz
 from session.model import Session
@@ -8,7 +9,7 @@ from student.model import StudentInfo
 from utils import utils
 
 from quizanswer.model import QuizAnswer
-from quizanswer.dto import CourseResponseDTO, ResponseDTO, CreateDTO, DeleteDTO
+from quizanswer.dto import CourseResponseDTO, ResponseDTO, CreateDTO, DeleteDTO, StudentEmailDto, StudentGivenQuizDto
 
 quiz_answer_router = APIRouter(tags=["QuizAnswer"])
 
@@ -134,35 +135,52 @@ async def getQuizAnswerByStudent(studentEmail:str):
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
 
-@quiz_answer_router.get('/getAllCourseQuizByStudentEmail/{studentEmail}', status_code=200)
-async def getAllCourseQuizByStudentEmail(studentEmail:str):
+@quiz_answer_router.get('/quizAnswerByStudentEmail/{studentEmail}', status_code=200)
+async def getQuizAnswerByStudent(studentEmail:str):
     try:
-        student = await StudentInfo.find_one(StudentInfo.email == studentEmail)
+        quizAnswers = await QuizAnswer.find(QuizAnswer.student.email == studentEmail).to_list()
 
-        if student is None:
+        if quizAnswers is None:
             raise EntityNotFoundError
-
-        sessions = []
-        courses = []
-        for session_id in student.sessions:
-            session = await Session.find_one(Session.session_id == session_id)
-            sessions.append(session)
-            
-            if session.course not in courses:
-                courses.append(session.course)
-
-        courseWithQuiz = []
-
-        for course in courses:
-            print(course)
-            quizAnswers = await QuizAnswer.find(QuizAnswer.course == course).to_list()
-            courseWithQuiz.append(CourseResponseDTO(course=course, quizes= [ResponseDTO(**r.model_dump()) for r in quizAnswers] ))
 
         return utils.create_response(
             status_code=200,
             success=True,
             message="Quiz Data has been retrieved successfully",
-            result=courseWithQuiz
+            result=[ResponseDTO(**r.model_dump()) for r in quizAnswers] 
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+
+
+@quiz_answer_router.get('/getCourseQuizByStudentEmail/{course_code}', status_code=200)
+async def getCourseQuizByStudentEmail(course_code:str, data: StudentEmailDto):
+    try:
+        student = await StudentInfo.find_one(StudentInfo.email == data.student_email)
+        if student is None:
+            raise EntityNotFoundError
+        
+        course = await Course.find_one(Course.course_code == course_code)
+        if course is None:
+            raise EntityNotFoundError
+        
+        all_course_quizes = await Quiz.find(Quiz.course == course).to_list()
+        given_quiz_answers = await QuizAnswer.find(QuizAnswer.course == course).to_list()
+        given_quizes = []
+        for given_quiz_answer in given_quiz_answers:
+            given_quiz = await Quiz.find_one(Quiz.course == given_quiz_answer.course)
+            given_quizes.append(given_quiz)
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Quiz Data has been retrieved successfully",
+            result=StudentGivenQuizDto(course_quizes = all_course_quizes, given_quizes = given_quizes)
         ) 
 
     except EntityNotFoundError as enfe:
