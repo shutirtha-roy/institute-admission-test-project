@@ -42,3 +42,44 @@ main {
     font-weight: bold;
     color: #000000;
 }
+
+.course {
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.course-title {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.quiz-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quiz-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.quiz-details {
+    padding-left: 20px;
+}
+
+.quiz-description {
+    margin: 0;
+    font-weight: bold;
+}
+
+.quiz-marks, .quiz-percentage {
+    margin: 0;
+}
+
+.overall-percentage {
+    font-weight: bold;
+}
