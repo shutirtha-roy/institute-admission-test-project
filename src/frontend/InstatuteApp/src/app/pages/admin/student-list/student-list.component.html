@@ -10,7 +10,6 @@
                 <th style="text-align: center;">No.</th>
                 <th style="text-align: center;">Name</th>
                 <th style="text-align: center;">Email</th>
-                <th style="text-align: center;">Enrolled Courses</th>
                 <th style="text-align: center;">Status</th>
                 <th style="text-align: center;">Actions</th>
             </tr>
@@ -20,7 +19,6 @@
                 <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ student.name }}</td>
                 <td style="text-align: center;">{{ student.email }}</td>
-                <td style="text-align: center;">0</td>
                 <td style="text-align: center;">
                     <p *ngIf="!student.approved" class="badge-unapproved">UnApproved</p>
                     <p *ngIf="student.approved" class="badge-approved">Approved</p>

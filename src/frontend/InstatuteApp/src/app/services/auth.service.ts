@@ -12,6 +12,7 @@ import { ITutorDetailsResponse } from 'src/assets/data/ITutorDetailsResponse';
 })
 export class AuthService {
   private baseUrl: string = "/api/v1/user/";
+  private studentUrl: string = "/api/v1/student/"
   private tutorBaseUrl: string = "/api/v1/tutor/";
   private userPayload: any;
 

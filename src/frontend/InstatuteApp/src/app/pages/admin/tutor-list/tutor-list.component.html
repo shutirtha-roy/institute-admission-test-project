@@ -21,7 +21,7 @@
                 <td style="text-align: center;">{{ tutor.tutor_name }}</td>
                 <td style="text-align: center;">{{ tutor.tutor_email }}</td>
                 <td style="text-align: center;">{{ tutor.qualifications }}</td>
-                <td style="text-align: center;">0</td>
+                <td style="text-align: center;">{{ tutor.course_list.length }}</td>
                 <td class="actions">
                     <div class="actions-dropdown">
                         <a style="cursor: pointer;" [routerLink]="['/admin/tutors','edit', tutor.tutor_email]">Edit</a>
