@@ -49,6 +49,8 @@ async def createuquiz(data: CreateDTO):
             quiz_score_percent = quiz_score_percent
         )
 
+        await quiz_answer_final.save()
+
         return utils.create_response(
             status_code=201,
             success=True,

@@ -80,11 +80,9 @@ async def getalltutors():
 @tutor_router.get('/getonetutor', status_code=200)
 async def getOneTutor(email: str):
     try:
-        print(email)
         tutor_info = await Tutor.find_one(
             Tutor.tutor_email == email
         )
-        print(1)
         return utils.create_response(
             status_code=200,
             success=True,

@@ -21,7 +21,6 @@ async def getallstudent():
         responses = []
 
         for student in students:
-            print(student)
             sessions = []
             courses = []
             universities = []
