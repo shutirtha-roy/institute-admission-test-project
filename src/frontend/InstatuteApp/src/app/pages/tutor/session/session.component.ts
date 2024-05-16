@@ -21,7 +21,6 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSessions();
-    this.initializeVisibilityArray();
   }
 
   initializeVisibilityArray(): void {
@@ -36,6 +35,7 @@ export class SessionComponent implements OnInit {
         next: (response: any) => {
           this.sessionList = response.result;
           console.log(response.result);
+          this.initializeVisibilityArray();
         },
         error: (response) => {
           console.log(response)

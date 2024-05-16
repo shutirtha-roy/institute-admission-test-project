@@ -36,7 +36,7 @@
                 <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
                 <td style="text-align: center;">{{ session.unapproved_student_list.length }}</td>
                 <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
-                <td style="text-align: center;">GROUP</td>
+                <td style="text-align: center;">{{ session.session_type | uppercase }}</td>
                 <td style="text-align: center;">
                     <a class="success-button" [routerLink]="['/tutor/sessions','details', session.session_id]">Details</a>
                 </td>
