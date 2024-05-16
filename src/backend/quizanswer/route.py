@@ -136,10 +136,10 @@ async def getQuizAnswerByStudent(studentEmail:str):
         return utils.create_response(status_code=500, success=False, message=str(e)) 
 
 
-@quiz_answer_router.get('/getCourseQuizByStudentEmail/{course_code}', status_code=200)
-async def getCourseQuizByStudentEmail(course_code:str, data: StudentEmailDto):
+@quiz_answer_router.get('/getCourseQuizByStudentEmail/{course_code}/{student_email}', status_code=200)
+async def getCourseQuizByStudentEmail(course_code:str, student_email: str):
     try:
-        student = await StudentInfo.find_one(StudentInfo.email == data.student_email)
+        student = await StudentInfo.find_one(StudentInfo.email == student_email)
         if student is None:
             raise EntityNotFoundError
         
