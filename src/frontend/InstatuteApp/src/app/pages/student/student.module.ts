@@ -11,6 +11,7 @@ import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 import { QuizAnswerComponent } from './quiz/quiz-answer/quiz-answer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PerformanceComponent } from './performance/performance.component';
+import { StudentAnswersComponent } from './student-answers/student-answers.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PerformanceComponent } from './performance/performance.component';
     MyCoursesComponent,
     QuizListComponent,
     QuizAnswerComponent,
-    PerformanceComponent
+    PerformanceComponent,
+    StudentAnswersComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { MyCoursesComponent } from './course/my-courses/my-courses.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 import { QuizAnswerComponent } from './quiz/quiz-answer/quiz-answer.component';
 import { PerformanceComponent } from './performance/performance.component';
+import { StudentAnswersComponent } from './student-answers/student-answers.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'online-quiz/mock/:quiz_id',
     component: QuizAnswerComponent
+  },
+  {
+    path: 'online-quiz/answers/:quiz_id',
+    component: StudentAnswersComponent
   },
   {
     path: 'performance',

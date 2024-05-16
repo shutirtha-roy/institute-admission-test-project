@@ -1,12 +1,13 @@
 <div class="container" *ngIf="quizList">
-    <h1 style="text-align: center;">Mock Quizes for {{ quizList[0].course.title  }}</h1>
-    <h1 style="text-align: center;">{{ quizList[0].course.university_title  }}</h1>
+    <h1 style="text-align: center;">Mock Quizes for {{ quizList[0].course_title }}</h1>
+    <h5 style="text-align: center;">University: {{ quizList[0].university_title }}</h5>
 
     <table>
         <thead>
             <tr>
                 <th style="text-align: center;">No.</th>
                 <th style="text-align: center;">Quiz Description</th>
+                <th style="text-align: center;">Status</th>
                 <th style="text-align: center;">Give Mock Quiz</th>
             </tr>
         </thead>
@@ -15,7 +16,11 @@
                 <td style="text-align: center;">{{ index + 1 }}</td>
                 <td style="text-align: center;">{{ quiz.description }}</td>
                 <td style="text-align: center;">
-                    <a class="success-button" [routerLink]="['/student/online-quiz','mock', quiz.quiz_id]">Attend</a>
+                    <a class="success-button" style="background-color: rgb(12, 96, 129);">{{ quiz.status }}</a>
+                </td>
+                <td style="text-align: center;">
+                    <a class="success-button" *ngIf="quiz.status != 'Attempted'" [routerLink]="['/student/online-quiz','mock', quiz.quiz_id]">Attend</a>
+                    <a class="success-button" *ngIf="quiz.status == 'Attempted'" [routerLink]="['/student/online-quiz','answers', quiz.quiz_id]">Check Answers</a>
                 </td>
             </tr>
         </tbody>
