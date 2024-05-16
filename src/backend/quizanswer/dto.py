@@ -14,6 +14,7 @@ class ResponseDTO(BaseModel):
     quiz_id: str
     student: StudentInfo
     course: Course
+    description: str
     quiz_answers: str
     quiz_score: str
     quiz_score_percent: float

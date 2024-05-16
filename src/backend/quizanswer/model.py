@@ -10,6 +10,7 @@ class QuizAnswer(Document):
     quiz_id: str
     student: StudentInfo
     course: Course
+    description: str
     quiz_answers: Optional[str] = ''
     quiz_score: str
     quiz_score_percent: float

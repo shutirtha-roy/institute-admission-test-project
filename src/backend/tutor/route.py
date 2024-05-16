@@ -199,22 +199,15 @@ async def addtutorcourse(tutorEmail:str, data: addCourseDTO):
 @tutor_router.patch("/removetutorcourse/{tutorEmail}")
 async def addtutorcourse(tutorEmail:str, data: addCourseDTO):
     try:
-        tutor_info = await Tutor.find_one(
-            Tutor.tutor_email == tutorEmail
-        )
-
+        tutor_info = await Tutor.find_one(Tutor.tutor_email == tutorEmail)
         if tutor_info is None:
             raise EntityNotFoundError
         
-        course = await Course.find_one(
-            Course.course_code == data.course_code
-        ) 
-
+        course = await Course.find_one(Course.course_code == data.course_code) 
         if course is None:
             raise EntityNotFoundError
         
         university = await University.find_one(University.title == course.university_title)
-
         if university is None:
             raise EntityNotFoundError
         

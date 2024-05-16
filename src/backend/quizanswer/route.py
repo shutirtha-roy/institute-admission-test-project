@@ -44,6 +44,7 @@ async def createuquiz(data: CreateDTO):
             quiz_id = data.quiz_id,
             student = student,
             course= quiz.course,
+            description=quiz.description,
             quiz_answers = data.quiz_answers,
             quiz_score = str(quiz_score)+"/"+str(quiz_question_count),
             quiz_score_percent = quiz_score_percent
@@ -111,29 +112,6 @@ async def getQuizAnswerById(quiz_id:str):
     except Exception as e:
         return utils.create_response(status_code=500, success=False, message=str(e)) 
     
-
-@quiz_answer_router.get('/quizAnswerByStudentEmail/{studentEmail}', status_code=200)
-async def getQuizAnswerByStudent(studentEmail:str):
-    try:
-        quizAnswers = await QuizAnswer.find(QuizAnswer.student.email == studentEmail).to_list()
-
-        if quizAnswers is None:
-            raise EntityNotFoundError
-
-        return utils.create_response(
-            status_code=200,
-            success=True,
-            message="Quiz Data has been retrieved successfully",
-            result=[ResponseDTO(**r.model_dump()) for r in quizAnswers] 
-        ) 
-
-    except EntityNotFoundError as enfe:
-        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
-    except UnauthorizedError as us:
-        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
-    except Exception as e:
-        return utils.create_response(status_code=500, success=False, message=str(e)) 
-
 
 @quiz_answer_router.get('/quizAnswerByStudentEmail/{studentEmail}', status_code=200)
 async def getQuizAnswerByStudent(studentEmail:str):
