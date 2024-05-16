@@ -1,1 +1,19 @@
-<p>student-progress works!</p>
+<div class="container" *ngIf="studentsresultList">
+    <h1>{{ studentsresultList[0].description }} Report</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Score</th>
+          <th>Percentage</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let studentData of studentsresultList; let index = index">
+        <tr >
+          <td>{{ studentData.student.name }}</td>
+          <td>{{ studentData.quiz_score }}</td>
+          <td>{{ studentData.quiz_score_percent }}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

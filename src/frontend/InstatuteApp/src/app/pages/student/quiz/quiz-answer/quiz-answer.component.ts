@@ -80,7 +80,7 @@ export class QuizAnswerComponent implements OnInit {
             this.toastr.success("Quiz has been submitted successfully");
             console.log(res);
             this.questionForm.reset();
-            this.router.navigate(['/student/my-courses']);
+            this.router.navigate(['/student/performance']);
           },
           error: (err) => {
             alert(err?.err.message)
