@@ -1,0 +1,20 @@
+<div class="quiz-container" *ngIf="questionList != null">
+    <h1>Multiple Choice Quiz</h1>
+    <form [formGroup]="questionForm" (ngSubmit)="onQuestionSubmit()" id="quiz-form" >
+        <ol>
+            <li>
+                <h3 style="text-align: center;">
+                    Question {{ questionList[count].question_number }}: {{ questionList[count].quiz_question }}
+                </h3>
+                <div class="options" *ngFor="let option of questionList[count].options; let index = index" style="padding-left: 20px;">
+                    <input type="radio" formControlName="answer" value="{{ questionList[count].question_number }},{{ option }}" id="q1-a">
+                    <label for="q1-a">{{ index + 1 }}) {{ option }}</label><br>
+                </div>
+            </li>
+        </ol>
+        <div class="purpose" style="text-align: right;">
+            <input type="submit" class="badge-approved" *ngIf="isNext()" value="Next">
+            <input type="submit" class="badge-approved" *ngIf="!isNext()" value="Submit">
+        </div>
+    </form>
+  </div>

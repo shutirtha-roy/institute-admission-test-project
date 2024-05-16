@@ -1,0 +1,49 @@
+<div class="container">
+    <h1 style="text-align: center;">Sessions List</h1>
+    <div  style="text-align: right;">
+        <a routerLink="add-session" class="primary-button">Add New Session</a>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">No.</th>
+                <th style="text-align: center;">Course</th>
+                <th style="text-align: center;">Course Description</th>
+                <th style="text-align: center;">Class Timing</th>
+                <th style="text-align: center;">Course Code</th>
+                <th style="text-align: center;">University</th>
+                
+                <th style="text-align: center;">Enrolled Students</th>
+                <th style="text-align: center;">UpApproved Students</th>
+                <th style="text-align: center;">Remaining Seats</th>
+                <th style="text-align: center;">Session Type</th>
+                <th style="text-align: center;">Student Details</th>
+                <th style="text-align: center;">Class Link</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let session of sessionList; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ session.course.title }}</td>
+                <td style="text-align: center;">
+                    <button *ngIf="!isDetailsVisible[index]" (click)="toggleDetails(index)" class="success-button" style="background-color: rgb(5, 122, 255);">Read More</button>
+                    <span *ngIf="isDetailsVisible[index]">{{ session.description }}</span>
+                </td>
+                <td style="text-align: center;">{{ session.schedule }}</td>
+                <td style="text-align: center;">{{ session.course.course_code }}</td>
+                <td style="text-align: center;">{{ session.course.university_title }}</td>
+                <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.unapproved_student_list.length }}</td>
+                <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
+                <td style="text-align: center;">{{ session.session_type | uppercase }}</td>
+                <td style="text-align: center;">
+                    <a class="success-button" [routerLink]="['/tutor/sessions','details', session.session_id]">Details</a>
+                </td>
+                <td style="text-align: center;">
+                    <a href="zoommtg://zoom.us/join?confno=5831858832&pwd=&uname=Nobody%20-%2051800000000" class="success-button">Join</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

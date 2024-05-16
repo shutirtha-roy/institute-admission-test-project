@@ -25,6 +25,7 @@ export class AddTutorComponent implements OnInit {
     this.tutorForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
+      qualifications: ['', Validators.required],
       password: ['', [Validators.required]]
     });
   }
@@ -34,7 +35,8 @@ export class AddTutorComponent implements OnInit {
 
     if(this.tutorForm.valid) {
       let signUpDetails = { 'name': this.tutorForm.value?.name , 
-        'email': this.tutorForm.value?.email,  
+        'email': this.tutorForm.value?.email,
+        'qualifications': this.tutorForm.value?.qualifications,  
         'password': this.tutorForm.value?.password 
       };
       

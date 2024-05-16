@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./tutor-list.component.css']
 })
 export class TutorListComponent {
-  tutorList!: any[];
+  tutorList: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -18,8 +18,9 @@ export class TutorListComponent {
   ngOnInit(): void {
     this.authService.getAllTutors()
     .subscribe({
-      next: (students) => {
-        this.tutorList = students.result.tutor_list;
+      next: (tutors: any) => {
+        console.log(tutors.result);
+        this.tutorList = tutors.result;
       },
       error: (response) => {
         console.log(response)
@@ -28,7 +29,7 @@ export class TutorListComponent {
   }
 
   deleteTutors(email: string) {
-    this.authService.deleteUser(email)
+    this.authService.deleteTutor(email)
     .subscribe({
       next: (response) => {
         this.ngOnInit();

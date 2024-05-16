@@ -1,0 +1,14 @@
+<div class="container" >
+    <div class="card" *ngFor="let session of sessionList;">
+        <h5><strong>Course:</strong> {{ session.course.title }} ({{ session.course.course_code }})</h5>
+        <p>{{ session.description }}</p>
+        <p><strong>University:</strong> {{ session.course.university_title }}</p>
+        <p><strong>Tutor:</strong> {{ session.tutor.tutor_name }} ({{ session.tutor.qualifications }})</p>
+        <p><strong>Class Schedule:</strong> {{ session.schedule }}</p>
+        <div class="btn-container">
+            <button class="btn" *ngIf="getStudentStatus(session) == 'unenrolled'" (click)="requestToEnroll(session.session_id );">Request To Enroll Now</button>
+            <button class="btn" *ngIf="getStudentStatus(session) == 'unapproved'" disabled>Wait To Get Approved</button>
+            <button class="btn" *ngIf="getStudentStatus(session) == 'approved'" disabled>Approved</button>
+        </div>
+    </div>
+</div>

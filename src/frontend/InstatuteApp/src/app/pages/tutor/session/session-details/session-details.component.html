@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 style="text-align: center;">Students List</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;">Name</th>
+                <th style="text-align: center;">Email</th>
+                <th style="text-align: center;">Status</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let student of approved_student_list; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ student.name }}</td>
+                <td style="text-align: center;">{{ student.email }}</td>
+                <td style="text-align: center;"><p class="badge-approved">Approved</p></td>
+                <td style="text-align: center;" disabled><a class="badge-approved" style="background-color: lightgreen;" >Approve</a></td>
+            </tr>
+        </tbody>
+        <tbody *ngFor="let student of unapproved_student_list; let index = index">
+            <tr>
+                <td style="text-align: center;">{{ student.name }}</td>
+                <td style="text-align: center;">{{ student.email }}</td>
+                <td style="text-align: center;"><p class="badge-unapproved">UnApproved</p></td>
+                <td style="text-align: center;"><a class="badge-approved" (click)="approveStudent(student.email)" style="cursor: pointer;">Approve</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

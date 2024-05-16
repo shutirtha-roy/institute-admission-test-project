@@ -11,7 +11,8 @@ export class HeaderComponent {
   name: any;
   role: any;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, 
+    private router: Router) {
 
   }
 
@@ -35,5 +36,9 @@ export class HeaderComponent {
 
   logout(): void {
     this.auth.signOut();
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
   }
 }

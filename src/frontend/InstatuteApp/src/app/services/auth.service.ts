@@ -12,6 +12,8 @@ import { ITutorDetailsResponse } from 'src/assets/data/ITutorDetailsResponse';
 })
 export class AuthService {
   private baseUrl: string = "/api/v1/user/";
+  private studentUrl: string = "/api/v1/student/"
+  private tutorBaseUrl: string = "/api/v1/tutor/";
   private userPayload: any;
 
   constructor(
@@ -69,12 +71,20 @@ export class AuthService {
     localStorage.setItem('name', name);
   }
 
+  storeEmail(email: string) {
+    localStorage.setItem('email', email);
+  }
+
   createTutor(userObj: any) {
-    return this.http.post<IApiResponse>(`${this.baseUrl}tutorcreate`, userObj);
+    return this.http.post<IApiResponse>(`${this.tutorBaseUrl}tutorcreate`, userObj);
   }
 
   getName() {
     return localStorage.getItem('name');
+  }
+
+  getEmail() {
+    return localStorage.getItem('email');
   }
 
   getAllStudents() {
@@ -82,7 +92,7 @@ export class AuthService {
   }
 
   getAllTutors() {
-    return this.http.get<ITutorDetailsResponse>(`${this.baseUrl}tutors`);
+    return this.http.get<ITutorDetailsResponse>(`${this.tutorBaseUrl}alltutor`);
   }
 
   getStudent(email: string) {
@@ -90,7 +100,7 @@ export class AuthService {
   }
 
   getTutor(email: string) {
-    return this.http.get(`${this.baseUrl}tutors/info?email=${email}`);
+    return this.http.get(`${this.tutorBaseUrl}/getonetutor?email=${email}`);
   }
 
   updateStudent(studentObj: any) {
@@ -98,7 +108,7 @@ export class AuthService {
   }
 
   updateTutor(tutorObj: any) {
-    return this.http.patch(`${this.baseUrl}updateTutor`, tutorObj);
+    return this.http.patch(`${this.tutorBaseUrl}changetutorinfo`, tutorObj);
   }
 
   approveStudent(email: string) {
@@ -107,5 +117,9 @@ export class AuthService {
 
   deleteUser(email: string) {
     return this.http.delete<ISuccessResponse>(`${this.baseUrl}${email}`);
+  }
+
+  deleteTutor(email: string) {
+    return this.http.delete<ISuccessResponse>(`${this.tutorBaseUrl}deletetutor/${email}`);
   }
 }

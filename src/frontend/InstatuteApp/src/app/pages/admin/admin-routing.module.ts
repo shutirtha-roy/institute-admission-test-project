@@ -7,6 +7,14 @@ import { AddStudentComponent } from './student-list/add-student/add-student.comp
 import { EditStudentComponent } from './student-list/edit-student/edit-student.component';
 import { AddTutorComponent } from './tutor-list/add-tutor/add-tutor.component';
 import { EditTutorComponent } from './tutor-list/edit-tutor/edit-tutor.component';
+import { UniversityComponent } from './university/university.component';
+import { AddUniversityComponent } from './university/add-university/add-university.component';
+import { EditUniversityComponent } from './university/edit-university/edit-university.component';
+import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './course/add-course/add-course.component';
+import { EditCourseComponent } from './course/edit-course/edit-course.component';
+import { AssignTutorComponent } from './course/assign-tutor/assign-tutor.component';
+import { SessionComponent } from './session/session.component';
 
 const routes: Routes = [
   {
@@ -20,6 +28,14 @@ const routes: Routes = [
   {
     path: 'tutors',
     component: TutorListComponent
+  },
+  {
+    path: 'universities',
+    component: UniversityComponent
+  },
+  {
+    path: 'courses',
+    component: CourseComponent
   },
   {
     path: 'students/add-student',
@@ -36,6 +52,30 @@ const routes: Routes = [
   {
     path: 'tutors/edit/:email',
     component: EditTutorComponent
+  },
+  {
+    path: 'universities/add-university',
+    component: AddUniversityComponent
+  },
+  {
+    path: 'universities/edit/:title',
+    component: EditUniversityComponent
+  },
+  {
+    path: 'courses/add-course',
+    component: AddCourseComponent
+  },
+  {
+    path: 'courses/edit/:course-code',
+    component: EditCourseComponent
+  },
+  {
+    path: 'courses/assign-tutor',
+    component: AssignTutorComponent
+  },
+  {
+    path: 'sessions',
+    component: SessionComponent
   }
 ];
 
