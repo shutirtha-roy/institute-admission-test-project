@@ -29,7 +29,7 @@ export class QuizAnswerService {
     return this.http.get(`${this.baseUrl}quizAnswerById/${quiz_id}`);
   }
 
-  getCourseQuizByStudentEmail(course_code: string, studentEmailObj: any) {
-    return this.http.get(`${this.baseUrl}getCourseQuizByStudentEmail/${course_code}`, studentEmailObj);
+  getCourseQuizByStudentEmail(course_code: string, studentEmail: string) {
+    return this.http.get(`${this.baseUrl}getCourseQuizByStudentEmail/${course_code}/${studentEmail}`);
   }
 }
