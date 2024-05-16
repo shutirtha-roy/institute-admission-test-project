@@ -59,5 +59,5 @@ After its install, type the command “ng serve” to start the Angular applicat
    - Access the backend server via [http://localhost:8000/](http://localhost:8000/).
 
 6. **Database Connection**: 
-   - The application should automatically connect to the MongoDB server using the database named "instatuteDB". 
+   - The application should automatically connect to the MongoDB server using the database named "instatuteDB2". 
    - Ensure that MongoDB is running and accessible on the default port (27017) for this connection to succeed.
