@@ -57,3 +57,19 @@ nav ul li a:hover {
     padding-right: 1em;
 }
 /*NAVIGATION BAR END*/
+
+.active {
+    color: #fff;
+    background-color: rgb(48, 48, 48);
+    padding-top: 6px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.active-v2 {
+    color: #fff;
+    background-color: rgb(48, 48, 48);
+    padding-left: 15px;
+    padding-right: 1px;
+}

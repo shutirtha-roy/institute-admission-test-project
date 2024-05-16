@@ -2,64 +2,58 @@
     <nav>
         <ul>
             <li *ngIf="!isAuthenticated()">
-                <a routerLink="home" >Home</a>
+                <a routerLink="home" [class.active]="isActive('/home')">Home</a>
             </li>
             <li *ngIf="isAuthenticated()">
-                <a *ngIf="role == 'student'" routerLink="student/dashboard">Dashboard</a>
-                <a *ngIf="role == 'tutor'" routerLink="tutor/dashboard">Dashboard</a>
-                <a *ngIf="role == 'admin'" routerLink="admin/dashboard">Dashboard</a>
-            </li>
-            <li>
-                <a routerLink="home" *ngIf="!isAuthenticated()">Courses</a>
-            </li>
-            <li>
-                <a routerLink="home" *ngIf="!isAuthenticated()">Tutors</a>
+                <a *ngIf="role == 'student'" routerLink="student/dashboard" [class.active]="isActive('/student/dashboard')">Dashboard</a>
+                <a *ngIf="role == 'tutor'" routerLink="tutor/dashboard" [class.active]="isActive('/tutor/dashboard')">Dashboard</a>
+                <a *ngIf="role == 'admin'" routerLink="admin/dashboard" [class.active]="isActive('/admin/dashboard')">Dashboard</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'admin'" >
-                <a routerLink="admin/students">Students</a>
+                <a routerLink="admin/students" [class.active]="isActive('/admin/students')">Students</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'admin'" >
-                <a routerLink="admin/tutors">Tutors</a>
+                <a routerLink="admin/tutors" [class.active]="isActive('/admin/tutors')">Tutors</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'admin'" >
-                <a routerLink="admin/universities">Universities</a>
+                <a routerLink="admin/universities" [class.active]="isActive('/admin/universities')">Universities</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'admin'" >
-                <a routerLink="admin/courses">Courses</a>
+                <a routerLink="admin/courses" [class.active]="isActive('/admin/courses')">Courses</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'admin'" >
-                <a routerLink="admin/sessions">Sessions</a>
+                <a routerLink="admin/sessions" [class.active]="isActive('/admin/sessions')">Sessions</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'tutor'" >
-                <a routerLink="tutor/sessions">Sessions</a>
+                <a routerLink="tutor/sessions" [class.active]="isActive('/tutor/sessions')">Sessions</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/courses">Enroll</a>
+                <a routerLink="student/courses" [class.active]="isActive('/student/courses')">Enroll</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/my-courses">My Courses</a>
+                <a routerLink="student/my-courses" [class.active]="isActive('/student/my-courses')">My Courses</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'tutor'" >
-                <a routerLink="tutor/online-quiz">Online Quiz</a>
+                <a routerLink="tutor/online-quiz" [class.active]="isActive('/tutor/online-quiz')">Online Quiz</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'student'" >
-                <a routerLink="student/performance">Performance</a>
+                <a routerLink="student/performance" [class.active]="isActive('/student/performance')">Performance</a>
             </li>
             <li *ngIf="isAuthenticated() && role == 'tutor'" >
-                <a routerLink="tutor/performance">Student Progress</a>
+                <a routerLink="tutor/performance" [class.active]="isActive('/tutor/performance')">Student Progress</a>
             </li>
 
             <li *ngIf="!isAuthenticated()">
-                <a routerLink="auth/signup" id="signUp">Sign Up</a>
+                <a routerLink="auth/signup" id="signUp" [class.active-v2]="isActive('/auth/signup')">Sign Up</a>
             </li>
             <li *ngIf="!isAuthenticated()">
-                <a routerLink="auth/login" id="login">Login</a>
+                <a routerLink="auth/login" id="login" [class.active-v2]="isActive('/auth/login')">Login</a>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated()">
                 <a routerLink="home" id="logout" (click)="logout()">Logout</a>
             </li>
             <li class="nav-item ms-auto" *ngIf="isAuthenticated()">
-                <a routerLink="home" id="welcome-message">Welcome {{ name }}</a>
+                <a id="welcome-message">Welcome {{ name }}</a>
             </li>
         </ul>
     </nav>
