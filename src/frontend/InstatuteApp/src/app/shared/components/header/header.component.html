@@ -39,9 +39,6 @@
             <li *ngIf="isAuthenticated() && role == 'student'" >
                 <a routerLink="student/performance" [class.active]="isActive('/student/performance')">Performance</a>
             </li>
-            <li *ngIf="isAuthenticated() && role == 'tutor'" >
-                <a routerLink="tutor/performance" [class.active]="isActive('/tutor/performance')">Student Progress</a>
-            </li>
 
             <li *ngIf="!isAuthenticated()">
                 <a routerLink="auth/signup" id="signUp" [class.active-v2]="isActive('/auth/signup')">Sign Up</a>

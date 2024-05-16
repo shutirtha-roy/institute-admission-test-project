@@ -25,7 +25,7 @@
                 <td style="text-align: center;">{{ session.approved_student_list.length }}</td>
                 <td style="text-align: center;">{{ session.unapproved_student_list.length }}</td>
                 <td style="text-align: center;">{{ session.student_number - session.approved_student_list.length  }}</td>
-                <td style="text-align: center;">GROUP</td>
+                <td style="text-align: center;">{{ session.session_type | uppercase }}</td>
             </tr>
         </tbody>
     </table>

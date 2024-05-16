@@ -49,7 +49,7 @@ const routes: Routes = [
     component: RemoveQuizComponent
   },
   {
-    path: 'performance',
+    path: 'performance/:quiz_id',
     component: StudentProgressComponent
   }
 ];

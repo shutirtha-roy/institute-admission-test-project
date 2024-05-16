@@ -13,6 +13,7 @@
                 <th style="text-align: center;">Universty Title</th>
                 <th style="text-align: center;">Quiz Description</th>
                 <th style="text-align: center;">Questions</th>
+                <th style="text-align: center;">Student Performance</th>
             </tr>
         </thead>
         <tbody *ngFor="let quiz of quizList; let index = index">
@@ -24,6 +25,9 @@
                 <td style="text-align: center;">{{ quiz.description }}</td>
                 <td style="text-align: center;">
                     <a class="success-button" [routerLink]="['/tutor/online-quiz','add-questions', quiz.quiz_id]">Details</a>
+                </td>
+                <td style="text-align: center;">
+                    <a class="success-button" [routerLink]="['/tutor', 'performance', quiz.quiz_id]">Check</a>
                 </td>
             </tr>
         </tbody>
