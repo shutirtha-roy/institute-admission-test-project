@@ -1,7 +1,7 @@
 <div class="container" >
     <div class="card" *ngFor="let session of sessionList;">
-        <h2>{{ session.description }}</h2>
-        <p><strong>Course:</strong> {{ session.course.title }}</p>
+        <h5><strong>Course:</strong> {{ session.course.title }} ({{ session.course.course_code }})</h5>
+        <p>{{ session.description }}</p>
         <p><strong>University:</strong> {{ session.course.university_title }}</p>
         <p><strong>Tutor:</strong> {{ session.tutor.tutor_name }} ({{ session.tutor.qualifications }})</p>
         <p><strong>Class Schedule:</strong> {{ session.schedule }}</p>
