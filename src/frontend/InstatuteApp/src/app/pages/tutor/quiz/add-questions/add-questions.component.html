@@ -48,7 +48,11 @@
                 <tr>
                     <td style="text-align: center;">{{ question.question_number }}</td>
                     <td style="text-align: center;">{{ question.quiz_question }}</td>
-                    <td style="text-align: center;">{{ question.options }}</td>
+                    <td style="text-align: center;">
+                        <div *ngFor="let option of question.options">
+                          {{ option }}
+                        </div>
+                      </td>
                     <td style="text-align: center;">{{ question.correct_answer }}</td>
                 </tr>
             </tbody>
