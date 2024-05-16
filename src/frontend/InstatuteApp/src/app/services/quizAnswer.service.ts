@@ -16,4 +16,20 @@ export class QuizAnswerService {
   createQuizAnswer(quizAnswerCreateObj: any) {
     return this.http.post(`${this.baseUrl}quizAnswerCreate`, quizAnswerCreateObj);
   }
+
+  getAllQuizAnswer() {
+    return this.http.get(`${this.baseUrl}allQuizAnswer`);
+  }
+
+  getQuizAnswerByStudentEmail(email: string) {
+    return this.http.get(`${this.baseUrl}quizAnswerByStudentEmail/${email}`);
+  }
+
+  getQuizAnswerById(quiz_id: string) {
+    return this.http.get(`${this.baseUrl}quizAnswerById/${quiz_id}`);
+  }
+
+  getCourseQuizByStudentEmail(course_code: string, studentEmailObj: any) {
+    return this.http.get(`${this.baseUrl}getCourseQuizByStudentEmail/${course_code}`, studentEmailObj);
+  }
 }
