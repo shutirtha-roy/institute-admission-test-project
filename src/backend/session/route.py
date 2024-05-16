@@ -225,7 +225,7 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
         if(student.email in unapproved_student_emails):
             for unapproved_student_info in session.unapproved_student_list:
                 if (unapproved_student_info.email == data.student_email):
-                    session.unapproved_student_list.remove(student)
+                    session.unapproved_student_list.remove(unapproved_student_info)
             session.approved_student_list.append(student)
             student.sessions.append(session.session_id)
 
