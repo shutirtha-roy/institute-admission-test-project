@@ -39,7 +39,7 @@ async def createsession(data: CreateDTO):
         return utils.create_response(
             status_code=201,
             success=True,
-            message="Course has been created successfully",
+            message="Session has been created successfully",
             data=ResponseDTO(**session.model_dump())
         )
     
@@ -220,7 +220,7 @@ async def approvestudenttosession(session_id:str, data: UpdateStudentListDTO):
         unapproved_student_emails = [] 
         
         for unapproved_student in session.unapproved_student_list:
-            unapproved_student_emails = unapproved_student.email
+            unapproved_student_emails.append(unapproved_student.email)
         
         if(student.email in unapproved_student_emails):
             for unapproved_student_info in session.unapproved_student_list:

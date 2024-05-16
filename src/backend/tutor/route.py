@@ -247,7 +247,7 @@ async def deletetutorinfo(tutorEmail:str):
                 User.role == UserTypeEnum.TUTOR,
             )
         
-        if tutorEmail is None:
+        if tutor is None:
             raise EntityNotFoundError
         
         tutor_info = await Tutor.find_one(
