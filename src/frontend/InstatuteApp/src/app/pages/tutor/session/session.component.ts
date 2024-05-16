@@ -10,6 +10,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class SessionComponent implements OnInit {
   sessionList!: any[];
+  isDetailsVisible: boolean[] = [];
 
   constructor(
     private authService: AuthService,
@@ -20,6 +21,11 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllSessions();
+    this.initializeVisibilityArray();
+  }
+
+  initializeVisibilityArray(): void {
+    this.isDetailsVisible = new Array(this.sessionList.length).fill(false);
   }
 
   getAllSessions() {
@@ -35,6 +41,10 @@ export class SessionComponent implements OnInit {
           console.log(response)
         }
     });
+  }
+
+  toggleDetails(index: number): void {
+    this.isDetailsVisible[index] = !this.isDetailsVisible[index];
   }
 }
 
