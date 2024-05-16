@@ -15,11 +15,7 @@ To run the frontend application, follow these steps:
 4. **Navigate to the Frontend Angular App Directory:**  
    Go to the folder InstatuteApp which is the Frontend Angular App, then open the command prompt and locate the folder.
 Example: If the Frontend Angular App is in the in the location: 
-If the location is in the D drive, then type “D:” in the terminal then press Enter and then paste the absolute path like for example
-```
-“cd D:\Development\Repo\Frontend\tip-project-instatute\src\frontend\InstatuteApp”
-```
-then press Enter. 
+If the location is in the D drive, then type “D:” in the terminal then press Enter and then paste the absolute path like for example “cd D:\Development\Repo\Frontend\tip-project-instatute\src\frontend\InstatuteApp” then press Enter. 
 
 6. **Install Dependencies:**  
  Then type the command “npm install -f” to install the packages from the “package.json” file.
