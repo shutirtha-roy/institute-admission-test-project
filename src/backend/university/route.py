@@ -61,10 +61,7 @@ async def getalluniversity():
 @university_router.get('/getuniversity/{university_title}', status_code=200)
 async def getoneuniversity(university_title:str):
     try:
-        university = await University.find_one(
-            University.title == university_title
-        )
-
+        university = await University.find_one(University.title == university_title)
         if university is None:
             raise EntityNotFoundError
 
