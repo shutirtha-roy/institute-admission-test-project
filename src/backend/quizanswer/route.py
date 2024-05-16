@@ -148,7 +148,7 @@ async def getCourseQuizByStudentEmail(course_code:str, student_email: str):
             raise EntityNotFoundError
         
         all_course_quizes = await Quiz.find(Quiz.course == course).to_list()
-        given_quiz_answers = await QuizAnswer.find(QuizAnswer.course == course).to_list()
+        given_quiz_answers = await QuizAnswer.find(QuizAnswer.course == course, QuizAnswer.student.email == student_email).to_list()
         given_quizes = []
         for given_quiz_answer in given_quiz_answers:
             given_quiz = await Quiz.find_one(Quiz.course == given_quiz_answer.course)
