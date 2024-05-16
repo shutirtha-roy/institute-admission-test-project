@@ -1,8 +1,11 @@
+import base64
 from fastapi import APIRouter
 
 from error.exception import EntityNotFoundError, UnauthorizedError
 from session.model import Session
 from utils import utils
+import matplotlib.pyplot as plt
+import io
 
 dashboard_router = APIRouter(tags=["Dashboard"])
 
@@ -20,11 +23,27 @@ async def getallsession():
             else:
                 uni_info.update({sesssion.university.title : len(sesssion.approved_student_list)})
 
+        courses = list(uni_info.keys())
+        values = list(uni_info.values())
+        
+        fig = plt.figure(figsize = (10, 5))
+        plt.bar(courses, values, color ='maroon', 
+                width = 0.4)
+        
+        plt.xlabel("Universities")
+        plt.ylabel("No. of students enrolled in various courses")
+        plt.title("Students enrolled in different courses of the Universities")
+
+        my_stringIObytes = io.BytesIO()
+        plt.savefig(my_stringIObytes, format='jpg')
+        my_stringIObytes.seek(0)
+        my_base64_jpgData = base64.b64encode(my_stringIObytes.read()).decode()
+
         return utils.create_response(
             status_code=200,
             success=True,
-            message="Session List has been retrieved successfully",
-            result=uni_info,
+            message="University Dashboard has been retrieved successfully",
+            result=my_base64_jpgData,
         )
 
     except EntityNotFoundError as enfe:
