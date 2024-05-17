@@ -20,4 +20,8 @@ export class DashboardService {
   getUniversityCourseDashboard(university_title: string) {
     return this.http.get(`${this.baseUrl}getUniversityCourseDashboard/${university_title}`);
   }
+
+  getStudentCourseDashboard(email: string) {
+    return this.http.get(`${this.baseUrl}getStudentCourseDashboard/${email}`);
+  }
 }
