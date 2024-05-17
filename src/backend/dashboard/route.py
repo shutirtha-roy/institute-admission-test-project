@@ -38,7 +38,7 @@ async def getallsession():
         values = list(uni_info.values())
         
         fig = plt.figure(figsize = (10, 5))
-        plt.bar(courses, values, color ='maroon', 
+        plt.bar(courses, values, color ='blue', 
                 width = 0.4)
         
         plt.xlabel("Universities")
@@ -89,7 +89,7 @@ async def getallsession(university_title:str):
         values = list(uni_info.values())
         
         fig = plt.figure(figsize = (10, 5))
-        plt.bar(courses, values, color ='maroon', 
+        plt.bar(courses, values, color ='blue', 
                 width = 0.4)
         
         plt.xlabel("Courses")
@@ -136,7 +136,7 @@ async def getallsession(university_title:str):
         values = list(uni_info.values())
         
         fig = plt.figure(figsize = (10, 5))
-        plt.bar(courses, values, color ='maroon', 
+        plt.bar(courses, values, color ='blue', 
                 width = 0.4)
         
         plt.xlabel("Courses")
@@ -206,13 +206,15 @@ async def getallsession(student_email:str):
         courses = list(courses_info.keys())
         values = list(courses_info.values())
         
+        new_list = range(0, 100)
         fig = plt.figure(figsize = (10, 5))
-        plt.bar(courses, values, color ='maroon', 
+        plt.bar(courses, values, color ='blue', 
                 width = 0.4)
         
+        # plt.yticks(new_list)
         plt.xlabel("Courses")
-        plt.ylabel("Course Quiz Completation")
-        plt.title("Status of students Course Completation by Given Quiz")
+        plt.ylabel("Course Quiz Completion (%)")
+        plt.title("Status of students Course Completion Percentage by Given Quiz")
 
         my_stringIObytes = io.BytesIO()
         plt.savefig(my_stringIObytes, format='jpg')
@@ -223,6 +225,53 @@ async def getallsession(student_email:str):
             status_code=200,
             success=True,
             message="Student Data has been retrieved successfully",
+            result=my_base64_jpgData
+        ) 
+
+    except EntityNotFoundError as enfe:
+        return utils.create_response(status_code=enfe.status_code, success=False, message=enfe.message)    
+    except UnauthorizedError as us:
+        return utils.create_response(status_code=us.status_code, success=False, message=us.message)
+    except Exception as e:
+        return utils.create_response(status_code=500, success=False, message=str(e)) 
+    
+
+@dashboard_router.get('/getTutorCourseDashboard/{tutor_email}', status_code=200)
+async def getallsession(tutor_email:str):
+    try:
+        tutor = await Tutor.find_one(Tutor.tutor_email == tutor_email)
+
+        if tutor is None:
+            raise EntityNotFoundError
+        
+        sessions = await Session.find(Session.tutor.tutor_email == tutor_email).to_list()
+
+        session_details = []
+        student_amounts = []
+
+        for session in sessions:
+            session_details.append(session.course.title + "/" + (session.schedule))
+            student_amounts.append(len(session.approved_student_list))
+
+
+        # Set the y-axis to display integers
+        fig = plt.figure(figsize = (10, 5))
+        plt.bar(session_details, student_amounts, color ='blue', 
+                width = 0.4)
+        
+        plt.xlabel("Courses/Session Details")
+        plt.ylabel("Number of Students in each session")
+        plt.title("Status of students in each session")
+
+        my_stringIObytes = io.BytesIO()
+        plt.savefig(my_stringIObytes, format='jpg')
+        my_stringIObytes.seek(0)
+        my_base64_jpgData = base64.b64encode(my_stringIObytes.read()).decode()
+
+        return utils.create_response(
+            status_code=200,
+            success=True,
+            message="Tutor dashboard has been retrieved successfully",
             result=my_base64_jpgData
         ) 
 
